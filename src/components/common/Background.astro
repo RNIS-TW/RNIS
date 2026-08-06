@@ -6,7 +6,11 @@ interface Props {
 const { theme = 'dark' } = Astro.props;
 ---
 
-<div class="background" data-background-theme={theme} aria-hidden="true">
+<div
+    class="background"
+    data-background-theme={theme}
+    aria-hidden="true"
+>
 	<canvas class="background__canvas"></canvas>
 </div>
 

@@ -1,23 +1,23 @@
 {
-    "title": "RNIS",
-    "nav": [
-        {
-            "name": "Home",
-            "url": "/"
-        },
-        {
-            "name": "About",
-            "url": "/about"
-        },
-        {
-            "name": "Contact",
-            "url": "/contact"
-        }
-    ],
-    "otherLinks": [
-        {
-            "name": "Status",
-            "url": "status.routine.tw"
-        }
-    ]
+  "title": "RNIS",
+  "nav": [
+    {
+      "name": "Home",
+      "url": "/"
+    },
+    {
+      "name": "About",
+      "url": "/about"
+    },
+    {
+      "name": "Contact",
+      "url": "/contact"
+    }
+  ],
+  "otherLinks": [
+    {
+      "name": "Status",
+      "url": "status.routine.tw"
+    }
+  ]
 }

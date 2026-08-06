@@ -1,32 +1,30 @@
 {
-    "Hero": {
-        "heroTitle": "平常網路資訊\n工作室",
-        "socialButton": {
-            "mail": "寄信",
-            "discord": "Discord",
-            "telegram": "Telegram",
-            "threads": "Threads"
-        }
-    },
-    "Goal": {
-        "goalTitle": "我們的目標",
-        "goalContent": "Routine Network Information Studio（平常網路資訊）是一個專注於伺服器架構、活動技術與客製化開發的團隊。"
-    },
-    "Skill": {
-        "skillTitle": "我們的技能",
-        "skillContent": "我們擁有豐富的伺服器架構經驗，能夠設計高效、穩定的系統。我們熟悉各種活動技術，能夠為不同需求提供最佳解決方案。此外，我們也擅長客製化開發，能夠根據客戶需求打造專屬功能。"
-    },
-    "Services": {
-        "servicesTitle": "我們的服務",
-        "servicesContent": "我們提供伺服器架構設計、活動技術支援以及客製化開發服務。無論是企業級應用還是個人專案，我們都能提供專業的技術支援，確保您的系統運行順暢。"
-    },
-    "QA": {
-        "Questions": [
-
-        ]
-    },
-    "Contact": {
-        "contactTitle": "聯絡我們",
-        "contactContent": "如果您有任何問題或需求，歡迎透過以下方式與我們聯絡。我們將竭誠為您提供協助。"
+  "Hero": {
+    "heroTitle": "平常網路資訊\n工作室",
+    "socialButton": {
+      "mail": "寄信",
+      "discord": "Discord",
+      "telegram": "Telegram",
+      "threads": "Threads"
     }
+  },
+  "Goal": {
+    "goalTitle": "我們的目標",
+    "goalContent": "Routine Network Information Studio（平常網路資訊）是一個專注於伺服器架構、活動技術與客製化開發的團隊。"
+  },
+  "Skill": {
+    "skillTitle": "我們的技能",
+    "skillContent": "我們擁有豐富的伺服器架構經驗，能夠設計高效、穩定的系統。我們熟悉各種活動技術，能夠為不同需求提供最佳解決方案。此外，我們也擅長客製化開發，能夠根據客戶需求打造專屬功能。"
+  },
+  "Services": {
+    "servicesTitle": "我們的服務",
+    "servicesContent": "我們提供伺服器架構設計、活動技術支援以及客製化開發服務。無論是企業級應用還是個人專案，我們都能提供專業的技術支援，確保您的系統運行順暢。"
+  },
+  "QA": {
+    "Questions": []
+  },
+  "Contact": {
+    "contactTitle": "聯絡我們",
+    "contactContent": "如果您有任何問題或需求，歡迎透過以下方式與我們聯絡。我們將竭誠為您提供協助。"
+  }
 }
