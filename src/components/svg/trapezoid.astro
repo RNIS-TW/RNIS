@@ -1,0 +1,18 @@
+---
+
+const { getTheme } = Astro.props;
+
+const darkColor = '#314865';
+const lightColor = '#6b7280';
+
+---
+
+<svg
+    width="1440"
+    height="307"
+    viewBox="0 0 1440 307"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+>
+    <path d="M0 0V307H1440V185L0 0Z" fill={getTheme() === 'dark' ? darkColor : lightColor}></path>
+</svg>
