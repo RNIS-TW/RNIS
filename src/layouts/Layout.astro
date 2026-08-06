@@ -1,0 +1,44 @@
+---
+import '../styles/global.css';
+import satoshiUrl from '../assets/font/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variable.woff2?url';
+import Background from '../components/common/Background.astro';
+import Header from '../components/common/Header.astro';
+---
+
+<!doctype html>
+<html lang="zh-Hant" data-theme="dark">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="preload" href={satoshiUrl} as="font" type="font/woff2" crossorigin />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+		<meta name="theme-color" content="#151c2a" />
+		<script is:inline>
+			(() => {
+				const storageKey = 'rnis-theme';
+				let savedTheme = null;
+
+				try {
+					savedTheme = localStorage.getItem(storageKey);
+				} catch {}
+
+				const theme = savedTheme === 'light' || savedTheme === 'dark'
+					? savedTheme
+					: matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+
+				document.documentElement.dataset.theme = theme;
+				document.documentElement.style.colorScheme = theme;
+			})();
+		</script>
+		<title>Astro Basics</title>
+	</head>
+	<body>
+		<Background />
+		<Header />
+		<main class="site-content">
+			<slot />
+		</main>
+	</body>
+</html>
