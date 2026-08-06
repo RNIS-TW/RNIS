@@ -1,5 +1,4 @@
 @import "tailwindcss";
-@import "./font/font.css";
 
 @theme {
   --color-jet-black: #1a2429;

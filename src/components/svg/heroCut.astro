@@ -1,25 +1,30 @@
-<svg
-    class="hero-cut"
-    width="1440"
-    height="155"
-    viewBox="0 0 1440 155"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
->
-	<path
-	    d="M755.5 0H0V154.5H1440V120H873L755.5 0Z"
-	    fill="currentColor"
-	/>
-</svg>
+---
+const { class: className, ...rest } = Astro.props;
+---
+
+<div class:list={['trapezoid', className]} {...rest}></div>
+<div class:list={['trapezoid-shadow', className]} {...rest}></div>
 
 <style>
-	.hero-cut {
-		color: var(--color-yale-blue);
-		transition: color 220ms ease;
-	}
+    .trapezoid {
+        transition: color 220ms ease;
+        border-bottom: 160px solid var(--color-jet-black);
+        border-left: 0px solid transparent;
+        border-right: 80px solid transparent;
+        height: 0;
+        width: 60vw;
+    }
 
-	:global(html[data-theme='light']) .hero-cut {
-		color: var(--color-air-force-blue);
-	}
+    .trapezoid-shadow {
+        border-bottom: 164px solid var(--color-icy-blue);
+        border-left: 0px solid transparent;
+        border-right: 80px solid transparent;
+        height: 0;
+        width: calc(60vw + 4px);
+        z-index: -1;
+    }
+
+    :global(html[data-theme="light"]) .trapezoid {
+        color: var(--color-air-force-blue);
+    }
 </style>
-

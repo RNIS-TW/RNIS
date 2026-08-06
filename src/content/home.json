@@ -1,6 +1,7 @@
 {
-  "Hero": {
-    "heroTitle": "平常網路資訊\n工作室",
+  "hero": {
+    "title": "平常網路資訊|工作室",
+    "description": "我們是一個專注於伺服器架構、活動技術與客製化開發的團隊。",
     "socialButton": {
       "mail": "寄信",
       "discord": "Discord",
@@ -20,11 +21,164 @@
     "servicesTitle": "我們的服務",
     "servicesContent": "我們提供伺服器架構設計、活動技術支援以及客製化開發服務。無論是企業級應用還是個人專案，我們都能提供專業的技術支援，確保您的系統運行順暢。"
   },
+  "Projects": {
+    "eyebrow": "SELECTED SYSTEMS / 近期案例",
+    "title": "把複雜留在系統裡，\n把可靠交給現場。",
+    "description": "從活動上線前的最後一哩，到長期運作的服務架構，我們把每個專案視為一套需要被理解、被監控，也能被交接的系統。",
+    "items": [
+      {
+        "type": "活動基礎設施",
+        "title": "高流量活動平台",
+        "description": "針對開放報名與直播期間的瞬間流量，規劃可擴充的服務架構、部署流程與即時監控。",
+        "deliverables": ["流量與容量規劃", "自動化部署", "監控與告警"],
+        "status": "穩定運行",
+        "accent": "sky",
+        "featured": true
+      },
+      {
+        "type": "活動技術",
+        "title": "現場訊號中控",
+        "description": "整合轉播、舞台與場務的資訊流，讓現場團隊在同一個節奏上判斷與行動。",
+        "deliverables": ["訊號流程設計", "備援路徑", "現場技術支援"],
+        "status": "案例整理中",
+        "accent": "yellow"
+      },
+      {
+        "type": "客製化開發",
+        "title": "營運自動化工具",
+        "description": "把分散的例行操作收斂成清楚的工作流程，降低重複輸入與人工作業造成的風險。",
+        "deliverables": ["需求流程盤點", "內部工具開發", "文件化交付"],
+        "status": "持續迭代",
+        "accent": "green"
+      }
+    ]
+  },
+  "About": {
+    "eyebrow": "ABOUT THE STUDIO / 關於我們",
+    "title": "讓技術回到日常，\n讓合作保持清楚。",
+    "description": "平常網路資訊工作室是一支從基礎設施、活動現場到產品開發都能一起思考的技術團隊。我們重視系統能否長期運作，也在意合作的人是否真正理解每一個決定。",
+    "slogan": "Reliable by design.\nHuman by default.",
+    "imageLabel": "TEAM IMAGE / 團隊影像",
+    "imageHint": "建議使用 4:5 直式團隊照或工作現場照片",
+    "members": [
+      {
+        "name": "成員姓名",
+        "role": "系統與基礎設施"
+      },
+      {
+        "name": "成員姓名",
+        "role": "活動與現場技術"
+      },
+      {
+        "name": "成員姓名",
+        "role": "產品與軟體開發"
+      },
+      {
+        "name": "成員姓名",
+        "role": "營運與專案協作"
+      }
+    ],
+    "buttons": {
+      "learnMore": "深入認識我們",
+      "services": "查看服務"
+    }
+  },
   "QA": {
-    "Questions": []
+    "eyebrow": "COMMON QUESTIONS / 合作前常見問題",
+    "title": "Q+A",
+    "description": "從第一次對話到系統交付，我們把常見的疑問整理成一份可快速查閱的合作說明。",
+    "questions": [
+      {
+        "question": "還不確定需要哪一種服務，也可以找你們嗎？",
+        "answer": "可以。我們通常會先了解你目前的情境、時程與限制，再一起判斷需要的是架構顧問、活動技術支援、客製化開發，或只是一次聚焦的技術討論。",
+        "meta": "需求釐清"
+      },
+      {
+        "question": "專案費用是怎麼估算的？",
+        "answer": "費用會依工作範圍、系統複雜度、時程與現場需求評估。我們會先確認交付內容，再提供清楚的報價與不包含項目，避免進行到一半才出現預期外的成本。",
+        "meta": "預算評估"
+      },
+      {
+        "question": "從討論到上線，通常需要多久？",
+        "answer": "小型技術支援可能在一至兩週內完成，完整的系統規劃與開發通常需要四至八週以上。若有固定活動日期，我們會從上線日回推測試、彩排與備援準備時間。",
+        "meta": "時程規劃"
+      },
+      {
+        "question": "交付後會提供文件與後續支援嗎？",
+        "answer": "會。依專案內容提供操作、部署或架構文件，並在交付前完成說明。需要持續維運、監控或活動期間待命，也可以另外規劃適合的支援方式。",
+        "meta": "交付維運"
+      }
+    ],
+    "otherQuestion": "沒有找到你的問題？",
+    "contactLabel": "直接告訴我們"
   },
   "Contact": {
-    "contactTitle": "聯絡我們",
-    "contactContent": "如果您有任何問題或需求，歡迎透過以下方式與我們聯絡。我們將竭誠為您提供協助。"
+    "eyebrow": "CONTACT / 開啟一條清楚的連線",
+    "title": "Contact",
+    "description": "有系統需要整理、有活動正在倒數，或只是想先確認一個技術方向？選一個你習慣的管道，把現在的情況告訴我們。",
+    "email": "contact@routine.tw",
+    "channels": [
+      {
+        "id": "mail",
+        "shortLabel": "MAIL",
+        "title": "把需求寄給我們。",
+        "description": "適合專案需求、合作提案與需要留下完整脈絡的問題。我們會從你的目標、時程與限制開始理解。",
+        "address": "contact@routine.tw",
+        "actionLabel": "撰寫郵件",
+        "href": "mailto:contact@routine.tw",
+        "available": true
+      },
+      {
+        "id": "discord",
+        "shortLabel": "DC",
+        "title": "在 Discord 碰面。",
+        "description": "適合快速交流、社群討論與活動期間的即時聯繫。官方邀請連結公開後會在這裡直接開啟。",
+        "address": "Discord",
+        "actionLabel": "邀請連結準備中",
+        "href": "",
+        "available": false
+      },
+      {
+        "id": "telegram",
+        "shortLabel": "TG",
+        "title": "從 Telegram 開始。",
+        "description": "Telegram 聯絡入口目前保留中；正式帳號確認後，可以在這裡直接開始對話。",
+        "address": "Telegram",
+        "actionLabel": "帳號準備中",
+        "href": "",
+        "available": false
+      },
+      {
+        "id": "threads",
+        "shortLabel": "THREADS",
+        "title": "追蹤我們的日常。",
+        "description": "我們會在 Threads 分享工作室近況與近期專案。官方頁面確認後，這裡會連到最新動態。",
+        "address": "Threads",
+        "actionLabel": "頁面準備中",
+        "href": "",
+        "available": false
+      }
+    ],
+    "mailing": {
+      "eyebrow": "LOW-FREQUENCY SIGNAL / 低頻更新",
+      "title": "偶爾寄一封值得打開的信。",
+      "description": "新案例、活動紀錄與工作室動態。不追演算法，也不塞滿你的收件匣。",
+      "placeholder": "you@example.com",
+      "buttonLabel": "加入消息清單",
+      "note": "送出後會開啟你的郵件程式，由你確認訂閱信。"
+    },
+    "discord": {
+      "eyebrow": "DISCORD / 社群入口",
+      "title": "先進來坐坐。",
+      "description": "需要快速找到我們，或想看看工作室最近在忙什麼，Discord 會是最直接的入口。",
+      "embedUrl": "",
+      "inviteUrl": "",
+      "buttonLabel": "加入 RNIS Discord",
+      "placeholder": "設定 Discord Widget URL 後，這裡會顯示社群的即時狀態與加入入口。"
+    },
+    "footer": {
+      "left": "ROUTINE NETWORK INFORMATION STUDIO",
+      "right": "TAIWAN / UTC+8"
+    }
   }
 }
