@@ -1,317 +1,180 @@
 ---
-import config from "@content/home.json";
-
-const { QA: qa } = config;
+const faqs = [
+    {
+        question: "你們主要提供哪些服務？",
+        answer: "我們專注於伺服器架構、活動技術支援與客製化開發。從前期規劃、建置部署到上線維運，都能依專案需求提供對應方案。",
+    },
+    {
+        question: "專案大概需要多久？",
+        answer: "時程會依規模與複雜度調整。小型工具或活動支援通常數週內可完成；完整架構規劃與建置則可能需要數週到數個月。",
+    },
+    {
+        question: "可以只委託其中一部分嗎？",
+        answer: "可以。無論是架構諮詢、現場技術支援，或單一功能開發，我們都能依你的現況拆分合作範圍。",
+    },
+    {
+        question: "如何開始合作？",
+        answer: "先透過聯絡表單或社群與我們說明需求與時程，我們會回覆可行性評估與後續討論方式。",
+    },
+];
 ---
 
-<section
-    id="qa"
-    aria-labelledby="qa-title"
-    class="relative isolate w-full overflow-hidden bg-yale-blue text-alice-blue"
->
-    <div class="relative mx-auto max-w-[100rem] px-5 py-16 sm:px-8 sm:py-20 lg:px-[clamp(3rem,7vw,8rem)] lg:py-[clamp(5rem,9vw,9rem)]">
-        <div
-            aria-hidden="true"
-            class="pointer-events-none absolute inset-0 -z-10 opacity-60 [background-image:radial-gradient(circle_at_76%_18%,rgba(118,186,255,.18),transparent_26rem),linear-gradient(rgba(186,221,254,.035)_1px,transparent_1px),linear-gradient(90deg,rgba(186,221,254,.035)_1px,transparent_1px)] [background-size:auto,56px_56px,56px_56px]"
-        ></div>
+<section class="w-full h-fit min-h-screen bg-air-force-blue">
+    <div class="container mx-auto px-16 py-32">
+        <div class="w-full h-fit mb-16">
+            <h1 class="text-6xl text-alice-blue mb-4">常見問題</h1>
+            <p class="text-xl text-alice-blue">這裡是一些常見的問題和解答</p>
+        </div>
 
-        <div class="grid gap-14 lg:grid-cols-[minmax(16rem,.58fr)_minmax(0,1.42fr)] lg:gap-[clamp(4rem,9vw,10rem)]">
-            <header class="lg:sticky lg:top-24 lg:self-start">
-                <p class="font-mono text-[0.65rem] font-semibold tracking-[0.2em] text-cool-sky sm:text-xs">
-                    {qa.eyebrow}
-                </p>
-                <h2
-                    id="qa-title"
-                    class="mt-6 whitespace-pre-line font-display text-[clamp(3.5rem,7vw,7rem)] font-medium leading-[0.82] tracking-[-0.055em] text-alice-blue"
-                >{qa.title}</h2>
-                <p class="mt-7 max-w-md text-sm leading-7 text-icy-blue/75 sm:text-base sm:leading-8">
-                    {qa.description}
-                </p>
+        <div class="w-full h-fit px-32 flex flex-col" data-faq-list>
+            {
+                faqs.map((faq, index) => (
+                    <div
+                        class="faq-item border-b border-icy-blue"
+                        data-faq-item
+                    >
+                        <button
+                            type="button"
+                            class="faq-trigger w-full h-fit flex gap-12 items-center justify-start py-4 px-8 text-left cursor-pointer"
+                            aria-expanded="false"
+                            aria-controls={`faq-panel-${index}`}
+                            id={`faq-trigger-${index}`}
+                        >
+                            <span class="text-4xl text-light-coral font-bold shrink-0">
+                                Q
+                            </span>
+                            <span class="text-3xl text-alice-blue flex-1">
+                                {faq.question}
+                            </span>
+                            <span
+                                class="faq-icon text-5xl text-alice-blue ml-auto shrink-0 leading-none"
+                                aria-hidden="true"
+                            >
+                                +
+                            </span>
+                        </button>
 
-                <div class="mt-10 hidden items-center gap-3 font-mono text-[0.62rem] tracking-[0.15em] text-powder-blue/60 lg:flex">
-                    <span class="relative flex h-3 w-3">
-                        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-tea-green opacity-50 motion-reduce:hidden"></span>
-                        <span class="relative inline-flex h-3 w-3 rounded-full bg-tea-green"></span>
-                    </span>
-                    RESPONSE CHANNEL ONLINE
-                </div>
-            </header>
-
-            <div class="relative min-w-0 lg:pt-8">
-                <div class="signal-rail" aria-hidden="true">
-                    <span class="signal-rail__packet"></span>
-                </div>
-
-                <div class="qa-list" data-qa-list>
-                    {qa.questions.map((item, index) => (
-                        <details class="qa-item group" open={index === 0}>
-                            <summary class="qa-summary">
-                                <span class="qa-index" aria-hidden="true">
-                                    <span class="qa-node"></span>
-                                    <span class="qa-code">QRY_{String(index + 1).padStart(2, "0")}</span>
-                                </span>
-
-                                <span class="min-w-0 flex-1">
-                                    <span class="block font-display text-[clamp(1.55rem,3vw,2.6rem)] font-medium leading-[1.08] tracking-[-0.025em] text-alice-blue transition-colors group-hover:text-white">
-                                        {item.question}
+                        <div
+                            id={`faq-panel-${index}`}
+                            class="faq-panel"
+                            role="region"
+                            aria-labelledby={`faq-trigger-${index}`}
+                        >
+                            <div class="faq-panel-inner">
+                                <div class="flex gap-12 items-start px-8 pb-6 pt-1">
+                                    <span class="text-4xl text-tea-green font-bold shrink-0">
+                                        A
                                     </span>
-                                    <span class="mt-3 block font-mono text-[0.62rem] tracking-[0.16em] text-cool-sky/75 sm:text-[0.68rem]">
-                                        {item.meta} / TAP TO READ
-                                    </span>
-                                </span>
-
-                                <span class="qa-toggle" aria-hidden="true">
-                                    <span></span>
-                                    <span></span>
-                                </span>
-                            </summary>
-
-                            <div class="qa-answer-wrap">
-                                <div class="qa-answer">
-                                    <div class="qa-answer__label">
-                                        <span>RES_{String(index + 1).padStart(2, "0")}</span>
-                                        <span>200 / OK</span>
-                                    </div>
-                                    <p>{item.answer}</p>
+                                    <p class="text-xl text-alice-blue/90 leading-relaxed pt-1">
+                                        {faq.answer}
+                                    </p>
                                 </div>
                             </div>
-                        </details>
-                    ))}
-                </div>
-
-                <footer class="mt-10 flex flex-col gap-5 border-t border-icy-blue/35 pt-8 sm:flex-row sm:items-center sm:justify-between">
-                    <div>
-                        <p class="font-display text-2xl font-medium tracking-[-0.02em] text-alice-blue sm:text-3xl">
-                            {qa.otherQuestion}
-                        </p>
-                        <p class="mt-2 font-mono text-[0.62rem] tracking-[0.14em] text-powder-blue/60">
-                            OPEN A NEW CONVERSATION
-                        </p>
+                        </div>
                     </div>
-                    <a
-                        href="#contact"
-                        class="group/contact inline-flex min-h-12 w-fit items-center justify-center gap-5 bg-icy-blue px-5 py-3 font-mono text-xs font-semibold tracking-[0.1em] text-ink-black shadow-[5px_5px_0_0_#151c2a] transition-[transform,box-shadow,background-color] hover:translate-x-0.5 hover:translate-y-0.5 hover:bg-alice-blue hover:shadow-[2px_2px_0_0_#151c2a] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-alice-blue focus-visible:ring-offset-4 focus-visible:ring-offset-yale-blue motion-reduce:transform-none motion-reduce:transition-none"
-                    >
-                        {qa.contactLabel}
-                        <span
-                            class="text-lg transition-transform group-hover/contact:translate-x-1 motion-reduce:transition-none"
-                            aria-hidden="true"
-                        >→</span>
-                    </a>
-                </footer>
+                ))
+            }
+            <div
+                class="w-full h-fit flex gap-12 items-center justify-center py-4 px-8 text-left"
+            >
+                <p class="text-3xl text-alice-blue">
+                    有其他問題嗎，歡迎隨時與我們聯繫！
+                </p>
+                <a
+                    href="https://www.google.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="w-fit h-fit px-4 py-2 bg-yale-blue border border-icy-blue button duration-100 relative"
+                >
+                    <p class="text-sm text-alice-blue">前往泥土</p>
+                </a>
             </div>
         </div>
     </div>
 </section>
 
-<script>
-    const qaLists = document.querySelectorAll<HTMLElement>("[data-qa-list]");
-
-    qaLists.forEach((list) => {
-        const items = Array.from(list.querySelectorAll<HTMLDetailsElement>("details"));
-
-        items.forEach((item) => {
-            item.addEventListener("toggle", () => {
-                if (!item.open) return;
-
-                items.forEach((otherItem) => {
-                    if (otherItem !== item) otherItem.open = false;
-                });
-            });
-        });
-    });
-</script>
-
 <style>
-    .signal-rail {
-        position: absolute;
-        inset: 2rem auto 8.75rem -1.5rem;
-        width: 1px;
-        background: linear-gradient(to bottom, transparent, rgba(186, 221, 254, 0.48) 8%, rgba(186, 221, 254, 0.48) 92%, transparent);
-    }
-
-    .signal-rail__packet {
-        position: absolute;
-        left: -3px;
-        top: 0;
-        width: 7px;
-        height: 2.75rem;
-        background: var(--color-cool-sky);
-        box-shadow: 0 0 18px rgba(118, 186, 255, 0.8);
-        animation: signal-trace 5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
-    }
-
-    .qa-item {
-        border-top: 1px solid rgba(186, 221, 254, 0.34);
-    }
-
-    .qa-item:last-child {
-        border-bottom: 1px solid rgba(186, 221, 254, 0.34);
-    }
-
-    .qa-summary {
-        display: flex;
-        cursor: pointer;
-        list-style: none;
-        align-items: flex-start;
-        gap: clamp(1rem, 3vw, 2.5rem);
-        padding: clamp(1.75rem, 4vw, 3rem) 0;
-    }
-
-    .qa-summary::-webkit-details-marker {
-        display: none;
-    }
-
-    .qa-summary:focus-visible {
-        outline: 2px solid var(--color-cool-sky);
-        outline-offset: 8px;
-    }
-
-    .qa-index {
-        display: flex;
-        width: 4.75rem;
-        flex: 0 0 auto;
-        align-items: center;
-        gap: 0.65rem;
-        padding-top: 0.45rem;
-        font-family: var(--font-mono);
-        font-size: 0.62rem;
-        letter-spacing: 0.12em;
-        color: rgba(186, 221, 254, 0.62);
-    }
-
-    .qa-node {
-        width: 0.55rem;
-        height: 0.55rem;
-        flex: 0 0 auto;
-        border: 1px solid var(--color-cool-sky);
-        background: var(--color-yale-blue);
-        box-shadow: 0 0 0 4px rgba(118, 186, 255, 0.08);
-        transition: background-color 240ms ease, box-shadow 240ms ease;
-    }
-
-    .qa-toggle {
-        position: relative;
-        width: 2.75rem;
-        height: 2.75rem;
-        flex: 0 0 auto;
-        border: 1px solid rgba(186, 221, 254, 0.42);
-        transition: background-color 240ms ease, border-color 240ms ease;
-    }
-
-    .qa-toggle span {
-        position: absolute;
-        left: 50%;
-        top: 50%;
-        width: 1rem;
-        height: 1px;
-        background: var(--color-alice-blue);
-        transform: translate(-50%, -50%);
-        transition: transform 260ms ease;
-    }
-
-    .qa-toggle span:last-child {
-        transform: translate(-50%, -50%) rotate(90deg);
-    }
-
-    .qa-item[open] .qa-toggle {
-        border-color: var(--color-cool-sky);
-        background: var(--color-cool-sky);
-    }
-
-    .qa-item[open] .qa-toggle span {
-        background: var(--color-ink-black);
-    }
-
-    .qa-item[open] .qa-toggle span:last-child {
-        transform: translate(-50%, -50%) rotate(0deg);
-    }
-
-    .qa-item[open] .qa-node {
-        background: var(--color-tea-green);
-        box-shadow: 0 0 0 5px rgba(190, 248, 184, 0.11), 0 0 18px rgba(190, 248, 184, 0.24);
-    }
-
-    .qa-answer-wrap {
+    .faq-panel {
         display: grid;
         grid-template-rows: 0fr;
-        opacity: 0;
-        transition: grid-template-rows 360ms cubic-bezier(0.22, 1, 0.36, 1), opacity 280ms ease;
+        transition: grid-template-rows 320ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .qa-item[open] .qa-answer-wrap {
-        grid-template-rows: 1fr;
-        opacity: 1;
-    }
-
-    .qa-answer {
-        min-height: 0;
+    .faq-panel-inner {
         overflow: hidden;
-        padding-left: calc(4.75rem + clamp(1rem, 3vw, 2.5rem));
+        min-height: 0;
+        opacity: 0;
+        transform: translateY(-0.35rem);
+        transition:
+            opacity 240ms ease,
+            transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .qa-answer > p {
-        max-width: 42rem;
-        padding: 0 0 clamp(2rem, 4vw, 3rem) 1.25rem;
-        border-left: 2px solid var(--color-tea-green);
-        color: rgba(227, 241, 255, 0.82);
-        font-size: clamp(0.92rem, 1.6vw, 1.08rem);
-        line-height: 1.9;
+    .faq-item.is-open .faq-panel {
+        grid-template-rows: 1fr;
     }
 
-    .qa-answer__label {
-        display: flex;
-        max-width: 42rem;
-        justify-content: space-between;
-        padding: 0 0 0.8rem 1.25rem;
-        font-family: var(--font-mono);
-        font-size: 0.6rem;
-        letter-spacing: 0.15em;
-        color: var(--color-tea-green);
+    .faq-item.is-open .faq-panel-inner {
+        opacity: 1;
+        transform: translateY(0);
     }
 
-    @keyframes signal-trace {
-        0%, 8% { top: 0; opacity: 0; }
-        14% { opacity: 1; }
-        84% { opacity: 1; }
-        92%, 100% { top: calc(100% - 2.75rem); opacity: 0; }
+    .faq-icon {
+        display: inline-block;
+        transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    @media (max-width: 1023px) {
-        .signal-rail {
-            display: none;
-        }
+    .faq-item.is-open .faq-icon {
+        transform: rotate(45deg); /* + becomes × */
     }
 
-    @media (max-width: 639px) {
-        .qa-index {
-            width: auto;
-        }
-
-        .qa-code {
-            display: none;
-        }
-
-        .qa-answer {
-            padding-left: calc(0.55rem + 1rem + 1rem);
-        }
-
-        .qa-toggle {
-            width: 2.4rem;
-            height: 2.4rem;
-        }
+    .faq-trigger:hover .faq-icon {
+        color: var(--color-icy-blue);
     }
 
-    @media (prefers-reduced-motion: reduce) {
-        .signal-rail__packet {
-            animation: none;
-        }
-
-        .qa-node,
-        .qa-toggle,
-        .qa-toggle span,
-        .qa-answer-wrap {
-            transition: none;
-        }
+    .button:hover {
+        transform: scale(1.05) translateY(-1px);
+        z-index: 10;
     }
 </style>
+
+<script>
+    const list = document.querySelector("[data-faq-list]");
+    if (list) {
+        const items = [
+            ...list.querySelectorAll<HTMLElement>("[data-faq-item]"),
+        ];
+
+        const closeItem = (item: HTMLElement) => {
+            item.classList.remove("is-open");
+            const trigger =
+                item.querySelector<HTMLButtonElement>(".faq-trigger");
+            trigger?.setAttribute("aria-expanded", "false");
+        };
+
+        const openItem = (item: HTMLElement) => {
+            item.classList.add("is-open");
+            const trigger =
+                item.querySelector<HTMLButtonElement>(".faq-trigger");
+            trigger?.setAttribute("aria-expanded", "true");
+        };
+
+        for (const item of items) {
+            const trigger =
+                item.querySelector<HTMLButtonElement>(".faq-trigger");
+            if (!trigger) continue;
+
+            trigger.addEventListener("click", () => {
+                const isOpen = item.classList.contains("is-open");
+
+                // accordion: close others
+                for (const other of items) {
+                    if (other !== item) closeItem(other);
+                }
+
+                if (isOpen) closeItem(item);
+                else openItem(item);
+            });
+        }
+    }
+</script>

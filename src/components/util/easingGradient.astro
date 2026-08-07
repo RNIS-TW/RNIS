@@ -1,0 +1,94 @@
+---
+interface Props {
+	/** CSS length, e.g. `"100%"`, `"24rem"`, `320` (px) */
+	width?: string | number;
+	/** CSS length, e.g. `"100%"`, `"12rem"`, `200` (px) */
+	height?: string | number;
+	/** Gradient angle in degrees */
+	deg?: number;
+	/** Start color (CSS color). Fades toward `to` */
+	color?: string;
+	/** End color. Defaults to transparent */
+	to?: string;
+	/**
+	 * Easing curve for stop distribution.
+	 * - `in` / `out` / `in-out`: cubic
+	 * - `linear`: no easing
+	 */
+	ease?: "in" | "out" | "in-out" | "linear";
+	/** Number of intermediate stops (smoother = higher). Default 24 */
+	stops?: number;
+	class?: string;
+}
+
+const {
+	width = "100%",
+	height = "100%",
+	deg = 180,
+	color = "var(--color-icy-blue)",
+	to = "transparent",
+	ease = "in-out",
+	stops = 24,
+	class: className = "",
+} = Astro.props;
+
+const toCssSize = (value: string | number) =>
+	typeof value === "number" ? `${value}px` : value;
+
+function easeValue(t: number, type: Props["ease"] = "in-out") {
+	switch (type) {
+		case "linear":
+			return t;
+		case "in":
+			return t * t * t;
+		case "out":
+			return 1 - Math.pow(1 - t, 3);
+		case "in-out":
+		default:
+			return t < 0.5
+				? 4 * t * t * t
+				: 1 - Math.pow(-2 * t + 2, 3) / 2;
+	}
+}
+
+function mixColor(from: string, toward: string, t: number) {
+	// Prefer color-mix when both are real colors; fall back to from→transparent via alpha stops
+	if (toward === "transparent") {
+		return `color-mix(in srgb, ${from} ${Math.round((1 - t) * 100)}%, transparent)`;
+	}
+	return `color-mix(in srgb, ${from} ${Math.round((1 - t) * 100)}%, ${toward})`;
+}
+
+const count = Math.max(2, Math.min(64, Math.floor(stops)));
+const stopList = Array.from({ length: count + 1 }, (_, i) => {
+	const t = i / count;
+	const eased = easeValue(t, ease);
+	const pos = `${(t * 100).toFixed(2)}%`;
+	const c = mixColor(color, to, eased);
+	return `${c} ${pos}`;
+}).join(", ");
+
+const gradient = `linear-gradient(${deg}deg, ${stopList})`;
+const style = [
+	`width:${toCssSize(width)}`,
+	`height:${toCssSize(height)}`,
+	`background-image:${gradient}`,
+].join(";");
+---
+
+<div
+    class:list={["easing-gradient", className]}
+    style={style}
+    aria-hidden="true"
+>
+</div>
+
+<style>
+	.easing-gradient {
+		display: block;
+		pointer-events: none;
+		flex-shrink: 0;
+	}
+</style>
+
+
