@@ -1,4 +1,69 @@
 ---
-
+import logo from "../../assets/logo.svg";
+import NotchButton from "@components/common/NotchButton.astro";
 ---
 
+<header class="w-full h-20 bg-surface-base/80 fixed z-50 backdrop-blur-sm border-b-amber-300 border-b">
+	<div class="container h-full flex items-center justify-between mx-auto px-16 py-3">
+		<div class="w-fit h-full flex items-center justify-start gap-4">
+			<img
+			    src={logo.src}
+			    alt="Logo"
+			    class="h-12 w-auto aspect-square object-contain"
+			/>
+			<h1 class="w-fit h-auto text-4xl">RNIS</h1>
+		</div>
+
+		<nav class="w-fit h-full flex gap-6 items-center justify-end">
+			<a class="w-fit" href="/">
+				<p class="text-base text-primary underline-offset-8 decoration-amber-50 relative header-pages">
+					首頁
+				</p>
+			</a>
+			<a class="w-fit" href="/about">
+				<p class="text-base text-primary underline-offset-8 decoration-amber-50 relative header-pages">
+					關於我們
+				</p>
+			</a>
+			<a class="w-fit" href="/services">
+				<p class="text-base text-primary underline-offset-8 decoration-amber-50 relative header-pages">
+					服務項目
+				</p>
+			</a>
+			<a class="w-fit mr-4" href="/contact">
+				<p class="text-base text-primary underline-offset-8 decoration-amber-50 relative header-pages">
+					聯絡資訊
+				</p>
+			</a>
+			<NotchButton
+			    as="a"
+			    href="#contact"
+			    color="var(--color-amber-100)"
+				notch="8px"
+			    class="w-fit text-amber-100 font-medium"
+			>
+				立即諮詢
+			</NotchButton>
+		</nav>
+	</div>
+</header>
+
+<script></script>
+
+<style>
+	.header-pages::before {
+		content: "";
+		position: absolute;
+		bottom: -4px;
+		left: 0;
+		width: 0;
+		height: 2px;
+		background-color: var(--color-amber-100);
+		transition: width 0.15s ease;
+		z-index: -1;
+	}
+
+	.header-pages:hover::before {
+		width: 100%;
+	}
+</style>
