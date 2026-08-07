@@ -4,11 +4,11 @@ import config from "@content/home.json";
 const { QA } = config;
 ---
 
-<section class="w-full h-fit min-h-screen bg-ink-black">
+<section class="w-full h-fit bg-ink-black">
     <div class="container mx-auto px-16 py-32">
         <div class="w-full h-fit mb-16">
-            <h1 class="text-6xl text-icy-blue font-line-seed mb-4">{QA.title}</h1>
-            <p class="text-xl text-alice-blue">{QA.description}</p>
+            <h1 class="text-5xl text-icy-blue font-line-seed mb-4">{QA.title}</h1>
+            <p class="text-lg text-alice-blue">{QA.description}</p>
         </div>
 
         <div class="w-full h-fit px-32 flex flex-col" data-faq-list>
@@ -25,14 +25,14 @@ const { QA } = config;
                             aria-controls={`faq-panel-${index}`}
                             id={`faq-trigger-${index}`}
                         >
-                            <span class="text-4xl text-light-coral font-bold shrink-0">
+                            <span class="text-3xl text-light-coral font-bold shrink-0">
                                 Q
                             </span>
-                            <span class="text-3xl text-icy-blue flex-1">
+                            <span class="text-2xl text-icy-blue flex-1">
                                 {faq.question}
                             </span>
                             <span
-                                class="faq-icon text-5xl text-alice-blue ml-auto shrink-0 leading-none"
+                                class="faq-icon text-4xl text-alice-blue ml-auto shrink-0 leading-none"
                                 aria-hidden="true"
                             >
                                 +
@@ -47,10 +47,10 @@ const { QA } = config;
                         >
                             <div class="faq-panel-inner">
                                 <div class="flex gap-12 items-start px-8 pb-6 pt-1">
-                                    <span class="text-4xl text-tea-green font-bold shrink-0">
+                                    <span class="text-3xl text-tea-green font-bold shrink-0">
                                         A
                                     </span>
-                                    <p class="text-xl text-alice-blue/90 leading-relaxed pt-1">
+                                    <p class="text-base text-alice-blue/90 leading-relaxed pt-1">
                                         {faq.answer}
                                     </p>
                                 </div>
@@ -60,7 +60,7 @@ const { QA } = config;
                 ))
             }
             <div class="w-full h-fit flex gap-12 items-center justify-center py-4 px-8 text-left">
-                <p class="text-3xl text-alice-blue">
+                <p class="text-xl text-alice-blue">
                     {QA.otherQuestion}
                 </p>
                 <a
