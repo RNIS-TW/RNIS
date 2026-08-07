@@ -12,10 +12,7 @@ const { QA } = config;
             <p class="text-lg text-primary">{QA.description}</p>
         </div>
 
-        <div
-            class="w-full h-fit grid grid-cols-1"
-            data-faq-list
-        >
+        <div class="w-full h-fit grid grid-cols-1" data-faq-list>
             {
                 QA.questions.map((faq, index) => (
                     <div

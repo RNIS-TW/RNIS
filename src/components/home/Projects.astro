@@ -72,7 +72,10 @@ const projects: ProjectItem[] = [
                             class="carousel w-full h-auto aspect-video absolute top-0 left-0 overflow-hidden"
                             data-carousel
                         >
-                            <div class="carousel__track flex h-full" data-carousel-track>
+                            <div
+                                class="carousel__track flex h-full"
+                                data-carousel-track
+                            >
                                 {project.images.map((src, index) => (
                                     <div class="carousel__slide" data-carousel-slide>
                                         <img
@@ -167,21 +170,7 @@ const projects: ProjectItem[] = [
                                                 rel="noopener noreferrer"
                                                 color="var(--color-amber-100)"
                                                 notch="6px"
-                                                corners={
-                                                    index % 2 === 0
-                                                        ? {
-                                                              topLeft: true,
-                                                              bottomRight: true,
-                                                              topRight: false,
-                                                              bottomLeft: false,
-                                                          }
-                                                        : {
-                                                              topLeft: false,
-                                                              bottomRight: false,
-                                                              topRight: true,
-                                                              bottomLeft: true,
-                                                          }
-                                                }
+                                                corners={ index % 2 === 0 ? { topLeft: true, bottomRight: true, topRight: false, bottomLeft: false, } : { topLeft: false, bottomRight: false, topRight: true, bottomLeft: true, } }
                                                 class="projects-cta text-primary text-sm"
                                             >
                                                 {link.label}
