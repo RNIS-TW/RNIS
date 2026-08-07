@@ -34,12 +34,12 @@ const projects: ProjectItem[] = [
 ];
 ---
 
-<section class="w-full bg-ink-black">
+<section class="w-full bg-surface-base">
     <div class="container px-16 mx-auto py-32 w-full h-fit">
         <div class="w-full h-fit mb-8 flex items-end justify-between gap-4">
             <div class="flex flex-col gap-4">
-                <h1 class="text-5xl text-icy-blue font-line-seed">成功案例</h1>
-                <p class="text-lg text-powder-blue">
+                <h1 class="text-5xl text-amber-100 font-line-seed">成功案例</h1>
+                <p class="text-lg text-secondary">
                     探索我們如何協助實況主與社群打造完美的遊戲體驗
                 </p>
             </div>
@@ -48,16 +48,16 @@ const projects: ProjectItem[] = [
                 <NotchButton
                     as="a"
                     href="#contact"
-                    color="var(--color-icy-blue)"
-                    class="projects-cta text-alice-blue text-base"
+                    color="var(--color-amber-100)"
+                    class="projects-cta text-primary text-base"
                 >
                     查看更多
                 </NotchButton>
                 <NotchButton
                     as="a"
                     href="#contact"
-                    color="var(--color-icy-blue)"
-                    class="projects-cta text-alice-blue text-base"
+                    color="var(--color-amber-100)"
+                    class="projects-cta text-primary text-base"
                 >
                     聯絡我們
                 </NotchButton>
@@ -67,7 +67,7 @@ const projects: ProjectItem[] = [
         <div class="w-full h-fit mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
             {
                 projects.map((project) => (
-                    <div class="project-card h-[50vh] border-2 border-air-force-blue relative p-4">
+                    <div class="project-card h-[50vh] border-2 border-amber-300 relative p-4">
                         <div
                             class="carousel w-full h-auto aspect-video absolute top-0 left-0 overflow-hidden"
                             data-carousel
@@ -90,7 +90,7 @@ const projects: ProjectItem[] = [
                                 width="100%"
                                 height="100%"
                                 deg={0}
-                                color="var(--color-ink-black)"
+                                color="var(--color-surface-base)"
                                 to="transparent"
                                 ease="in-out"
                                 stops={4}
@@ -133,18 +133,18 @@ const projects: ProjectItem[] = [
                         <div class="relative w-full h-full p-4">
                             <div class="w-full h-1/2 flex flex-col gap-2">
                                 <div class="flex gap-4">
-                                    <div class="w-2 h-10 bg-cool-sky" />
-                                    <h2 class="text-4xl text-icy-blue">
+                                    <div class="w-2 h-10 bg-amber-200" />
+                                    <h2 class="text-4xl text-amber-100">
                                         {project.title}
                                     </h2>
                                 </div>
-                                <p class="text-lg text-alice-blue">
+                                <p class="text-lg text-primary">
                                     與台灣知名實況主{" "}
                                     <a
                                         href={project.collaboratorUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        class="text-alice-blue underline underline-offset-2 duration-300 hover:text-cool-sky"
+                                        class="text-primary underline underline-offset-2 duration-300 hover:text-amber-200"
                                     >
                                         {project.collaboratorName}
                                     </a>{" "}
@@ -153,7 +153,7 @@ const projects: ProjectItem[] = [
                             </div>
                             <div class="w-full h-1/2 flex flex-col gap-2">
                                 <div class="flex-1">
-                                    <p class="text-sm text-alice-blue">
+                                    <p class="text-sm text-primary">
                                         {project.description}
                                     </p>
                                 </div>
@@ -165,7 +165,7 @@ const projects: ProjectItem[] = [
                                                 href={link.href}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
-                                                color="var(--color-icy-blue)"
+                                                color="var(--color-amber-100)"
                                                 notch="6px"
                                                 corners={
                                                     index % 2 === 0
@@ -182,14 +182,14 @@ const projects: ProjectItem[] = [
                                                               bottomLeft: true,
                                                           }
                                                 }
-                                                class="projects-cta text-alice-blue text-sm"
+                                                class="projects-cta text-primary text-sm"
                                             >
                                                 {link.label}
                                                 <ExternalLink class="w-4 h-4" />
                                             </NotchButton>
                                         ))}
                                     </div>
-                                    <span class="text-xs text-air-force-blue">
+                                    <span class="text-xs text-amber-300">
                                         {project.dateRange}
                                     </span>
                                 </div>
@@ -211,7 +211,7 @@ const projects: ProjectItem[] = [
 
     .project-card:hover {
         transform: scale(1.02);
-        border-color: var(--color-icy-blue);
+        border-color: var(--color-amber-100);
     }
 
     .projects-cta :global(.notch-button__hole) {
@@ -251,8 +251,8 @@ const projects: ProjectItem[] = [
         width: 2rem;
         height: 2rem;
         background: rgba(21, 28, 42, 0.6);
-        color: var(--color-alice-blue);
-        border: 1px solid var(--color-icy-blue);
+        color: var(--text-primary);
+        border: 1px solid var(--color-amber-100);
         cursor: pointer;
         opacity: 0;
         transition:
@@ -265,8 +265,8 @@ const projects: ProjectItem[] = [
     }
 
     .carousel__arrow:hover {
-        background: var(--color-icy-blue);
-        color: var(--color-ink-black);
+        background: var(--color-amber-100);
+        color: var(--color-surface-base);
     }
 
     .carousel__arrow--prev {
@@ -290,7 +290,7 @@ const projects: ProjectItem[] = [
     .carousel__dot {
         width: 0.5rem;
         height: 0.5rem;
-        border: 1px solid var(--color-icy-blue);
+        border: 1px solid var(--color-amber-100);
         background: transparent;
         padding: 0;
         cursor: pointer;
@@ -298,7 +298,7 @@ const projects: ProjectItem[] = [
     }
 
     .carousel__dot.is-active {
-        background: var(--color-icy-blue);
+        background: var(--color-amber-100);
     }
 </style>
 

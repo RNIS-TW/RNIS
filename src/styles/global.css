@@ -1,18 +1,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-jet-black: #1a2429;
-  --color-ink-black: #151c2a;
-  --color-yale-blue: #4a3812;
-  --color-baltic-blue: #6b4f1a;
-  --color-air-force-blue: #8a6a2c;
-  --color-icy-blue: #ffdd8a;
-  --color-alice-blue: #ffffff;
-  --color-powder-blue: #ffffff;
-  --color-cool-sky: #ffb238;
-  --color-light-coral: #f89494;
+  /* Dark neutral surfaces */
+  --color-surface-base: #151c2a;
+  --color-surface-raised: #1a2429;
+
+  /* Accent scale — actually amber/gold, not blue. 100 lightest
+     (dominant accent) to 500 darkest. */
+  --color-amber-100: #ffdd8a;
+  --color-amber-200: #ffb238;
+  --color-amber-300: #8a6a2c;
+  --color-amber-400: #6b4f1a;
+  --color-amber-500: #4a3812;
+
+  /* Status/marker accents, standalone — not part of the amber scale */
+  --color-coral: #f89494;
   --color-jasmine: #ffd972;
-  --color-tea-green: #9CED95;
+  --color-sage: #9ced95;
 
   --font-sans:
     "Satoshi", "GenYo Gothic TW", "PingFang TC", "Microsoft JhengHei",
@@ -23,179 +27,107 @@
   --font-line-seed:
     "LINE Seed TW", "PingFang TC", "Microsoft JhengHei", ui-sans-serif,
     system-ui, sans-serif;
+}
 
-  --background-image-ocean-top: linear-gradient(
-    0deg,
-    #1a2429,
-    #151c2a,
-    #314865,
-    #406287,
-    #66849f,
-    #baddfe,
-    #e3f1ff
-  );
-  --background-image-ocean-right: linear-gradient(
-    90deg,
-    #1a2429,
-    #151c2a,
-    #314865,
-    #406287,
-    #66849f,
-    #baddfe,
-    #e3f1ff
-  );
-  --background-image-ocean-bottom: linear-gradient(
-    180deg,
-    #1a2429,
-    #151c2a,
-    #314865,
-    #406287,
-    #66849f,
-    #baddfe,
-    #e3f1ff
-  );
-  --background-image-ocean-left: linear-gradient(
-    270deg,
-    #1a2429,
-    #151c2a,
-    #314865,
-    #406287,
-    #66849f,
-    #baddfe,
-    #e3f1ff
-  );
-  --background-image-ocean-top-right: linear-gradient(
-    45deg,
-    #1a2429,
-    #151c2a,
-    #314865,
-    #406287,
-    #66849f,
-    #baddfe,
-    #e3f1ff
-  );
-  --background-image-ocean-bottom-right: linear-gradient(
-    135deg,
-    #1a2429,
-    #151c2a,
-    #314865,
-    #406287,
-    #66849f,
-    #baddfe,
-    #e3f1ff
-  );
-  --background-image-ocean-top-left: linear-gradient(
-    225deg,
-    #1a2429,
-    #151c2a,
-    #314865,
-    #406287,
-    #66849f,
-    #baddfe,
-    #e3f1ff
-  );
-  --background-image-ocean-bottom-left: linear-gradient(
-    315deg,
-    #1a2429,
-    #151c2a,
-    #314865,
-    #406287,
-    #66849f,
-    #baddfe,
-    #e3f1ff
-  );
-  --background-image-ocean-radial: radial-gradient(
-    #1a2429,
-    #151c2a,
-    #314865,
-    #406287,
-    #66849f,
-    #baddfe,
-    #e3f1ff
-  );
+/*
+ * Semantic design tokens (河馬's naming pass).
+ * These are hand-authored classes rather than Tailwind's auto-generated
+ * color utilities, because border-primary / text-primary / button-primary
+ * each need an independent value — Tailwind's @theme colors share one
+ * value across bg-X/text-X/border-X for a given X, which doesn't work
+ * once "primary" means a different color per property.
+ */
+@layer base {
+  :root {
+    /* borders */
+    --border-primary: var(--color-amber-100);
+    --border-secondary: rgba(21, 28, 42, 0.2);
 
-  --background-image-accent-top: linear-gradient(
-    0deg,
-    #90adc9,
-    #76baff,
-    #f89494,
-    #ffd972,
-    #bef8b8
-  );
-  --background-image-accent-right: linear-gradient(
-    90deg,
-    #90adc9,
-    #76baff,
-    #f89494,
-    #ffd972,
-    #bef8b8
-  );
-  --background-image-accent-bottom: linear-gradient(
-    180deg,
-    #90adc9,
-    #76baff,
-    #f89494,
-    #ffd972,
-    #bef8b8
-  );
-  --background-image-accent-left: linear-gradient(
-    270deg,
-    #90adc9,
-    #76baff,
-    #f89494,
-    #ffd972,
-    #bef8b8
-  );
-  --background-image-accent-top-right: linear-gradient(
-    45deg,
-    #90adc9,
-    #76baff,
-    #f89494,
-    #ffd972,
-    #bef8b8
-  );
-  --background-image-accent-bottom-right: linear-gradient(
-    135deg,
-    #90adc9,
-    #76baff,
-    #f89494,
-    #ffd972,
-    #bef8b8
-  );
-  --background-image-accent-top-left: linear-gradient(
-    225deg,
-    #90adc9,
-    #76baff,
-    #f89494,
-    #ffd972,
-    #bef8b8
-  );
-  --background-image-accent-bottom-left: linear-gradient(
-    315deg,
-    #90adc9,
-    #76baff,
-    #f89494,
-    #ffd972,
-    #bef8b8
-  );
-  --background-image-accent-radial: radial-gradient(
-    #90adc9,
-    #76baff,
-    #f89494,
-    #ffd972,
-    #bef8b8
-  );
+    /* buttons */
+    --button-primary-bg: var(--color-amber-100);
+    --button-primary-text: var(--color-surface-base);
+    --button-secondary-bg: var(--color-amber-500);
+    --button-secondary-text: var(--color-amber-100);
+    --button-transparent-text: var(--color-amber-100);
+    --button-transparent-border: var(--color-amber-100);
+    --button-shadow: var(--color-amber-300);
+
+    /* text */
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-paragraph: rgba(255, 255, 255, 0.7);
+    --text-danger: var(--color-coral);
+    --text-warn: var(--color-jasmine);
+    --text-success: var(--color-sage);
+    --text-info: var(--color-amber-100);
+  }
+}
+
+.border-primary {
+  border-color: var(--border-primary);
+}
+
+.border-secondary {
+  border-color: var(--border-secondary);
+}
+
+.button-primary {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+}
+
+.button-secondary {
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+  border: 1px solid var(--border-primary);
+}
+
+.button-transparent {
+  background-color: transparent;
+  color: var(--button-transparent-text);
+  border: 1px solid var(--button-transparent-border);
+}
+
+.button-shadow {
+  box-shadow: 4px 4px 0 0 var(--button-shadow);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-paragraph {
+  color: var(--text-paragraph);
+}
+
+.text-danger {
+  color: var(--text-danger);
+}
+
+.text-warn {
+  color: var(--text-warn);
+}
+
+.text-success {
+  color: var(--text-success);
+}
+
+.text-info {
+  color: var(--text-info);
 }
 
 @layer base {
   :root {
-    --page-background: #151c2a;
+    --page-background: var(--color-surface-base);
     --surface-raised: rgba(26, 36, 41, 0.84);
     --text-primary: #ffffff;
-    --text-muted: #ffdd8a;
+    --text-muted: var(--color-amber-100);
     --border-subtle: rgba(255, 221, 138, 0.25);
-    --toggle-thumb: #8a6a2c;
-    --focus-ring: #ffb238;
+    --toggle-thumb: var(--color-amber-300);
+    --focus-ring: var(--color-amber-200);
     --shadow-color: rgba(0, 0, 0, 0.28);
     color-scheme: dark;
   }
@@ -203,11 +135,11 @@
   html[data-theme="light"] {
     --page-background: #ffffff;
     --surface-raised: rgba(255, 255, 255, 0.82);
-    --text-primary: #151c2a;
-    --text-muted: #6b4f1a;
+    --text-primary: var(--color-surface-base);
+    --text-muted: var(--color-amber-400);
     --border-subtle: rgba(74, 56, 18, 0.22);
-    --toggle-thumb: #ffd972;
-    --focus-ring: #6b4f1a;
+    --toggle-thumb: var(--color-jasmine);
+    --focus-ring: var(--color-amber-400);
     --shadow-color: rgba(74, 56, 18, 0.2);
     color-scheme: light;
   }

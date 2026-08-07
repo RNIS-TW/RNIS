@@ -14,12 +14,12 @@ const channelIcons: Record<string , typeof Mail> = {
 
 <section
     id="contact"
-    class="w-full h-fit bg-ink-black py-32"
+    class="w-full h-fit bg-surface-base py-32"
 >
     <div class="container mx-auto px-16 flex flex-col gap-16">
         <div class="w-full max-w-2xl">
-            <h1 class="text-5xl font-line-seed font-medium tracking-tight text-icy-blue mt-2">{Contact.title}</h1>
-            <p class="text-lg font-sans font-light text-powder-blue mt-4 leading-relaxed">{Contact.description}</p>
+            <h1 class="text-5xl font-line-seed font-medium tracking-tight text-amber-100 mt-2">{Contact.title}</h1>
+            <p class="text-lg font-sans font-light text-secondary mt-4 leading-relaxed">{Contact.description}</p>
         </div>
 
         <div class="w-full flex gap-16 items-start">
@@ -33,17 +33,17 @@ const channelIcons: Record<string , typeof Mail> = {
                                 target={channel.available ? "_blank" : undefined}
                                 rel={channel.available ? "noopener noreferrer" : undefined}
                                 aria-disabled={!channel.available}
-                                class:list={[ "channel-card flex gap-4 items-start p-5 border border-icy-blue/30", channel.available ? "cursor-pointer hover:border-icy-blue" : "cursor-default opacity-60", ]}
+                                class:list={[ "channel-card flex gap-4 items-start p-5 border border-amber-100/30", channel.available ? "cursor-pointer hover:border-amber-100" : "cursor-default opacity-60", ]}
                             >
-                                <div class="w-12 h-12 shrink-0 bg-icy-blue shadow-[4px_4px_0_0_#8A6A2C] flex items-center justify-center text-ink-black">
+                                <div class="w-12 h-12 shrink-0 bg-amber-100 shadow-[4px_4px_0_0_var(--color-amber-300)] flex items-center justify-center text-surface-base">
                                     <Icon size={22} stroke-width={2} />
                                 </div>
                                 <div class="flex flex-col gap-2 flex-1">
-                                    <h3 class="text-lg font-medium text-icy-blue">{channel.title}</h3>
-                                    <p class="text-sm font-sans font-light text-powder-blue leading-relaxed">
+                                    <h3 class="text-lg font-medium text-amber-100">{channel.title}</h3>
+                                    <p class="text-sm font-sans font-light text-secondary leading-relaxed">
                                         {channel.description}
                                     </p>
-                                    <span class="text-sm font-sans font-medium text-cool-sky">{channel.actionLabel}</span>
+                                    <span class="text-sm font-sans font-medium text-amber-200">{channel.actionLabel}</span>
                                 </div>
                             </a>
                         );
@@ -53,13 +53,13 @@ const channelIcons: Record<string , typeof Mail> = {
 
             <form
                 id="contact-form"
-                class="w-1/2 flex flex-col gap-6 p-8 border border-icy-blue/30"
+                class="w-1/2 flex flex-col gap-6 p-8 border border-amber-100/30"
             >
                 <div class="grid grid-cols-2 gap-4">
                     <div class="flex flex-col gap-2">
                         <label
                             for="contact-name"
-                            class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-icy-blue"
+                            class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-amber-100"
                         >姓名</label>
                         <input
                             id="contact-name"
@@ -72,7 +72,7 @@ const channelIcons: Record<string , typeof Mail> = {
                     <div class="flex flex-col gap-2">
                         <label
                             for="contact-email"
-                            class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-icy-blue"
+                            class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-amber-100"
                         >電子郵件</label>
                         <input
                             id="contact-email"
@@ -87,7 +87,7 @@ const channelIcons: Record<string , typeof Mail> = {
                 <div class="flex flex-col gap-2">
                     <label
                         for="contact-message"
-                        class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-icy-blue"
+                        class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-amber-100"
                     >訊息內容</label>
                     <textarea
                         id="contact-message"
@@ -100,7 +100,7 @@ const channelIcons: Record<string , typeof Mail> = {
 
                 <button
                     type="submit"
-                    class="w-fit inline-flex items-center gap-2 px-5 py-3 bg-icy-blue text-ink-black font-medium shadow-[4px_4px_0_0_#8A6A2C] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#8A6A2C] transition-all"
+                    class="w-fit inline-flex items-center gap-2 px-5 py-3 bg-amber-100 text-surface-base font-medium shadow-[4px_4px_0_0_var(--color-amber-300)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_var(--color-amber-300)] transition-all"
                 >
                     送出
                     <span aria-hidden="true">→</span>
@@ -124,20 +124,20 @@ const channelIcons: Record<string , typeof Mail> = {
     .input-field {
         width: 100%;
         padding: 0.65rem 0.9rem;
-        background: var(--color-jet-black);
+        background: var(--color-surface-raised);
         border: 1px solid rgba(255, 221, 138, 0.3);
-        color: var(--color-alice-blue);
+        color: var(--text-primary);
         font-family: inherit;
         font-size: 1rem;
     }
 
     .input-field::placeholder {
-        color: var(--color-powder-blue);
+        color: var(--text-secondary);
     }
 
     .input-field:focus {
         outline: none;
-        border-color: var(--color-icy-blue);
+        border-color: var(--color-amber-100);
     }
 </style>
 

@@ -6,11 +6,11 @@ const titleLines = About.title.split("\n");
 const paragraphs = About.description.split("\n\n");
 ---
 
-<section class="w-full bg-ink-black py-24">
+<section class="w-full bg-surface-base py-24">
     <div class="container mx-auto px-16 w-full h-full flex items-center justify-between gap-10">
         <div class="h-fit flex flex-col items-start gap-10">
             <div class="w-full h-auto flex flex-col items-start justify-center gap-4">
-                <h1 class="text-5xl text-icy-blue font-line-seed leading-tight mb-4">
+                <h1 class="text-5xl text-amber-100 font-line-seed leading-tight mb-4">
                     {
                         titleLines.map((line, index) => (
                             <>
@@ -22,18 +22,18 @@ const paragraphs = About.description.split("\n\n");
                 </h1>
                 {
                     paragraphs.map((paragraph) => (
-                        <p class="text-lg text-powder-blue leading-relaxed">
+                        <p class="text-lg text-secondary leading-relaxed">
                             {paragraph}
                         </p>
                     ))
                 }
             </div>
 
-            <ul class="flex flex-col gap-3 text-lg text-powder-blue">
+            <ul class="flex flex-col gap-3 text-lg text-secondary">
                 {
                     About.skills.map((skill) => (
                         <li class="flex gap-3 items-start">
-                            <span class="mt-2 w-2 h-2 shrink-0 bg-icy-blue shadow-[2px_2px_0_0_#8A6A2C]" />
+                            <span class="mt-2 w-2 h-2 shrink-0 bg-amber-100 shadow-[2px_2px_0_0_var(--color-amber-300)]" />
                             <span>{skill}</span>
                         </li>
                     ))
@@ -43,15 +43,15 @@ const paragraphs = About.description.split("\n\n");
             <div class="w-full h-fit flex items-end justify-start gap-2">
                 <a
                     href="/about"
-                    class="w-fit h-fit px-4 py-2 bg-yale-blue border border-icy-blue button duration-100 relative"
+                    class="w-fit h-fit px-4 py-2 bg-amber-500 border border-amber-100 button duration-100 relative"
                 >
-                    <p class="text-sm text-alice-blue">{About.buttons.learnMore}</p>
+                    <p class="text-sm text-primary">{About.buttons.learnMore}</p>
                 </a>
                 <a
                     href="#services"
-                    class="w-fit h-fit px-4 py-2 bg-yale-blue border border-icy-blue button duration-100 relative"
+                    class="w-fit h-fit px-4 py-2 bg-amber-500 border border-amber-100 button duration-100 relative"
                 >
-                    <p class="text-sm text-alice-blue">{About.buttons.services}</p>
+                    <p class="text-sm text-primary">{About.buttons.services}</p>
                 </a>
             </div>
         </div>

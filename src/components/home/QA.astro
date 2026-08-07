@@ -5,11 +5,11 @@ import NotchButton from "@components/common/NotchButton.astro";
 const { QA } = config;
 ---
 
-<section class="w-full h-fit bg-ink-black">
+<section class="w-full h-fit bg-surface-base">
     <div class="container mx-auto px-16 py-32">
         <div class="w-full h-fit mb-16">
-            <h1 class="text-5xl text-icy-blue font-line-seed mb-4">{QA.title}</h1>
-            <p class="text-lg text-alice-blue">{QA.description}</p>
+            <h1 class="text-5xl text-amber-100 font-line-seed mb-4">{QA.title}</h1>
+            <p class="text-lg text-primary">{QA.description}</p>
         </div>
 
         <div
@@ -19,7 +19,7 @@ const { QA } = config;
             {
                 QA.questions.map((faq, index) => (
                     <div
-                        class="faq-item border-b border-icy-blue/20"
+                        class="faq-item border-b border-amber-100/20"
                         data-faq-item
                     >
                         <button
@@ -29,14 +29,14 @@ const { QA } = config;
                             aria-controls={`faq-panel-${index}`}
                             id={`faq-trigger-${index}`}
                         >
-                            <span class="text-3xl text-light-coral font-bold shrink-0">
+                            <span class="text-3xl text-coral font-bold shrink-0">
                                 Q
                             </span>
-                            <span class="text-2xl text-icy-blue flex-1">
+                            <span class="text-2xl text-amber-100 flex-1">
                                 {faq.question}
                             </span>
                             <span
-                                class="faq-icon text-4xl text-icy-blue ml-auto shrink-0 leading-none"
+                                class="faq-icon text-4xl text-amber-100 ml-auto shrink-0 leading-none"
                                 aria-hidden="true"
                             >
                                 +
@@ -54,7 +54,7 @@ const { QA } = config;
                                     <span class="text-3xl text-tea-green font-bold shrink-0">
                                         A
                                     </span>
-                                    <p class="text-base text-alice-blue/90 leading-relaxed pt-1">
+                                    <p class="text-base text-white/90 leading-relaxed pt-1">
                                         {faq.answer}
                                     </p>
                                 </div>
@@ -64,14 +64,14 @@ const { QA } = config;
                 ))
             }
             <div class="w-full h-fit flex gap-12 items-center justify-center py-4 px-8 mt-8 text-left">
-                <p class="text-xl text-alice-blue">
+                <p class="text-xl text-primary">
                     {QA.otherQuestion}
                 </p>
                 <NotchButton
                     as="a"
                     href="#contact"
-                    color="var(--color-icy-blue)"
-                    class="text-alice-blue text-sm"
+                    color="var(--color-amber-100)"
+                    class="text-primary text-sm"
                 >
                     {QA.contactLabel}
                 </NotchButton>

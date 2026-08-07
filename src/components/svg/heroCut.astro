@@ -8,7 +8,7 @@ const { class: className, ...rest } = Astro.props;
 <style>
     .trapezoid {
         transition: color 220ms ease;
-        border-bottom: 160px solid var(--color-ink-black);
+        border-bottom: 160px solid var(--color-surface-base);
         border-left: 0px solid transparent;
         border-right: 80px solid transparent;
         height: 0;
@@ -16,7 +16,7 @@ const { class: className, ...rest } = Astro.props;
     }
 
     .trapezoid-shadow {
-        border-bottom: 164px solid var(--color-icy-blue);
+        border-bottom: 164px solid var(--color-amber-100);
         border-left: 0px solid transparent;
         border-right: 80px solid transparent;
         height: 0;
@@ -25,6 +25,6 @@ const { class: className, ...rest } = Astro.props;
     }
 
     :global(html[data-theme="light"]) .trapezoid {
-        color: var(--color-air-force-blue);
+        color: var(--color-amber-300);
     }
 </style>
