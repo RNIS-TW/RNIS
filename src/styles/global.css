@@ -3,16 +3,16 @@
 @theme {
   --color-jet-black: #1a2429;
   --color-ink-black: #151c2a;
-  --color-yale-blue: #314865;
-  --color-baltic-blue: #406287;
-  --color-air-force-blue: #66849f;
-  --color-icy-blue: #baddfe;
-  --color-alice-blue: #e3f1ff;
-  --color-powder-blue: #90adc9;
-  --color-cool-sky: #76baff;
+  --color-yale-blue: #4a3812;
+  --color-baltic-blue: #6b4f1a;
+  --color-air-force-blue: #8a6a2c;
+  --color-icy-blue: #ffdd8a;
+  --color-alice-blue: #ffffff;
+  --color-powder-blue: #ffffff;
+  --color-cool-sky: #ffb238;
   --color-light-coral: #f89494;
   --color-jasmine: #ffd972;
-  --color-tea-green: #bef8b8;
+  --color-tea-green: #9CED95;
 
   --font-sans:
     "Satoshi", "GenYo Gothic TW", "PingFang TC", "Microsoft JhengHei",
@@ -20,6 +20,9 @@
   --font-display: "New Title", "Satoshi", ui-sans-serif, system-ui, sans-serif;
   --font-mono:
     "Source Code Pro", ui-monospace, "Cascadia Code", Consolas, monospace;
+  --font-line-seed:
+    "LINE Seed TW", "PingFang TC", "Microsoft JhengHei", ui-sans-serif,
+    system-ui, sans-serif;
 
   --background-image-ocean-top: linear-gradient(
     0deg,
@@ -188,24 +191,24 @@
   :root {
     --page-background: #151c2a;
     --surface-raised: rgba(26, 36, 41, 0.84);
-    --text-primary: #e3f1ff;
-    --text-muted: #baddfe;
-    --border-subtle: rgba(186, 221, 254, 0.25);
-    --toggle-thumb: #66849f;
-    --focus-ring: #76baff;
+    --text-primary: #ffffff;
+    --text-muted: #ffdd8a;
+    --border-subtle: rgba(255, 221, 138, 0.25);
+    --toggle-thumb: #8a6a2c;
+    --focus-ring: #ffb238;
     --shadow-color: rgba(0, 0, 0, 0.28);
     color-scheme: dark;
   }
 
   html[data-theme="light"] {
-    --page-background: #e3f1ff;
+    --page-background: #ffffff;
     --surface-raised: rgba(255, 255, 255, 0.82);
     --text-primary: #151c2a;
-    --text-muted: #406287;
-    --border-subtle: rgba(49, 72, 101, 0.22);
+    --text-muted: #6b4f1a;
+    --border-subtle: rgba(74, 56, 18, 0.22);
     --toggle-thumb: #ffd972;
-    --focus-ring: #406287;
-    --shadow-color: rgba(49, 72, 101, 0.2);
+    --focus-ring: #6b4f1a;
+    --shadow-color: rgba(74, 56, 18, 0.2);
     color-scheme: light;
   }
 

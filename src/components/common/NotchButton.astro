@@ -1,0 +1,156 @@
+---
+interface Props {
+    as?: "button" | "a";
+    href?: string;
+    target?: string;
+    rel?: string;
+    type?: "button" | "submit" | "reset";
+    color?: string;
+    fill?: string;
+    notch?: string;
+    stroke?: string;
+    shadow?: string;
+    shadowOffset?: string;
+    corners?: {
+        topLeft?: boolean;
+        topRight?: boolean;
+        bottomRight?: boolean;
+        bottomLeft?: boolean;
+    };
+    class?: string;
+}
+
+const {
+    as = "button",
+    href,
+    target,
+    rel,
+    type = "button",
+    color = "currentColor",
+    fill = "var(--color-ink-black)",
+    notch = "8px",
+    stroke = "2px",
+    shadow = "var(--color-air-force-blue)",
+    shadowOffset = "4px",
+    corners = {},
+    class: className = "",
+} = Astro.props;
+
+var {
+    topLeft = true,
+    topRight = false,
+    bottomRight = true,
+    bottomLeft = false,
+} = corners;
+
+const N = "var(--notch-size)";
+const points: string[] = [];
+
+points.push(...(topLeft ? [`0 ${N}`, `${N} ${N}`, `${N} 0`] : ["0 0"]));
+points.push(
+    ...(topRight
+        ? [`calc(100% - ${N}) 0`, `calc(100% - ${N}) ${N}`, `100% ${N}`]
+        : ["100% 0"]),
+);
+points.push(
+    ...(bottomRight
+        ? [
+              `100% calc(100% - ${N})`,
+              `calc(100% - ${N}) calc(100% - ${N})`,
+              `calc(100% - ${N}) 100%`,
+          ]
+        : ["100% 100%"]),
+);
+points.push(
+    ...(bottomLeft
+        ? [`${N} 100%`, `${N} calc(100% - ${N})`, `0 calc(100% - ${N})`]
+        : ["0 100%"]),
+);
+
+const Tag = as;
+const style = [
+    `--notch-color: ${color}`,
+    `--notch-fill: ${fill}`,
+    `--notch-size: ${notch}`,
+    `--notch-stroke: ${stroke}`,
+    `--notch-shadow-color: ${shadow}`,
+    `--notch-shadow-offset: ${shadowOffset}`,
+    `--notch-points: ${points.join(", ")}`,
+].join("; ");
+---
+
+<Tag
+    class:list={["notch-button", className]}
+    href={as === "a" ? href : undefined}
+    target={as === "a" ? target : undefined}
+    rel={as === "a" ? rel : undefined}
+    type={as === "a" ? undefined : type}
+    style={style}
+>
+    <span class="notch-button__frame" aria-hidden="true"></span>
+    <span class="notch-button__hole" aria-hidden="true"></span>
+    <span class="notch-button__content">
+        <slot />
+    </span>
+</Tag>
+
+<style>
+    .notch-button {
+        position: relative;
+        display: inline-flex;
+        appearance: none;
+        background: transparent;
+        border: none;
+        padding: 0;
+        margin: 0;
+        font: inherit;
+        color: inherit;
+        text-decoration: none;
+        cursor: pointer;
+        filter: drop-shadow(
+            var(--notch-shadow-offset) var(--notch-shadow-offset) 0
+                var(--notch-shadow-color)
+        );
+        transition:
+            transform 150ms ease,
+            filter 150ms ease;
+    }
+
+    .notch-button:hover {
+        transform: translate(
+            calc(var(--notch-shadow-offset) / 2),
+            calc(var(--notch-shadow-offset) / 2)
+        );
+        filter: drop-shadow(
+            calc(var(--notch-shadow-offset) / 2)
+                calc(var(--notch-shadow-offset) / 2) 0
+                var(--notch-shadow-color)
+        );
+    }
+
+    .notch-button__content {
+        position: relative;
+        z-index: 1;
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.65rem 1.5rem;
+    }
+
+    .notch-button__frame,
+    .notch-button__hole {
+        position: absolute;
+        pointer-events: none;
+        clip-path: polygon(var(--notch-points));
+    }
+
+    .notch-button__frame {
+        inset: 0;
+        background: var(--notch-color);
+    }
+
+    .notch-button__hole {
+        inset: var(--notch-stroke);
+        background: var(--notch-fill);
+    }
+</style>

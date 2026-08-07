@@ -18,7 +18,7 @@ const channelIcons: Record<string , typeof Mail> = {
 >
     <div class="container mx-auto px-16 flex flex-col gap-16">
         <div class="w-full max-w-2xl">
-            <h1 class="text-6xl font-display font-medium tracking-tight text-alice-blue mt-2">{Contact.title}</h1>
+            <h1 class="text-6xl font-line-seed font-medium tracking-tight text-icy-blue mt-2">{Contact.title}</h1>
             <p class="text-xl font-sans font-light text-powder-blue mt-4 leading-relaxed">{Contact.description}</p>
         </div>
 
@@ -35,11 +35,11 @@ const channelIcons: Record<string , typeof Mail> = {
                                 aria-disabled={!channel.available}
                                 class:list={[ "channel-card flex gap-4 items-start p-5 border border-icy-blue/30", channel.available ? "cursor-pointer hover:border-icy-blue" : "cursor-default opacity-60", ]}
                             >
-                                <div class="w-12 h-12 shrink-0 bg-icy-blue shadow-[4px_4px_0_0_#66849F] flex items-center justify-center text-ink-black">
+                                <div class="w-12 h-12 shrink-0 bg-icy-blue shadow-[4px_4px_0_0_#8A6A2C] flex items-center justify-center text-ink-black">
                                     <Icon size={22} stroke-width={2} />
                                 </div>
                                 <div class="flex flex-col gap-2 flex-1">
-                                    <h3 class="text-xl font-medium text-alice-blue">{channel.title}</h3>
+                                    <h3 class="text-xl font-medium text-icy-blue">{channel.title}</h3>
                                     <p class="text-sm font-sans font-light text-powder-blue leading-relaxed">
                                         {channel.description}
                                     </p>
@@ -100,7 +100,7 @@ const channelIcons: Record<string , typeof Mail> = {
 
                 <button
                     type="submit"
-                    class="w-fit inline-flex items-center gap-2 px-5 py-3 bg-icy-blue text-ink-black font-medium shadow-[4px_4px_0_0_#66849F] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#66849F] transition-all"
+                    class="w-fit inline-flex items-center gap-2 px-5 py-3 bg-icy-blue text-ink-black font-medium shadow-[4px_4px_0_0_#8A6A2C] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_#8A6A2C] transition-all"
                 >
                     送出
                     <span aria-hidden="true">→</span>
@@ -125,7 +125,7 @@ const channelIcons: Record<string , typeof Mail> = {
         width: 100%;
         padding: 0.65rem 0.9rem;
         background: var(--color-jet-black);
-        border: 1px solid rgba(186, 221, 254, 0.3);
+        border: 1px solid rgba(255, 221, 138, 0.3);
         color: var(--color-alice-blue);
         font-family: inherit;
         font-size: 1rem;

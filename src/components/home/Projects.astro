@@ -1,121 +1,361 @@
 ---
 import EasingGradient from "@components/util/easingGradient.astro";
+import NotchButton from "@components/common/NotchButton.astro";
+
+import { ExternalLink, ChevronLeft, ChevronRight } from "@lucide/astro/icons";
+
+interface ProjectItem {
+    title: string;
+    images: string[];
+    collaboratorName: string;
+    collaboratorUrl: string;
+    description: string;
+    dateRange: string;
+    links: { label: string; href: string }[];
+}
+
+const projects: ProjectItem[] = [
+    {
+        title: "泥土商店",
+        images: [
+            "https://wiki.dirtshop.xyz/api/wiki/image/1f2f82c1-413f-4a43-bd4d-a66d9b20f1b8",
+            "https://wiki.dirtshop.xyz/api/wiki/image/1f95a688-3d86-4557-8825-cb1558e06b9c"
+        ],
+        collaboratorName: "DragonL",
+        collaboratorUrl: "https://www.youtube.com/@%E9%BE%8DDragonL/featured",
+        description:
+            "機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦",
+        dateRange: "2026/07/08 ~ 至今",
+        links: [
+            { label: "泥土商店官網", href: "https://dirtshop.xyz" },
+            { label: "泥土商店百科", href: "https://wiki.dirtshop.xyz" },
+        ],
+    },
+];
 ---
 
-<section class="w-full h-[110vh] bg-jet-black">
+<section class="w-full bg-ink-black">
     <div class="container px-16 mx-auto py-32 w-full h-fit">
-        <div class="w-full h-fit mb-8">
+        <div class="w-full h-fit mb-8 flex items-end justify-between gap-4">
             <div class="flex flex-col gap-4">
-                <h1 class="text-7xl text-alice-blue">成功案例</h1>
-                <p class="text-xl max-w-60 text-powder-blue">
-                    這裡是我們的成功案例
+                <h1 class="text-5xl text-icy-blue font-line-seed">成功案例</h1>
+                <p class="text-lg text-powder-blue">
+                    探索我們如何協助實況主與社群打造完美的遊戲體驗
                 </p>
             </div>
+
+            <div class="flex items-center gap-4">
+                <NotchButton
+                    as="a"
+                    href="#contact"
+                    color="var(--color-icy-blue)"
+                    class="projects-cta text-alice-blue text-base"
+                >
+                    查看更多
+                </NotchButton>
+                <NotchButton
+                    as="a"
+                    href="#contact"
+                    color="var(--color-icy-blue)"
+                    class="projects-cta text-alice-blue text-base"
+                >
+                    聯絡我們
+                </NotchButton>
+            </div>
         </div>
 
-        <div class="w-full h-fit mt-16 flex items-center justify-end gap-4">
-            <div class="w-fit h-fit px-4 py-2 bg-ink-black text-alice-blue border-2 border-icy-blue duration-100 contact cursor-pointer">
-                <a href="#contact">
-                    <p class="text-lg">查看更多</p>
-                </a>
-            </div>
-            <div class="w-fit h-fit px-4 py-2 bg-ink-black text-alice-blue border-2 border-icy-blue duration-100 contact cursor-pointer">
-                <a href="#contact">
-                    <p class="text-lg">聯絡我們</p>
-                </a>
-            </div>
-        </div>
-
-        <div class="w-full h-fit mt-8 flex">
-            <div class="h-[50vh] flex-1 border border-air-force-blue relative p-4">
-                <div class="w-full h-auto aspect-video absolute top-0 left-0 p-2">
-                    <img
-                        src="https://truth.bahamut.com.tw/s01/202607/forum/18673/19726c638b4bf5323373b9372b12b1a9.JPG"
-                        alt="testing"
-                        class="w-full h-full object-cover"
-                    />
-
-                    <EasingGradient
-                        width="100%"
-                        height="100%"
-                        deg={0}
-                        color="var(--color-jet-black)"
-                        to="transparent"
-                        ease="in-out"
-                        stops={4}
-                        class="absolute inset-0"
-                    />
-                </div>
-
-                <div class="relative w-full h-full p-4">
-                    <div class="w-full h-1/2 flex flex-col gap-2">
-                        <div class="flex gap-4">
-                            <div class="w-2 h-15 bg-cool-sky"></div>
-                            <h2 class="text-6xl text-alice-blue">TESTING</h2>
-                        </div>
-                        <p class="text-xl text-alice-blue">
-                            與台灣知名實況主 <a
-                                href="https://www.youtube.com/@%E9%BE%8DDragonL/featured"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                class="text-alice-blue underline underline-offset-2 duration-300 hover:text-cool-sky"
-                            >DragonL</a
-                            > 合作
-                        </p>
-                    </div>
-                    <div class="w-full h-1/2 flex flex-col gap-2">
-                        <div class="flex-1">
-                            <p class="text-air-force-blue">
-                                機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦
-                            </p>
-                        </div>
-                        <div class="w-full h-fit flex items-end justify-between">
-                            <div class="flex w-fit h-fit items-end justify-start">
-                                <a
-                                    href="https://www.google.com"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="w-fit h-fit px-4 py-2 bg-yale-blue border border-icy-blue button duration-100 relative"
-                                >
-                                    <p class="text-sm text-alice-blue">
-                                        前往泥土
-                                    </p>
-                                </a>
-                                <a
-                                    href="https://www.google.com"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    class="w-fit h-fit px-4 py-2 bg-yale-blue border border-icy-blue button duration-100 relative"
-                                >
-                                    <p class="text-sm text-alice-blue">
-                                        前往泥土
-                                    </p>
-                                </a>
+        <div class="w-full h-fit mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {
+                projects.map((project) => (
+                    <div class="project-card h-[50vh] border-2 border-air-force-blue relative p-4">
+                        <div
+                            class="carousel w-full h-auto aspect-video absolute top-0 left-0 overflow-hidden"
+                            data-carousel
+                        >
+                            <div class="carousel__track flex h-full" data-carousel-track>
+                                {project.images.map((src, index) => (
+                                    <div class="carousel__slide" data-carousel-slide>
+                                        <img
+                                            src={src}
+                                            alt={`${project.title} ${index + 1}`}
+                                            class="w-full h-full object-cover"
+                                            loading="lazy"
+                                            decoding="async"
+                                        />
+                                    </div>
+                                ))}
                             </div>
-                            <span class="text-xs text-air-force-blue">2024.06.01</span
-                            >
+
+                            <EasingGradient
+                                width="100%"
+                                height="100%"
+                                deg={0}
+                                color="var(--color-ink-black)"
+                                to="transparent"
+                                ease="in-out"
+                                stops={4}
+                                class="absolute inset-0"
+                            />
+
+                            {project.images.length > 1 && (
+                                <>
+                                    <button
+                                        type="button"
+                                        class="carousel__arrow carousel__arrow--prev"
+                                        data-carousel-prev
+                                        aria-label="上一張"
+                                    >
+                                        <ChevronLeft class="w-4 h-4" />
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="carousel__arrow carousel__arrow--next"
+                                        data-carousel-next
+                                        aria-label="下一張"
+                                    >
+                                        <ChevronRight class="w-4 h-4" />
+                                    </button>
+                                    <div class="carousel__dots">
+                                        {project.images.map((_, index) => (
+                                            <button
+                                                type="button"
+                                                class:list={["carousel__dot", index === 0 && "is-active"]}
+                                                data-carousel-dot
+                                                data-index={index}
+                                                aria-label={`第 ${index + 1} 張`}
+                                            />
+                                        ))}
+                                    </div>
+                                </>
+                            )}
+                        </div>
+
+                        <div class="relative w-full h-full p-4">
+                            <div class="w-full h-1/2 flex flex-col gap-2">
+                                <div class="flex gap-4">
+                                    <div class="w-2 h-10 bg-cool-sky" />
+                                    <h2 class="text-4xl text-icy-blue">
+                                        {project.title}
+                                    </h2>
+                                </div>
+                                <p class="text-lg text-alice-blue">
+                                    與台灣知名實況主{" "}
+                                    <a
+                                        href={project.collaboratorUrl}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="text-alice-blue underline underline-offset-2 duration-300 hover:text-cool-sky"
+                                    >
+                                        {project.collaboratorName}
+                                    </a>{" "}
+                                    合作
+                                </p>
+                            </div>
+                            <div class="w-full h-1/2 flex flex-col gap-2">
+                                <div class="flex-1">
+                                    <p class="text-sm text-alice-blue">
+                                        {project.description}
+                                    </p>
+                                </div>
+                                <div class="w-full h-fit flex items-end justify-between">
+                                    <div class="flex w-fit h-fit items-end justify-start gap-2">
+                                        {project.links.map((link, index) => (
+                                            <NotchButton
+                                                as="a"
+                                                href={link.href}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                color="var(--color-icy-blue)"
+                                                notch="6px"
+                                                corners={
+                                                    index % 2 === 0
+                                                        ? {
+                                                              topLeft: true,
+                                                              bottomRight: true,
+                                                              topRight: false,
+                                                              bottomLeft: false,
+                                                          }
+                                                        : {
+                                                              topLeft: false,
+                                                              bottomRight: false,
+                                                              topRight: true,
+                                                              bottomLeft: true,
+                                                          }
+                                                }
+                                                class="projects-cta text-alice-blue text-sm"
+                                            >
+                                                {link.label}
+                                                <ExternalLink class="w-4 h-4" />
+                                            </NotchButton>
+                                        ))}
+                                    </div>
+                                    <span class="text-xs text-air-force-blue">
+                                        {project.dateRange}
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="h-[50vh] flex-1 border border-l-0 border-air-force-blue">
-            </div>
+                ))
+            }
         </div>
     </div>
 </section>
 
 <style>
-    .contact {
-        box-shadow: 4px 4px 0 0 var(--color-air-force-blue);
+    .project-card {
+        transition:
+            transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+            border-color 300ms ease;
     }
 
-    .contact:hover {
-        transform: translateX(0.125rem) translateY(0.125rem);
-        box-shadow: 2px 2px 0 0 var(--color-air-force-blue);
-    }｛｝
+    .project-card:hover {
+        transform: scale(1.02);
+        border-color: var(--color-icy-blue);
+    }
 
-    .button:hover {
-        transform: scale(1.05) translateY(-1px);
-        z-index: 10;
+    .projects-cta :global(.notch-button__hole) {
+        transition: background-color 250ms ease;
+    }
+
+    .projects-cta :global(.notch-button__content) {
+        transition: color 250ms ease;
+    }
+
+    .projects-cta:hover :global(.notch-button__hole) {
+        background: var(--notch-color);
+    }
+
+    .projects-cta:hover :global(.notch-button__content) {
+        color: var(--notch-fill);
+    }
+
+    .carousel__track {
+        will-change: transform;
+        transition: transform 600ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .carousel__slide {
+        flex: 0 0 100%;
+        height: 100%;
+    }
+
+    .carousel__arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        background: rgba(21, 28, 42, 0.6);
+        color: var(--color-alice-blue);
+        border: 1px solid var(--color-icy-blue);
+        cursor: pointer;
+        opacity: 0;
+        transition:
+            opacity 200ms ease,
+            background-color 200ms ease;
+    }
+
+    .carousel:hover .carousel__arrow {
+        opacity: 1;
+    }
+
+    .carousel__arrow:hover {
+        background: var(--color-icy-blue);
+        color: var(--color-ink-black);
+    }
+
+    .carousel__arrow--prev {
+        left: 0.5rem;
+    }
+
+    .carousel__arrow--next {
+        right: 0.5rem;
+    }
+
+    .carousel__dots {
+        position: absolute;
+        bottom: 0.5rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+        display: flex;
+        gap: 0.4rem;
+    }
+
+    .carousel__dot {
+        width: 0.5rem;
+        height: 0.5rem;
+        border: 1px solid var(--color-icy-blue);
+        background: transparent;
+        padding: 0;
+        cursor: pointer;
+        transition: background-color 200ms ease;
+    }
+
+    .carousel__dot.is-active {
+        background: var(--color-icy-blue);
     }
 </style>
+
+<script>
+    const carousels = document.querySelectorAll<HTMLElement>("[data-carousel]");
+
+    for (const carousel of carousels) {
+        const track = carousel.querySelector<HTMLElement>(
+            "[data-carousel-track]",
+        );
+        const slides = Array.from(
+            carousel.querySelectorAll<HTMLElement>("[data-carousel-slide]"),
+        );
+        const dots = Array.from(
+            carousel.querySelectorAll<HTMLElement>("[data-carousel-dot]"),
+        );
+        const prevButton = carousel.querySelector<HTMLButtonElement>(
+            "[data-carousel-prev]",
+        );
+        const nextButton = carousel.querySelector<HTMLButtonElement>(
+            "[data-carousel-next]",
+        );
+
+        if (!track || slides.length <= 1) continue;
+
+        let activeIndex = 0;
+        let timer: ReturnType<typeof setInterval> | undefined;
+
+        const goTo = (index: number) => {
+            activeIndex = (index + slides.length) % slides.length;
+
+            track.style.transform = `translateX(-${activeIndex * 100}%)`;
+            dots.forEach((dot, i) => {
+                dot.classList.toggle("is-active", i === activeIndex);
+            });
+        };
+
+        const startAutoplay = () => {
+            timer = setInterval(() => goTo(activeIndex + 1), 4000);
+        };
+        const stopAutoplay = () => {
+            clearInterval(timer);
+        };
+
+        prevButton?.addEventListener("click", () => {
+            goTo(activeIndex - 1);
+        });
+        nextButton?.addEventListener("click", () => {
+            goTo(activeIndex + 1);
+        });
+        dots.forEach((dot, i) => {
+            dot.addEventListener("click", () => goTo(i));
+        });
+
+        carousel.addEventListener("mouseenter", stopAutoplay);
+        carousel.addEventListener("mouseleave", startAutoplay);
+
+        startAutoplay();
+    }
+</script>
