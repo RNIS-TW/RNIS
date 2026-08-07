@@ -10,12 +10,14 @@
     "dev": "astro dev",
     "dev:host": "astro dev --host",
     "build": "astro build",
+    "start": "node ./dist/server/entry.mjs",
     "preview": "astro preview",
     "astro": "astro",
     "fmt": "node scripts/format.mjs"
   },
   "dependencies": {
     "@lucide/astro": "^1.29.0",
+    "@astrojs/node": "^11.0.3",
     "@tailwindcss/vite": "^4.3.3",
     "adm-zip": "^0.6.0",
     "animejs": "^4.5.0",
