@@ -1,0 +1,86 @@
+---
+import header from "@content/header.json";
+import home from "@content/home.json";
+
+const { footer } = home.Contact;
+
+const linkGroups = [
+    {
+        title: "連結",
+        links: [
+            { name: "首頁", href: "/" },
+            { name: "服務", href: "/#services" },
+            { name: "案例", href: "/#projects" },
+            { name: "關於我們", href: "/about" },
+        ],
+    },
+    {
+        title: "服務",
+        links: home.Services.items.map((item) => ({
+            name: item.title,
+            href: "/#services",
+        })),
+    },
+    {
+        title: "條款",
+        links: [
+            { name: "服務條款", href: "/terms" },
+            { name: "隱私權政策", href: "/privacy" },
+        ],
+    },
+    {
+        title: "其他",
+        links: [{ name: "系統狀態", href: `https://${header.otherLinks[0].url}` }],
+    },
+];
+---
+
+<footer class="site-content w-full bg-ink-black border-t border-icy-blue/20">
+    <div class="container mx-auto px-16 py-16 flex flex-col gap-12">
+        <div class="w-full flex flex-wrap justify-between gap-16">
+            <div class="w-full max-w-sm flex flex-col gap-3">
+                <div>
+                    <h2 class="text-3xl font-display font-medium tracking-tight text-alice-blue">
+                        {footer.left}
+                    </h2>
+                    <p class="text-xs font-sans tracking-[0.1em] text-powder-blue/70 mt-2">
+                        （Routine Network Information Studio）
+                    </p>
+                </div>
+                <p class="text-sm font-sans font-light text-powder-blue/80 leading-relaxed">
+                    {home.hero.description}
+                </p>
+            </div>
+
+            <div class="flex flex-wrap gap-16">
+                {
+                    linkGroups.map((group) => (
+                        <div class="flex flex-col gap-4">
+                            <h3 class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-icy-blue/80">
+                                {group.title}
+                            </h3>
+                            <div class="flex flex-col gap-2.5">
+                                {group.links.map((link) => (
+                                    <a
+                                        href={link.href}
+                                        class="text-sm font-sans font-light text-powder-blue hover:text-icy-blue transition-colors"
+                                    >
+                                        {link.name}
+                                    </a>
+                                ))}
+                            </div>
+                        </div>
+                    ))
+                }
+            </div>
+        </div>
+
+        <div class="w-full h-px bg-icy-blue/20"></div>
+
+        <div class="w-full">
+            <p class="text-xs font-sans font-light text-powder-blue/70">
+                &copy; {new Date().getFullYear()} {footer.left}
+            </p>
+        </div>
+    </div>
+</footer>

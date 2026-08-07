@@ -1,88 +1,91 @@
 ---
+import config from "@content/home.json";
 
+const { About } = config;
+const titleLines = About.title.split("\n");
+const paragraphs = About.description.split("\n\n");
 ---
 
-<section class="w-full h-[120vh] bg-ink-black">
+<section class="w-full h-fit min-h-[120vh] bg-ink-black py-24">
     <div class="container mx-auto px-32 w-full h-full flex items-center justify-between gap-16">
-        <div class="w-1/2 h-[60vh] flex flex-col items-start justify-between">
-            <div class="w-full h-auto flex flex-col items-start justify-center">
-                <h1 class="text-6xl text-alice-blue mb-4">
-                    優質團隊老闆發 MACBOOK
+        <div class="w-1/2 h-fit flex flex-col items-start gap-10">
+            <div class="w-full h-auto flex flex-col items-start justify-center gap-4">
+                <h1 class="text-6xl text-alice-blue leading-tight">
+                    {
+                        titleLines.map((line, index) => (
+                            <>
+                                {index > 0 && <br />}
+                                {line}
+                            </>
+                        ))
+                    }
                 </h1>
-                <p class="text-2xl text-alice-blue underline underline-offset-8 leading-10 decoration-cool-sky pr-8 mb-8">
-                    我們相信優質的老闆會發優質的 macbook 提升員工生活品質
-                </p>
-                <p class="text-lg text-alice-blue">
-                    我們相信優質的老闆會發優質的 macbook 提升員工生活品質
-                </p>
+                {
+                    paragraphs.map((paragraph) => (
+                        <p class="text-lg text-powder-blue leading-relaxed">
+                            {paragraph}
+                        </p>
+                    ))
+                }
             </div>
+
+            <ul class="flex flex-col gap-3 text-base text-powder-blue">
+                {
+                    About.skills.map((skill) => (
+                        <li class="flex gap-3 items-start">
+                            <span class="mt-2 w-2 h-2 shrink-0 bg-icy-blue shadow-[2px_2px_0_0_#66849F]" />
+                            <span>{skill}</span>
+                        </li>
+                    ))
+                }
+            </ul>
 
             <div class="w-full h-fit">
                 <p class="text-sm text-alice-blue">\\ Team</p>
-                <div class="w-full h-fit flex gap-4 items-center">
-                    <div class="w-fit h-16 p-2 border-icy-blue border-b flex">
-                        <img
-                            src="https://avatars.githubusercontent.com/u/74442940?v=4"
-                            alt="testing"
-                            class="aspect-square rounded-2xl object-cover mr-2"
-                        />
-                        <div class="w-fit h-fit flex flex-col items-start justify-center">
-                            <p class="text-xs">founder</p>
-                            <p class="text-xl text-nowrap">河馬</p>
-                        </div>
-                    </div>
-                    <div class="w-fit h-16 p-2 border-icy-blue border-b flex">
-                        <img
-                            src="https://avatars.githubusercontent.com/u/74442940?v=4"
-                            alt="testing"
-                            class="aspect-square rounded-2xl object-cover mr-2"
-                        />
-                        <div class="w-fit h-fit flex flex-col items-start justify-center">
-                            <p class="text-xs">founder</p>
-                            <p class="text-xl">河馬</p>
-                        </div>
-                    </div>
-                    <div class="w-fit h-16 p-2 border-icy-blue border-b flex">
-                        <img
-                            src="https://avatars.githubusercontent.com/u/74442940?v=4"
-                            alt="testing"
-                            class="aspect-square rounded-2xl object-cover mr-2"
-                        />
-                        <div class="w-fit h-fit flex flex-col items-start justify-center">
-                            <p class="text-xs">founder</p>
-                            <p class="text-xl">河馬</p>
-                        </div>
-                    </div>
+                <div class="w-full h-fit flex gap-4 items-center flex-wrap">
+                    {
+                        About.members.map((member) => (
+                            <div class="w-fit h-16 p-2 border-icy-blue border-b flex">
+                                <img
+                                    src="https://avatars.githubusercontent.com/u/74442940?v=4"
+                                    alt={member.name}
+                                    class="aspect-square rounded-2xl object-cover mr-2"
+                                />
+                                <div class="w-fit h-fit flex flex-col items-start justify-center">
+                                    <p class="text-xs text-powder-blue">
+                                        {member.role}
+                                    </p>
+                                    <p class="text-xl text-nowrap text-alice-blue">
+                                        {member.name}
+                                    </p>
+                                </div>
+                            </div>
+                        ))
+                    }
                 </div>
             </div>
 
             <div class="w-full h-fit flex items-end justify-start">
                 <a
-                    href="https://www.google.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="/about"
                     class="w-fit h-fit px-4 py-2 bg-yale-blue border border-icy-blue button duration-100 relative"
                 >
-                    <p class="text-sm text-alice-blue">了解更多</p>
+                    <p class="text-sm text-alice-blue">{About.buttons.learnMore}</p>
                 </a>
                 <a
-                    href="https://www.google.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="#services"
                     class="w-fit h-fit px-4 py-2 bg-yale-blue border border-icy-blue button duration-100 relative"
                 >
-                    <p class="text-sm text-alice-blue">聯繫我們</p>
+                    <p class="text-sm text-alice-blue">{About.buttons.services}</p>
                 </a>
             </div>
         </div>
         <div class="w-1/2 h-[60vh]">
-        
             <img
                 src="https://images.pexels.com/photos/13258030/pexels-photo-13258030.jpeg"
                 alt="testing"
                 class="w-auto h-full object-cover"
             />
-        
         </div>
     </div>
 </section>

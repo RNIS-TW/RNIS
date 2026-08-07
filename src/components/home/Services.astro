@@ -1,5 +1,8 @@
 ---
+import config from "@content/home.json";
 
+const { Services } = config;
+const { highlight, whyUs } = Services;
 ---
 
 <script>
@@ -26,58 +29,38 @@
             id="services-panel"
         >
             <div class="w-fit h-fit mb-12">
-                <h1 class="text-7xl">我們提供的服務</h1>
-                <p class="text-xl mt-4">我們提供廣泛的服務來滿足您的需求。</p>
+                <h1 class="text-7xl text-alice-blue">{Services.servicesTitle}</h1>
+                <p class="text-xl mt-4 text-powder-blue">{Services.servicesContent}</p>
             </div>
 
             <div class="w-full h-fit mt-8 py-4 flex flex-col gap-8">
-                <div class="w-7/8 h-0.5 bg-icy-blue/20" />
-
-                <div class="w-full h-fit py-4 px-2 flex gap-8 items-center">
-                    <div class="w-14 h-14 bg-icy-blue shadow-[6px_6px_0_0_#66849F] flex items-center justify-center">
-                        
-                    </div>
-                    <div class="w-fit h-fit flex flex-col gap-2">
-                        <h2 class="text-4xl">服務一</h2>
-                        <p class="text-lg">這是我們提供的第一項服務的描述。</p>
-                    </div>
-                </div>
-                
-                <div class="w-7/8 h-0.5 bg-icy-blue/20" />
-
-                <div class="w-full h-fit py-4 px-2 flex gap-8 items-center">
-                    <div class="w-14 h-14 bg-icy-blue shadow-[6px_6px_0_0_#66849F] flex items-center justify-center">
-                        
-                    </div>
-                    <div class="w-fit h-fit flex flex-col gap-2">
-                        <h2 class="text-4xl">服務一</h2>
-                        <p class="text-lg">這是我們提供的第一項服務的描述。</p>
-                    </div>
-                </div>
-
-                <div class="w-7/8 h-0.5 bg-icy-blue/20" />
-
-                <div class="w-full h-fit py-4 px-2 flex gap-8 items-center">
-                    <div class="w-14 h-14 bg-icy-blue shadow-[6px_6px_0_0_#66849F] flex items-center justify-center">
-
-                    </div>
-                    <div class="w-fit h-fit flex flex-col gap-2">
-                        <h2 class="text-4xl">服務一</h2>
-                        <p class="text-lg">這是我們提供的第一項服務的描述。</p>
-                    </div>
-                </div>
+                {
+                    Services.items.map((item, index) => (
+                        <>
+                            <div class="w-7/8 h-0.5 bg-icy-blue/20" />
+                            <div class="w-full h-fit py-4 px-2 flex gap-8 items-center">
+                                <div class="w-14 h-14 shrink-0 bg-icy-blue shadow-[6px_6px_0_0_#66849F] flex items-center justify-center text-2xl text-ink-black font-display">
+                                    {index + 1}
+                                </div>
+                                <div class="w-fit h-fit flex flex-col gap-2">
+                                    <h2 class="text-4xl text-alice-blue">{item.title}</h2>
+                                    <p class="text-lg text-powder-blue">{item.description}</p>
+                                </div>
+                            </div>
+                        </>
+                    ))
+                }
             </div>
         </div>
 
-        <div class="w-1/2 mt-56 p-12 text-ink-black flex flex-col gap-10">
+        <div class="w-1/2 mt-56 p-12 text-alice-blue flex flex-col gap-10">
             <div class="flex flex-col gap-3">
                 <span class="w-fit px-3 py-1 text-sm font-medium tracking-wide bg-icy-blue text-ink-black">
-                    01 · 核心服務
+                    {highlight.tag}
                 </span>
-                <h3 class="text-4xl font-display leading-tight">伺服器架構設計</h3>
-                <p class="text-lg text-yale-blue/90 leading-relaxed">
-                    從需求盤點到上線維運，協助打造穩定、可擴充的基礎設施。
-                    無論是活動尖峰流量或長期營運系統，都能對應合適的架構方案。
+                <h3 class="text-4xl font-display leading-tight">{highlight.title}</h3>
+                <p class="text-lg text-powder-blue/90 leading-relaxed">
+                    {highlight.description}
                 </p>
             </div>
 
@@ -85,41 +68,41 @@
 
             <div class="flex flex-col gap-4">
                 <h4 class="text-xl font-medium">我們會幫你做什麼</h4>
-                <ul class="flex flex-col gap-3 text-base text-yale-blue">
-                    <li class="flex gap-3 items-start">
-                        <span class="mt-2 w-2 h-2 shrink-0 bg-icy-blue shadow-[2px_2px_0_0_#66849F]"></span>
-                        <span>系統現況評估與瓶頸分析</span>
-                    </li>
-                    <li class="flex gap-3 items-start">
-                        <span class="mt-2 w-2 h-2 shrink-0 bg-icy-blue shadow-[2px_2px_0_0_#66849F]"></span>
-                        <span>高可用、負載平衡與備援規劃</span>
-                    </li>
-                    <li class="flex gap-3 items-start">
-                        <span class="mt-2 w-2 h-2 shrink-0 bg-icy-blue shadow-[2px_2px_0_0_#66849F]"></span>
-                        <span>部署流程、監控與告警建置</span>
-                    </li>
-                    <li class="flex gap-3 items-start">
-                        <span class="mt-2 w-2 h-2 shrink-0 bg-icy-blue shadow-[2px_2px_0_0_#66849F]"></span>
-                        <span>文件化交付與後續維運建議</span>
-                    </li>
+                <ul class="flex flex-col gap-3 text-base text-powder-blue">
+                    {
+                        highlight.bullets.map((bullet) => (
+                            <li class="flex gap-3 items-start">
+                                <span class="mt-2 w-2 h-2 shrink-0 bg-icy-blue shadow-[2px_2px_0_0_#66849F]" />
+                                <span>{bullet}</span>
+                            </li>
+                        ))
+                    }
                 </ul>
             </div>
 
             <div class="flex flex-col gap-4">
                 <h4 class="text-xl font-medium">適用場景</h4>
                 <div class="flex flex-wrap gap-2">
-                    <span class="px-3 py-1.5 text-sm bg-alice-blue border border-powder-blue/40">活動官網</span>
-                    <span class="px-3 py-1.5 text-sm bg-alice-blue border border-powder-blue/40">會員系統</span>
-                    <span class="px-3 py-1.5 text-sm bg-alice-blue border border-powder-blue/40">API 服務</span>
-                    <span class="px-3 py-1.5 text-sm bg-alice-blue border border-powder-blue/40">內部工具</span>
+                    {
+                        highlight.scenarios.map((scenario) => (
+                            <span class="px-3 py-1.5 text-sm text-ink-black bg-alice-blue border border-powder-blue/40">
+                                {scenario}
+                            </span>
+                        ))
+                    }
                 </div>
             </div>
 
             <div class="mt-auto pt-4 flex flex-col gap-4">
-                <div class="p-5 bg-ink-black text-alice-blue flex flex-col gap-2">
-                    <p class="text-sm text-icy-blue">交付週期參考</p>
-                    <p class="text-2xl font-display">2–6 週</p>
-                    <p class="text-sm text-powder-blue">依規模與既有系統複雜度調整</p>
+                <div class="p-5 bg-ink-black text-alice-blue flex flex-col gap-3">
+                    <p class="text-sm text-icy-blue">{whyUs.title}</p>
+                    {
+                        whyUs.paragraphs.map((paragraph) => (
+                            <p class="text-sm text-powder-blue leading-relaxed">
+                                {paragraph}
+                            </p>
+                        ))
+                    }
                 </div>
                 <a
                     href="#contact"

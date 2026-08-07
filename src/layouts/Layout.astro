@@ -2,9 +2,15 @@
 import '../styles/font/font.css';
 import '../styles/font/genyo-gothic.css';
 import '../styles/global.css';
+import 'lenis/dist/lenis.css';
 import satoshiUrl from '../assets/font/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variable.woff2?url';
 import Background from '../components/common/Background.astro';
 import Header from '../components/common/Header.astro';
+import Footer from '../components/common/Footer.astro';
+import SmoothScroll from '../components/common/SmoothScroll.astro';
+import home from '../content/home.json';
+
+const { left: mainName } = home.Contact.footer;
 ---
 
 <!doctype html>
@@ -40,13 +46,15 @@ import Header from '../components/common/Header.astro';
 				document.documentElement.style.colorScheme = theme;
 			})();
 		</script>
-		<title>Astro Basics</title>
+		<title>{mainName}</title>
 	</head>
 	<body>
+		<SmoothScroll />
 		<Background />
 		<Header />
 		<main class="site-content">
 			<slot />
 		</main>
+		<Footer />
 	</body>
 </html>

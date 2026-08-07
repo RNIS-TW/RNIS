@@ -1,34 +1,19 @@
 ---
-const faqs = [
-    {
-        question: "你們主要提供哪些服務？",
-        answer: "我們專注於伺服器架構、活動技術支援與客製化開發。從前期規劃、建置部署到上線維運，都能依專案需求提供對應方案。",
-    },
-    {
-        question: "專案大概需要多久？",
-        answer: "時程會依規模與複雜度調整。小型工具或活動支援通常數週內可完成；完整架構規劃與建置則可能需要數週到數個月。",
-    },
-    {
-        question: "可以只委託其中一部分嗎？",
-        answer: "可以。無論是架構諮詢、現場技術支援，或單一功能開發，我們都能依你的現況拆分合作範圍。",
-    },
-    {
-        question: "如何開始合作？",
-        answer: "先透過聯絡表單或社群與我們說明需求與時程，我們會回覆可行性評估與後續討論方式。",
-    },
-];
+import config from "@content/home.json";
+
+const { QA } = config;
 ---
 
 <section class="w-full h-fit min-h-screen bg-air-force-blue">
     <div class="container mx-auto px-16 py-32">
         <div class="w-full h-fit mb-16">
-            <h1 class="text-6xl text-alice-blue mb-4">常見問題</h1>
-            <p class="text-xl text-alice-blue">這裡是一些常見的問題和解答</p>
+            <h1 class="text-6xl text-alice-blue mb-4">{QA.title}</h1>
+            <p class="text-xl text-alice-blue">{QA.description}</p>
         </div>
 
         <div class="w-full h-fit px-32 flex flex-col" data-faq-list>
             {
-                faqs.map((faq, index) => (
+                QA.questions.map((faq, index) => (
                     <div
                         class="faq-item border-b border-icy-blue"
                         data-faq-item
@@ -78,15 +63,13 @@ const faqs = [
                 class="w-full h-fit flex gap-12 items-center justify-center py-4 px-8 text-left"
             >
                 <p class="text-3xl text-alice-blue">
-                    有其他問題嗎，歡迎隨時與我們聯繫！
+                    {QA.otherQuestion}
                 </p>
                 <a
-                    href="https://www.google.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href="#contact"
                     class="w-fit h-fit px-4 py-2 bg-yale-blue border border-icy-blue button duration-100 relative"
                 >
-                    <p class="text-sm text-alice-blue">前往泥土</p>
+                    <p class="text-sm text-alice-blue">{QA.contactLabel}</p>
                 </a>
             </div>
         </div>
