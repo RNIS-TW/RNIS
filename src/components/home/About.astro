@@ -41,7 +41,7 @@ const paragraphs = About.description.split("\n\n");
             </ul>
 
             <div class="w-full h-fit">
-                <p class="text-sm text-alice-blue">\\ Team</p>
+                <!-- <p class="text-sm text-alice-blue">\\ Team</p> -->
                 <div class="w-full h-fit flex gap-4 items-center flex-wrap">
                     {
                         About.members.map((member) => (
@@ -51,7 +51,7 @@ const paragraphs = About.description.split("\n\n");
                                     alt={member.name}
                                     class="aspect-square rounded-2xl object-cover mr-2"
                                 />
-                                <div class="w-fit h-fit flex flex-col items-start justify-center">
+                                <div class="w-fit h-fit flex flex-col items-start justify-between">
                                     <p class="text-xs text-powder-blue">
                                         {member.role}
                                     </p>
@@ -65,7 +65,7 @@ const paragraphs = About.description.split("\n\n");
                 </div>
             </div>
 
-            <div class="w-full h-fit flex items-end justify-start">
+            <div class="w-full h-fit flex items-end justify-start gap-2">
                 <a
                     href="/about"
                     class="w-fit h-fit px-4 py-2 bg-yale-blue border border-icy-blue button duration-100 relative"
@@ -92,7 +92,6 @@ const paragraphs = About.description.split("\n\n");
 
 <style>
     .button:hover {
-        transform: scale(1.05) translateY(-1px);
-        z-index: 10;
+        transform: translateY(-2px);
     }
 </style>

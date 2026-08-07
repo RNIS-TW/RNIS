@@ -4,27 +4,32 @@ import config from "@content/home.json";
 import EasingGradient from "@components/util/easingGradient.astro";
 ---
 
-<section class="w-full h-screen bg-jet-black">
+<section class="w-full h-[110vh] bg-jet-black">
     <div class="container px-16 mx-auto py-32 w-full h-fit">
-        <div class="w-full h-fit flex justify-between items-end">
-            <div class="flex flex-col w-full gap-4">
-                <!-- <span class="w-24 h-1 bg-icy-blue"></span> -->
-                <div class="flex items-start justify-between">
-                    <h1 class="text-7xl text-alice-blue">成功案例</h1>
-                    <p class="text-xl max-w-60 text-powder-blue">這裡是我們的成功案例</p>
-                </div>
-                <a
-                    href="#contact"
-                    class="w-fit h-fit px-4 py-2 ml-auto bg-ink-black text-alice-blue border-2 border-icy-blue duration-00 contact"
-                >
+        <div class="w-full h-fit mb-8">
+            <div class="flex flex-col gap-4">
+                <h1 class="text-7xl text-alice-blue">成功案例</h1>
+                <p class="text-xl max-w-60 text-powder-blue">
+                    這裡是我們的成功案例
+                </p>
+            </div>
+        </div>
+
+        <div class="w-full h-fit mt-16 flex items-center justify-end gap-4">
+            <div class="w-fit h-fit px-4 py-2 bg-ink-black text-alice-blue border-2 border-icy-blue duration-100 contact cursor-pointer">
+                <a href="#contact">
+                    <p class="text-lg">查看更多</p>
+                </a>
+            </div>
+            <div class="w-fit h-fit px-4 py-2 bg-ink-black text-alice-blue border-2 border-icy-blue duration-100 contact cursor-pointer">
+                <a href="#contact">
                     <p class="text-lg">聯絡我們</p>
                 </a>
             </div>
         </div>
 
-        <div class="w-full h-fit mt-24 flex">
+        <div class="w-full h-fit mt-8 flex">
             <div class="h-[50vh] flex-1 border border-air-force-blue relative p-4">
-                
                 <div class="w-full h-auto aspect-video absolute top-0 left-0 p-2">
                     <img
                         src="https://truth.bahamut.com.tw/s01/202607/forum/18673/19726c638b4bf5323373b9372b12b1a9.JPG"
@@ -47,7 +52,7 @@ import EasingGradient from "@components/util/easingGradient.astro";
                 <div class="relative w-full h-full p-4">
                     <div class="w-full h-1/2 flex flex-col gap-2">
                         <div class="flex gap-4">
-                            <div class="w-2 h-15 bg-cool-sky" />
+                            <div class="w-2 h-15 bg-cool-sky"></div>
                             <h2 class="text-6xl text-alice-blue">TESTING</h2>
                         </div>
                         <p class="text-xl text-alice-blue">
@@ -62,7 +67,9 @@ import EasingGradient from "@components/util/easingGradient.astro";
                     </div>
                     <div class="w-full h-1/2 flex flex-col gap-2">
                         <div class="flex-1">
-                            <p class="text-air-force-blue">機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦</p>
+                            <p class="text-air-force-blue">
+                                機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦機哩瓜啦
+                            </p>
                         </div>
                         <div class="w-full h-fit flex items-end justify-between">
                             <div class="flex w-fit h-fit items-end justify-start">
@@ -72,7 +79,9 @@ import EasingGradient from "@components/util/easingGradient.astro";
                                     rel="noopener noreferrer"
                                     class="w-fit h-fit px-4 py-2 bg-yale-blue border border-icy-blue button duration-100 relative"
                                 >
-                                    <p class="text-sm text-alice-blue">前往泥土</p>
+                                    <p class="text-sm text-alice-blue">
+                                        前往泥土
+                                    </p>
                                 </a>
                                 <a
                                     href="https://www.google.com"
@@ -80,10 +89,13 @@ import EasingGradient from "@components/util/easingGradient.astro";
                                     rel="noopener noreferrer"
                                     class="w-fit h-fit px-4 py-2 bg-yale-blue border border-icy-blue button duration-100 relative"
                                 >
-                                    <p class="text-sm text-alice-blue">前往泥土</p>
+                                    <p class="text-sm text-alice-blue">
+                                        前往泥土
+                                    </p>
                                 </a>
                             </div>
-                            <span class="text-xs text-air-force-blue">2024.06.01</span>
+                            <span class="text-xs text-air-force-blue">2024.06.01</span
+                            >
                         </div>
                     </div>
                 </div>
@@ -102,8 +114,8 @@ import EasingGradient from "@components/util/easingGradient.astro";
     .contact:hover {
         transform: translateX(0.125rem) translateY(0.125rem);
         box-shadow: 2px 2px 0 0 var(--color-air-force-blue);
-    }
-    
+    }｛｝
+
     .button:hover {
         transform: scale(1.05) translateY(-1px);
         z-index: 10;

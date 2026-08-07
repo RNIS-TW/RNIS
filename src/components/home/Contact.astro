@@ -4,7 +4,7 @@ import { Mail, MessageCircle, Send, AtSign } from "@lucide/astro";
 
 const { Contact } = config;
 
-const channelIcons: Record<string, typeof Mail> = {
+const channelIcons: Record<string , typeof Mail> = {
     mail: Mail,
     discord: MessageCircle,
     telegram: Send,
@@ -12,7 +12,10 @@ const channelIcons: Record<string, typeof Mail> = {
 };
 ---
 
-<section id="contact" class="w-full h-fit bg-ink-black py-32">
+<section
+    id="contact"
+    class="w-full h-fit bg-ink-black py-32"
+>
     <div class="container mx-auto px-16 flex flex-col gap-16">
         <div class="w-full max-w-2xl">
             <h1 class="text-6xl font-display font-medium tracking-tight text-alice-blue mt-2">{Contact.title}</h1>
@@ -30,12 +33,7 @@ const channelIcons: Record<string, typeof Mail> = {
                                 target={channel.available ? "_blank" : undefined}
                                 rel={channel.available ? "noopener noreferrer" : undefined}
                                 aria-disabled={!channel.available}
-                                class:list={[
-                                    "channel-card flex gap-4 items-start p-5 border border-icy-blue/30",
-                                    channel.available
-                                        ? "cursor-pointer hover:border-icy-blue"
-                                        : "cursor-default opacity-60",
-                                ]}
+                                class:list={[ "channel-card flex gap-4 items-start p-5 border border-icy-blue/30", channel.available ? "cursor-pointer hover:border-icy-blue" : "cursor-default opacity-60", ]}
                             >
                                 <div class="w-12 h-12 shrink-0 bg-icy-blue shadow-[4px_4px_0_0_#66849F] flex items-center justify-center text-ink-black">
                                     <Icon size={22} stroke-width={2} />
@@ -53,10 +51,16 @@ const channelIcons: Record<string, typeof Mail> = {
                 }
             </div>
 
-            <form id="contact-form" class="w-1/2 flex flex-col gap-6 p-8 border border-icy-blue/30">
+            <form
+                id="contact-form"
+                class="w-1/2 flex flex-col gap-6 p-8 border border-icy-blue/30"
+            >
                 <div class="grid grid-cols-2 gap-4">
                     <div class="flex flex-col gap-2">
-                        <label for="contact-name" class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-icy-blue">姓名</label>
+                        <label
+                            for="contact-name"
+                            class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-icy-blue"
+                        >姓名</label>
                         <input
                             id="contact-name"
                             name="name"
@@ -66,7 +70,10 @@ const channelIcons: Record<string, typeof Mail> = {
                         />
                     </div>
                     <div class="flex flex-col gap-2">
-                        <label for="contact-email" class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-icy-blue">電子郵件</label>
+                        <label
+                            for="contact-email"
+                            class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-icy-blue"
+                        >電子郵件</label>
                         <input
                             id="contact-email"
                             name="email"
@@ -78,7 +85,10 @@ const channelIcons: Record<string, typeof Mail> = {
                 </div>
 
                 <div class="flex flex-col gap-2">
-                    <label for="contact-message" class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-icy-blue">訊息內容</label>
+                    <label
+                        for="contact-message"
+                        class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-icy-blue"
+                    >訊息內容</label>
                     <textarea
                         id="contact-message"
                         name="message"
