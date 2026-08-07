@@ -1,23 +1,23 @@
 {
-    "title": "RNIS",
-    "nav": [
-        {
-            "name": "Home",
-            "url": "/"
-        },
-        {
-            "name": "About",
-            "url": "/about"
-        },
-        {
-            "name": "Contact",
-            "url": "/contact"
-        }
-    ],
-    "otherLinks": [
-        {
-            "name": "Status",
-            "url": "status.routine.tw"
-        }
-    ]
+  "title": "RNIS",
+  "nav": [
+    {
+      "name": "首頁",
+      "url": "/"
+    },
+    {
+      "name": "關於我們",
+      "url": "/about"
+    },
+    {
+      "name": "聯絡我們",
+      "url": "/contact"
+    }
+  ],
+  "otherLinks": [
+    {
+      "name": "系統狀態",
+      "url": "status.routine.tw"
+    }
+  ]
 }

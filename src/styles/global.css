@@ -1,140 +1,223 @@
 @import "tailwindcss";
-@import "./font/font.css";
 
 @theme {
-	--color-jet-black: #1a2429;
-	--color-ink-black: #151c2a;
-	--color-yale-blue: #314865;
-	--color-baltic-blue: #406287;
-	--color-air-force-blue: #66849f;
-	--color-icy-blue: #baddfe;
-	--color-alice-blue: #e3f1ff;
-	--color-powder-blue: #90adc9;
-	--color-cool-sky: #76baff;
-	--color-light-coral: #f89494;
-	--color-jasmine: #ffd972;
-	--color-tea-green: #bef8b8;
+  /* Dark neutral surfaces */
+  --color-surface-base: #151c2a;
+  --color-surface-raised: #1a2429;
 
-	--font-sans: "Satoshi", "GenYo Gothic TW", "PingFang TC", "Microsoft JhengHei", ui-sans-serif, system-ui, sans-serif;
-	--font-display: "New Title", "Satoshi", ui-sans-serif, system-ui, sans-serif;
-	--font-mono: "Source Code Pro", ui-monospace, "Cascadia Code", Consolas, monospace;
+  /* Accent scale — actually amber/gold, not blue. 100 lightest
+     (dominant accent) to 500 darkest. */
+  --color-amber-100: #ffdd8a;
+  --color-amber-200: #ffb238;
+  --color-amber-300: #8a6a2c;
+  --color-amber-400: #6b4f1a;
+  --color-amber-500: #4a3812;
 
-	--background-image-ocean-top: linear-gradient(0deg, #1a2429, #151c2a, #314865, #406287, #66849f, #baddfe, #e3f1ff);
-	--background-image-ocean-right: linear-gradient(90deg, #1a2429, #151c2a, #314865, #406287, #66849f, #baddfe, #e3f1ff);
-	--background-image-ocean-bottom: linear-gradient(180deg, #1a2429, #151c2a, #314865, #406287, #66849f, #baddfe, #e3f1ff);
-	--background-image-ocean-left: linear-gradient(270deg, #1a2429, #151c2a, #314865, #406287, #66849f, #baddfe, #e3f1ff);
-	--background-image-ocean-top-right: linear-gradient(45deg, #1a2429, #151c2a, #314865, #406287, #66849f, #baddfe, #e3f1ff);
-	--background-image-ocean-bottom-right: linear-gradient(135deg, #1a2429, #151c2a, #314865, #406287, #66849f, #baddfe, #e3f1ff);
-	--background-image-ocean-top-left: linear-gradient(225deg, #1a2429, #151c2a, #314865, #406287, #66849f, #baddfe, #e3f1ff);
-	--background-image-ocean-bottom-left: linear-gradient(315deg, #1a2429, #151c2a, #314865, #406287, #66849f, #baddfe, #e3f1ff);
-	--background-image-ocean-radial: radial-gradient(#1a2429, #151c2a, #314865, #406287, #66849f, #baddfe, #e3f1ff);
+  /* Status/marker accents, standalone — not part of the amber scale */
+  --color-coral: #f89494;
+  --color-jasmine: #ffd972;
+  --color-sage: #9ced95;
 
-	--background-image-accent-top: linear-gradient(0deg, #90adc9, #76baff, #f89494, #ffd972, #bef8b8);
-	--background-image-accent-right: linear-gradient(90deg, #90adc9, #76baff, #f89494, #ffd972, #bef8b8);
-	--background-image-accent-bottom: linear-gradient(180deg, #90adc9, #76baff, #f89494, #ffd972, #bef8b8);
-	--background-image-accent-left: linear-gradient(270deg, #90adc9, #76baff, #f89494, #ffd972, #bef8b8);
-	--background-image-accent-top-right: linear-gradient(45deg, #90adc9, #76baff, #f89494, #ffd972, #bef8b8);
-	--background-image-accent-bottom-right: linear-gradient(135deg, #90adc9, #76baff, #f89494, #ffd972, #bef8b8);
-	--background-image-accent-top-left: linear-gradient(225deg, #90adc9, #76baff, #f89494, #ffd972, #bef8b8);
-	--background-image-accent-bottom-left: linear-gradient(315deg, #90adc9, #76baff, #f89494, #ffd972, #bef8b8);
-	--background-image-accent-radial: radial-gradient(#90adc9, #76baff, #f89494, #ffd972, #bef8b8);
+  --font-sans:
+    "Satoshi", "GenYo Gothic TW", "PingFang TC", "Microsoft JhengHei",
+    ui-sans-serif, system-ui, sans-serif;
+  --font-display: "New Title", "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --font-mono:
+    "Source Code Pro", ui-monospace, "Cascadia Code", Consolas, monospace;
+  --font-line-seed:
+    "LINE Seed TW", "PingFang TC", "Microsoft JhengHei", ui-sans-serif,
+    system-ui, sans-serif;
 }
 
+/*
+ * Semantic design tokens (河馬's naming pass).
+ * These are hand-authored classes rather than Tailwind's auto-generated
+ * color utilities, because border-primary / text-primary / button-primary
+ * each need an independent value — Tailwind's @theme colors share one
+ * value across bg-X/text-X/border-X for a given X, which doesn't work
+ * once "primary" means a different color per property.
+ */
+@layer base {
+  :root {
+    /* borders */
+    --border-primary: var(--color-amber-100);
+    --border-secondary: rgba(21, 28, 42, 0.2);
 
+    /* buttons */
+    --button-primary-bg: var(--color-amber-100);
+    --button-primary-text: var(--color-surface-base);
+    --button-secondary-bg: var(--color-amber-500);
+    --button-secondary-text: var(--color-amber-100);
+    --button-transparent-text: var(--color-amber-100);
+    --button-transparent-border: var(--color-amber-100);
+    --button-shadow: var(--color-amber-300);
+
+    /* text */
+    --text-secondary: rgba(255, 255, 255, 0.7);
+    --text-paragraph: rgba(255, 255, 255, 0.7);
+    --text-danger: var(--color-coral);
+    --text-warn: var(--color-jasmine);
+    --text-success: var(--color-sage);
+    --text-info: var(--color-amber-100);
+  }
+}
+
+.border-primary {
+  border-color: var(--border-primary);
+}
+
+.border-secondary {
+  border-color: var(--border-secondary);
+}
+
+.button-primary {
+  background-color: var(--button-primary-bg);
+  color: var(--button-primary-text);
+}
+
+.button-secondary {
+  background-color: var(--button-secondary-bg);
+  color: var(--button-secondary-text);
+  border: 1px solid var(--border-primary);
+}
+
+.button-transparent {
+  background-color: transparent;
+  color: var(--button-transparent-text);
+  border: 1px solid var(--button-transparent-border);
+}
+
+.button-shadow {
+  box-shadow: 4px 4px 0 0 var(--button-shadow);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-paragraph {
+  color: var(--text-paragraph);
+}
+
+.text-danger {
+  color: var(--text-danger);
+}
+
+.text-warn {
+  color: var(--text-warn);
+}
+
+.text-success {
+  color: var(--text-success);
+}
+
+.text-info {
+  color: var(--text-info);
+}
 
 @layer base {
-	:root {
-		--page-background: #151c2a;
-		--surface-raised: rgba(26, 36, 41, 0.84);
-		--text-primary: #e3f1ff;
-		--text-muted: #baddfe;
-		--border-subtle: rgba(186, 221, 254, 0.25);
-		--toggle-thumb: #66849f;
-		--focus-ring: #76baff;
-		--shadow-color: rgba(0, 0, 0, 0.28);
-		color-scheme: dark;
-	}
+  :root {
+    --page-background: var(--color-surface-base);
+    --surface-raised: rgba(26, 36, 41, 0.84);
+    --text-primary: #ffffff;
+    --text-muted: var(--color-amber-100);
+    --border-subtle: rgba(255, 221, 138, 0.25);
+    --toggle-thumb: var(--color-amber-300);
+    --focus-ring: var(--color-amber-200);
+    --shadow-color: rgba(0, 0, 0, 0.28);
+    color-scheme: dark;
+  }
 
-	html[data-theme='light'] {
-		--page-background: #e3f1ff;
-		--surface-raised: rgba(255, 255, 255, 0.82);
-		--text-primary: #151c2a;
-		--text-muted: #406287;
-		--border-subtle: rgba(49, 72, 101, 0.22);
-		--toggle-thumb: #ffd972;
-		--focus-ring: #406287;
-		--shadow-color: rgba(49, 72, 101, 0.2);
-		color-scheme: light;
-	}
+  html[data-theme="light"] {
+    --page-background: #ffffff;
+    --surface-raised: rgba(255, 255, 255, 0.82);
+    --text-primary: var(--color-surface-base);
+    --text-muted: var(--color-amber-400);
+    --border-subtle: rgba(74, 56, 18, 0.22);
+    --toggle-thumb: var(--color-jasmine);
+    --focus-ring: var(--color-amber-400);
+    --shadow-color: rgba(74, 56, 18, 0.2);
+    color-scheme: light;
+  }
 
-	html {
-		min-height: 100%;
-		background: var(--page-background);
-		color: var(--text-primary);
-		font-family: var(--font-sans);
-	}
+  html {
+    min-height: 100%;
+    background: var(--page-background);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+  }
 
-	body {
-		min-height: 100vh;
-		margin: 0;
-		background: var(--page-background);
-		transition: background-color 220ms ease, color 220ms ease;
-	}
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background: var(--page-background);
+    transition:
+      background-color 220ms ease,
+      color 220ms ease;
+  }
 
-	button,
-	a {
-		-webkit-tap-highlight-color: transparent;
-	}
+  button,
+  a {
+    -webkit-tap-highlight-color: transparent;
+  }
 }
 
 .site-content {
-	position: relative;
-	z-index: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .sr-only {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	border: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
-html[data-theme-transition='active']::view-transition-old(root),
-html[data-theme-transition='active']::view-transition-new(root) {
-	animation: none;
-	mix-blend-mode: normal;
+html[data-theme-transition="active"]::view-transition-old(root),
+html[data-theme-transition="active"]::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
 }
 
-html[data-theme-transition='active']::view-transition-old(root) {
-	z-index: 1;
+html[data-theme-transition="active"]::view-transition-old(root) {
+  z-index: 1;
 }
 
-html[data-theme-transition='active']::view-transition-new(root) {
-	z-index: 2;
-	animation: theme-circle-reveal 620ms cubic-bezier(0.76, 0, 0.24, 1) both;
+html[data-theme-transition="active"]::view-transition-new(root) {
+  z-index: 2;
+  animation: theme-circle-reveal 620ms cubic-bezier(0.76, 0, 0.24, 1) both;
 }
 
 @keyframes theme-circle-reveal {
-	from {
-		clip-path: circle(0 at var(--theme-toggle-x) var(--theme-toggle-y));
-	}
-	to {
-		clip-path: circle(150vmax at var(--theme-toggle-x) var(--theme-toggle-y));
-	}
+  from {
+    clip-path: circle(0 at var(--theme-toggle-x) var(--theme-toggle-y));
+  }
+  to {
+    clip-path: circle(150vmax at var(--theme-toggle-x) var(--theme-toggle-y));
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-	body {
-		transition: none;
-	}
+  body {
+    transition: none;
+  }
 
-	::view-transition-old(root),
-	::view-transition-new(root) {
-		animation-duration: 0.01ms !important;
-	}
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.01ms !important;
+  }
+}
+
+button {
+  @apply cursor-pointer;
 }

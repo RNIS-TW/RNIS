@@ -1,0 +1,157 @@
+---
+import config from "@content/home.json";
+import NotchButton from "@components/common/NotchButton.astro";
+
+const { QA } = config;
+---
+
+<section class="w-full h-fit bg-surface-base">
+    <div class="container mx-auto px-16 py-32">
+        <div class="w-full h-fit mb-16">
+            <h1 class="text-5xl text-amber-100 font-line-seed mb-4">{QA.title}</h1>
+            <p class="text-lg text-primary">{QA.description}</p>
+        </div>
+
+        <div
+            class="w-full h-fit grid grid-cols-1"
+            data-faq-list
+        >
+            {
+                QA.questions.map((faq, index) => (
+                    <div
+                        class="faq-item border-b border-amber-100/20"
+                        data-faq-item
+                    >
+                        <button
+                            type="button"
+                            class="faq-trigger w-full h-fit flex gap-4 items-center justify-start py-4 px-8 text-left cursor-pointer transition-colors"
+                            aria-expanded="false"
+                            aria-controls={`faq-panel-${index}`}
+                            id={`faq-trigger-${index}`}
+                        >
+                            <span class="text-3xl text-coral font-bold shrink-0">
+                                Q
+                            </span>
+                            <span class="text-2xl text-amber-100 flex-1">
+                                {faq.question}
+                            </span>
+                            <span
+                                class="faq-icon text-4xl text-amber-100 ml-auto shrink-0 leading-none"
+                                aria-hidden="true"
+                            >
+                                +
+                            </span>
+                        </button>
+
+                        <div
+                            id={`faq-panel-${index}`}
+                            class="faq-panel"
+                            role="region"
+                            aria-labelledby={`faq-trigger-${index}`}
+                        >
+                            <div class="faq-panel-inner">
+                                <div class="flex gap-12 items-start px-8 pb-6 pt-1">
+                                    <span class="text-3xl text-tea-green font-bold shrink-0">
+                                        A
+                                    </span>
+                                    <p class="text-base text-white/90 leading-relaxed pt-1">
+                                        {faq.answer}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+            <div class="w-full h-fit flex gap-12 items-center justify-center py-4 px-8 mt-8 text-left">
+                <p class="text-xl text-primary">
+                    {QA.otherQuestion}
+                </p>
+                <NotchButton
+                    as="a"
+                    href="#contact"
+                    color="var(--color-amber-100)"
+                    class="text-primary text-sm"
+                >
+                    {QA.contactLabel}
+                </NotchButton>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .faq-panel {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 320ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .faq-panel-inner {
+        overflow: hidden;
+        min-height: 0;
+        opacity: 0;
+        transform: translateY(-0.35rem);
+        transition:
+            opacity 240ms ease,
+            transform 320ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .faq-item.is-open .faq-panel {
+        grid-template-rows: 1fr;
+    }
+
+    .faq-item.is-open .faq-panel-inner {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .faq-icon {
+        display: inline-block;
+        transition: transform 280ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .faq-item.is-open .faq-icon {
+        transform: rotate(45deg); /* + becomes × */
+    }
+
+    .faq-trigger:hover {
+        background-color: rgba(255, 221, 138, 0.05);
+    }
+</style>
+
+<script>
+    const list = document.querySelector("[data-faq-list]");
+    if (list) {
+        const items = [
+            ...list.querySelectorAll<HTMLElement>("[data-faq-item]"),
+        ];
+
+        const closeItem = (item: HTMLElement) => {
+            item.classList.remove("is-open");
+            const trigger =
+                item.querySelector<HTMLButtonElement>(".faq-trigger");
+            trigger?.setAttribute("aria-expanded", "false");
+        };
+
+        const openItem = (item: HTMLElement) => {
+            item.classList.add("is-open");
+            const trigger =
+                item.querySelector<HTMLButtonElement>(".faq-trigger");
+            trigger?.setAttribute("aria-expanded", "true");
+        };
+
+        for (const item of items) {
+            const trigger =
+                item.querySelector<HTMLButtonElement>(".faq-trigger");
+            if (!trigger) continue;
+
+            trigger.addEventListener("click", () => {
+                const isOpen = item.classList.contains("is-open");
+
+                if (isOpen) closeItem(item);
+                else openItem(item);
+            });
+        }
+    }
+</script>

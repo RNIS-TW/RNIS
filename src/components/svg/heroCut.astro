@@ -1,0 +1,30 @@
+---
+const { class: className, ...rest } = Astro.props;
+---
+
+<div class:list={['trapezoid', className]} {...rest}></div>
+<div class:list={['trapezoid-shadow', className]} {...rest}></div>
+
+<style>
+    .trapezoid {
+        transition: color 220ms ease;
+        border-bottom: 160px solid var(--color-surface-base);
+        border-left: 0px solid transparent;
+        border-right: 80px solid transparent;
+        height: 0;
+        width: 60vw;
+    }
+
+    .trapezoid-shadow {
+        border-bottom: 164px solid var(--color-amber-100);
+        border-left: 0px solid transparent;
+        border-right: 80px solid transparent;
+        height: 0;
+        width: calc(60vw + 4px);
+        z-index: -1;
+    }
+
+    :global(html[data-theme="light"]) .trapezoid {
+        color: var(--color-amber-300);
+    }
+</style>

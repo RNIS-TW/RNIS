@@ -17,7 +17,7 @@ from fontTools.ttLib import TTFont
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_DIR = ROOT / "src/assets/font/GenYoGothic2TW-otf"
 OUTPUT_DIR = ROOT / "src/assets/font/GenYoGothic2TW-shards"
-CSS_PATH = ROOT / "src/styles/genyo-gothic.css"
+CSS_PATH = ROOT / "src/styles/font/genyo-gothic.css"
 SHARD_COUNT = 100
 
 EXTRA_RANGES = (
@@ -74,7 +74,7 @@ def build_shard(task: tuple[Path, Path, list[int]]) -> None:
 def font_face(weight: int, filename: str, codepoints: list[int]) -> str:
 	return f'''@font-face {{
 	font-family: "GenYo Gothic TW";
-	src: url("../assets/font/GenYoGothic2TW-shards/{filename}") format("woff2");
+	src: url("../../assets/font/GenYoGothic2TW-shards/{filename}") format("woff2");
 	font-style: normal;
 	font-weight: {weight};
 	font-display: swap;
