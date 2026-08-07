@@ -2,7 +2,9 @@
 import config from "@content/home.json";
 
 const { Services } = config;
-const { highlight, whyUs } = Services;
+const { items, whyUs } = Services;
+const defaultIndex = 0;
+const active = items[defaultIndex];
 ---
 
 <script>
@@ -16,7 +18,6 @@ const { highlight, whyUs } = Services;
 
         services.style.top = `${sitckyTopOffset}px`;
     }
-
 </script>
 
 <section
@@ -33,20 +34,49 @@ const { highlight, whyUs } = Services;
                 <p class="text-xl mt-4 text-powder-blue">{Services.servicesContent}</p>
             </div>
 
-            <div class="w-full h-fit mt-8 py-4 flex flex-col gap-4">
+            <div
+                class="w-full h-fit mt-8 py-4 flex flex-col gap-4"
+                id="services-list"
+            >
                 {
-                    Services.items.map((item, index) => (
+                    items.map((item, index) => (
                         <>
                             <div class="w-7/8 h-0.5 bg-icy-blue/20" />
-                            <div class="w-full h-fit py-4 px-2 flex gap-8 items-center">
-                                <div class="w-14 h-14 shrink-0 bg-icy-blue shadow-[6px_6px_0_0_#66849F] flex items-center justify-center text-2xl text-ink-black font-display">
+                            <button
+                                type="button"
+                                data-service-item
+                                data-index={index}
+                                aria-pressed={index === defaultIndex ? "true" : "false"}
+                                class:list={[
+                                    "service-item w-full h-fit py-4 px-2 flex gap-8 items-center text-left cursor-pointer transition-colors",
+                                    index === defaultIndex && "is-active",
+                                ]}
+                            >
+                                <div
+                                    data-service-icon
+                                    class:list={[
+                                        "w-14 h-14 shrink-0 shadow-[6px_6px_0_0_#66849F] flex items-center justify-center text-2xl text-ink-black font-display transition-colors",
+                                        index === defaultIndex ? "bg-cool-sky" : "bg-icy-blue",
+                                    ]}
+                                >
                                     {index + 1}
                                 </div>
                                 <div class="w-fit h-fit flex flex-col gap-2">
-                                    <h2 class="text-4xl text-alice-blue">{item.title}</h2>
+                                    <div class="flex items-center gap-2">
+                                        <h2 class="text-4xl text-alice-blue">{item.title}</h2>
+                                        <span
+                                            data-service-badge
+                                            class:list={[
+                                                "px-2 py-0.5 text-xs font-medium tracking-wide bg-cool-sky text-ink-black transition-opacity",
+                                                index === defaultIndex ? "opacity-100" : "opacity-0",
+                                            ]}
+                                        >
+                                            詳細介紹 →
+                                        </span>
+                                    </div>
                                     <p class="text-lg text-powder-blue">{item.description}</p>
                                 </div>
-                            </div>
+                            </button>
                         </>
                     ))
                 }
@@ -54,42 +84,61 @@ const { highlight, whyUs } = Services;
         </div>
 
         <div class="w-1/2 mt-56 p-12 text-alice-blue flex flex-col gap-10">
-            <div class="flex flex-col gap-3">
-                <span class="w-fit px-3 py-1 text-sm font-medium tracking-wide bg-icy-blue text-ink-black">
-                    {highlight.tag}
-                </span>
-                <h3 class="text-4xl font-display leading-tight">{highlight.title}</h3>
-                <p class="text-lg text-powder-blue/90 leading-relaxed">
-                    {highlight.description}
-                </p>
-            </div>
+            <div id="service-detail-panel" class="service-detail-panel flex flex-col gap-10">
+                <div class="flex flex-col gap-3">
+                    <span
+                        id="service-detail-tag"
+                        class="w-fit px-3 py-1 text-sm font-medium tracking-wide bg-icy-blue text-ink-black"
+                    >
+                        {String(defaultIndex + 1).padStart(2, "0")} · {active.tag}
+                    </span>
+                    <h3
+                        id="service-detail-title"
+                        class="text-4xl font-display leading-tight"
+                    >
+                        {active.title}
+                    </h3>
+                    <p
+                        id="service-detail-description"
+                        class="text-lg text-powder-blue/90 leading-relaxed"
+                    >
+                        {active.description}
+                    </p>
+                </div>
 
-            <div class="w-full h-0.5 bg-icy-blue/30"></div>
+                <div class="w-full h-0.5 bg-icy-blue/30"></div>
 
-            <div class="flex flex-col gap-4">
-                <h4 class="text-xl font-medium">我們會幫你做什麼</h4>
-                <ul class="flex flex-col gap-3 text-base text-powder-blue">
-                    {
-                        highlight.bullets.map((bullet) => (
-                            <li class="flex gap-3 items-start">
-                                <span class="mt-2 w-2 h-2 shrink-0 bg-icy-blue shadow-[2px_2px_0_0_#66849F]" />
-                                <span>{bullet}</span>
-                            </li>
-                        ))
-                    }
-                </ul>
-            </div>
+                <div class="flex flex-col gap-4">
+                    <h4 class="text-xl font-medium">我們會幫你做什麼</h4>
+                    <ul
+                        id="service-detail-bullets"
+                        class="flex flex-col gap-3 text-base text-powder-blue"
+                    >
+                        {
+                            active.bullets.map((bullet) => (
+                                <li class="flex gap-3 items-start">
+                                    <span class="mt-2 w-2 h-2 shrink-0 bg-icy-blue shadow-[2px_2px_0_0_#66849F]" />
+                                    <span>{bullet}</span>
+                                </li>
+                            ))
+                        }
+                    </ul>
+                </div>
 
-            <div class="flex flex-col gap-4">
-                <h4 class="text-xl font-medium">適用場景</h4>
-                <div class="flex flex-wrap gap-2">
-                    {
-                        highlight.scenarios.map((scenario) => (
-                            <span class="px-3 py-1.5 text-sm text-ink-black bg-alice-blue border border-powder-blue/40">
-                                {scenario}
-                            </span>
-                        ))
-                    }
+                <div class="flex flex-col gap-4">
+                    <h4 class="text-xl font-medium">適用場景</h4>
+                    <div
+                        id="service-detail-scenarios"
+                        class="flex flex-wrap gap-2"
+                    >
+                        {
+                            active.scenarios.map((scenario) => (
+                                <span class="px-3 py-1.5 text-sm text-ink-black bg-alice-blue border border-powder-blue/40">
+                                    {scenario}
+                                </span>
+                            ))
+                        }
+                    </div>
                 </div>
             </div>
 
@@ -127,4 +176,115 @@ const { highlight, whyUs } = Services;
         background-color: var(--color-icy-blue);
         z-index: -1;
     }
+
+    .service-item:hover:not(.is-active) {
+        background-color: rgba(186, 221, 254, 0.05);
+    }
+
+    .service-item.is-active {
+        background-color: rgba(186, 221, 254, 0.05);
+    }
+
+    .service-detail-panel {
+        transition:
+            opacity 200ms ease,
+            transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .service-detail-panel.is-switching {
+        opacity: 0;
+        transform: translateY(8px);
+    }
 </style>
+
+<script define:vars={{ items: config.Services.items, defaultIndex }}>
+    const list = document.getElementById("services-list");
+    const buttons = Array.from(
+        document.querySelectorAll("[data-service-item]"),
+    );
+
+    const panelEl = document.getElementById("service-detail-panel");
+    const tagEl = document.getElementById("service-detail-tag");
+    const titleEl = document.getElementById("service-detail-title");
+    const descriptionEl = document.getElementById("service-detail-description");
+    const bulletsEl = document.getElementById("service-detail-bullets");
+    const scenariosEl = document.getElementById("service-detail-scenarios");
+
+    let activeIndex = defaultIndex;
+    let isSwitching = false;
+
+    const renderBullets = (bullets) => {
+        bulletsEl.innerHTML = "";
+        for (const bullet of bullets) {
+            const li = document.createElement("li");
+            li.className = "flex gap-3 items-start";
+
+            const dot = document.createElement("span");
+            dot.className =
+                "mt-2 w-2 h-2 shrink-0 bg-icy-blue shadow-[2px_2px_0_0_#66849F]";
+
+            const text = document.createElement("span");
+            text.textContent = bullet;
+
+            li.append(dot, text);
+            bulletsEl.append(li);
+        }
+    };
+
+    const renderScenarios = (scenarios) => {
+        scenariosEl.innerHTML = "";
+        for (const scenario of scenarios) {
+            const span = document.createElement("span");
+            span.className =
+                "px-3 py-1.5 text-sm text-ink-black bg-alice-blue border border-powder-blue/40";
+            span.textContent = scenario;
+            scenariosEl.append(span);
+        }
+    };
+
+    const applyContent = (index) => {
+        const item = items[index];
+
+        tagEl.textContent = `${String(index + 1).padStart(2, "0")} · ${item.tag}`;
+        titleEl.textContent = item.title;
+        descriptionEl.textContent = item.description;
+        renderBullets(item.bullets);
+        renderScenarios(item.scenarios);
+
+        for (const button of buttons) {
+            const buttonIndex = Number(button.dataset.index);
+            const isActive = buttonIndex === index;
+
+            button.classList.toggle("is-active", isActive);
+            button.setAttribute("aria-pressed", String(isActive));
+
+            const icon = button.querySelector("[data-service-icon]");
+            icon?.classList.toggle("bg-cool-sky", isActive);
+            icon?.classList.toggle("bg-icy-blue", !isActive);
+
+            const badge = button.querySelector("[data-service-badge]");
+            badge?.classList.toggle("opacity-100", isActive);
+            badge?.classList.toggle("opacity-0", !isActive);
+        }
+    };
+
+    const setActive = (index) => {
+        if (index === activeIndex || isSwitching) return;
+        activeIndex = index;
+        isSwitching = true;
+
+        panelEl.classList.add("is-switching");
+
+        window.setTimeout(() => {
+            applyContent(index);
+            panelEl.classList.remove("is-switching");
+            isSwitching = false;
+        }, 200);
+    };
+
+    for (const button of buttons) {
+        button.addEventListener("click", () => {
+            setActive(Number(button.dataset.index));
+        });
+    }
+</script>

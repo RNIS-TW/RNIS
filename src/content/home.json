@@ -1,58 +1,49 @@
 {
   "hero": {
     "title": "平常網路資訊|工作室",
-    "description": "我們是一個專注於 Minecraft 伺服器架構、遊戲活動技術與客製化開發的團隊。",
-    "socialButton": {
-      "mail": "寄信",
-      "discord": "Discord",
-      "telegram": "Telegram",
-      "threads": "Threads"
-    }
-  },
-  "Goal": {
-    "goalTitle": "我們的目標",
-    "goalContent": "Routine Network Information Studio（平常網路資訊）是一個專注於 Minecraft 伺服器架構、遊戲活動技術與客製化開發的團隊。"
-  },
-  "Skill": {
-    "skillTitle": "團隊經驗與技術能力",
-    "skillContent": "我們擁有豐富的伺服器架構經驗，能夠設計高效、穩定的系統，也熟悉各種 Minecraft 遊戲活動技術，能夠為不同規模的企劃提供最佳解決方案；此外，我們也擅長客製化開發，能夠根據需求打造專屬插件與遊戲內容。",
-    "items": [
-      "基礎架構：伺服器維護、網路架構設計、Linux 系統管理",
-      "後端與軟體開發：JavaScript、TypeScript、Python",
-      "Minecraft 遊戲開發：Java、伺服器架構、自訂插件與遊戲內容開發",
-      "大型活動支援：百人規模戰營、生存模式及各類 Minecraft 活動的伺服器規劃與效能優化"
-    ]
+    "description": "我們是一個專注於 Minecraft 伺服器架構、遊戲活動技術與客製化開發的團隊。"
   },
   "Services": {
-    "eyebrow": "GAME EVENT CONSULTING / 遊戲活動顧問服務",
     "servicesTitle": "遊戲活動顧問服務",
     "servicesContent": "我們提供 Minecraft 遊戲活動的全方位顧問與技術執行服務，協助你把初步構想發展成具體、可執行並具備完整技術架構的企劃。",
     "items": [
       {
+        "tag": "遊戲活動顧問",
         "title": "遊戲活動顧問服務",
-        "description": "我們提供 Minecraft 遊戲活動的全方位顧問與技術執行服務，協助你把初步構想發展成具體、可執行並具備完整技術架構的企劃。"
+        "description": "我們提供 Minecraft 遊戲活動的全方位顧問與技術執行服務，協助你把初步構想發展成具體、可執行並具備完整技術架構的企劃。",
+        "bullets": [
+          "企劃發想與可行性評估",
+          "技術架構規劃",
+          "執行期程與里程碑安排",
+          "上線後的持續支援"
+        ],
+        "scenarios": ["直播企劃", "VTuber 活動", "社群大型活動", "跨團隊聯動企劃"]
       },
       {
+        "tag": "伺服器優化",
         "title": "伺服器效能與架構優化",
-        "description": "我們協助規劃、架設與優化活動伺服器，降低活動期間發生崩潰、當機或斷線的風險。依照活動規模與玩法需求，設計穩定的伺服器架構，讓百人規模的戰營、生存及其他活動順利運行。"
+        "description": "我們協助規劃、架設與優化活動伺服器，降低活動期間發生崩潰、當機或斷線的風險。依照活動規模與玩法需求，設計穩定的伺服器架構，讓百人規模的戰營、生存及其他活動順利運行。",
+        "bullets": [
+          "活動規模與玩法需求評估",
+          "高承載伺服器架構規劃",
+          "崩潰、當機與斷線風險排除",
+          "效能監控與即時調校"
+        ],
+        "scenarios": ["百人戰營", "生存伺服器", "實況直播活動", "VTuber 企劃"]
       },
       {
+        "tag": "客製化開發",
         "title": "專屬機制與客製化開發",
-        "description": "從插件設定、自訂遊戲機制到專屬內容開發，我們能將你的活動構想轉化為實際可玩的遊戲體驗。無論是複雜的插件整合、特殊玩法或客製化內容，都可以由團隊協助規劃與實作。"
+        "description": "從插件設定、自訂遊戲機制到專屬內容開發，我們能將你的活動構想轉化為實際可玩的遊戲體驗。無論是複雜的插件整合、特殊玩法或客製化內容，都可以由團隊協助規劃與實作。",
+        "bullets": [
+          "插件與遊戲機制設計",
+          "客製化內容開發",
+          "整合測試與除錯",
+          "文件化交付與後續維護"
+        ],
+        "scenarios": ["自訂遊戲玩法", "特殊活動機制", "材質包與資源整合", "跨插件系統整合"]
       }
     ],
-    "highlight": {
-      "tag": "02 · 核心服務",
-      "title": "伺服器效能與架構優化",
-      "description": "我們協助規劃、架設與優化活動伺服器，降低活動期間發生崩潰、當機或斷線的風險。依照活動規模與玩法需求，設計穩定的伺服器架構，讓百人規模的戰營、生存及其他活動順利運行。",
-      "bullets": [
-        "活動規模與玩法需求評估",
-        "高承載伺服器架構規劃",
-        "崩潰、當機與斷線風險排除",
-        "效能監控與即時調校"
-      ],
-      "scenarios": ["百人戰營", "生存伺服器", "實況直播活動", "VTuber 企劃"]
-    },
     "whyUs": {
       "title": "為什麼選擇我們？",
       "paragraphs": [
@@ -61,51 +52,15 @@
       ]
     }
   },
-  "Projects": {
-    "eyebrow": "SELECTED SYSTEMS / 近期案例",
-    "title": "把複雜留在系統裡，\n把可靠交給現場。",
-    "description": "從活動上線前的最後一哩，到長期運作的服務架構，我們把每個專案視為一套需要被理解、被監控，也能被交接的系統。",
-    "items": [
-      {
-        "type": "活動基礎設施",
-        "title": "高流量活動平台",
-        "description": "針對開放報名與直播期間的瞬間流量，規劃可擴充的服務架構、部署流程與即時監控。",
-        "deliverables": ["流量與容量規劃", "自動化部署", "監控與告警"],
-        "status": "穩定運行",
-        "accent": "sky",
-        "featured": true
-      },
-      {
-        "type": "活動技術",
-        "title": "現場訊號中控",
-        "description": "整合轉播、舞台與場務的資訊流，讓現場團隊在同一個節奏上判斷與行動。",
-        "deliverables": ["訊號流程設計", "備援路徑", "現場技術支援"],
-        "status": "案例整理中",
-        "accent": "yellow"
-      },
-      {
-        "type": "客製化開發",
-        "title": "營運自動化工具",
-        "description": "把分散的例行操作收斂成清楚的工作流程，降低重複輸入與人工作業造成的風險。",
-        "deliverables": ["需求流程盤點", "內部工具開發", "文件化交付"],
-        "status": "持續迭代",
-        "accent": "green"
-      }
-    ]
-  },
   "About": {
-    "eyebrow": "ABOUT THE STUDIO / 關於我們",
     "title": "專注技術細節，\n成就你的下一次大企劃",
-    "description": "Routine Network Information Studio（平常網路資訊）是一個專注於 Minecraft 伺服器架構、遊戲活動技術與客製化開發的團隊。\n\n我們服務實況主、VTuber 團隊與大型玩家社群，從企劃發想、技術規劃、伺服器架設到正式上線，提供完整且可靠的技術支援。你可以把複雜的技術工作交給我們，專心投入內容創作與活動執行。",
+    "description": "我們是一個專注於 Minecraft 伺服器架構、遊戲活動技術與客製化開發的團隊。\n\n我們服務實況主、VTuber 團隊與大型玩家社群，從企劃發想、技術規劃、伺服器架設到正式上線，提供完整且可靠的技術支援。你可以把複雜的技術工作交給我們，專心投入內容創作與活動執行。",
     "skills": [
       "基礎架構：伺服器維護、網路架構設計、Linux 系統管理",
       "後端與軟體開發：JavaScript、TypeScript、Python",
       "Minecraft 遊戲開發：Java、伺服器架構、自訂插件與遊戲內容開發",
       "大型活動支援：百人規模戰營、生存模式及各類 Minecraft 活動的伺服器規劃與效能優化"
     ],
-    "slogan": "Reliable by design.\nHuman by default.",
-    "imageLabel": "TEAM IMAGE / 團隊影像",
-    "imageHint": "建議使用 4:5 直式團隊照或工作現場照片",
     "members": [
       {
         "name": "成員姓名",
@@ -126,7 +81,6 @@
     }
   },
   "QA": {
-    "eyebrow": "COMMON QUESTIONS / 合作前常見問題",
     "title": "Q+A",
     "description": "從第一次對話到系統交付，我們把常見的疑問整理成一份可快速查閱的合作說明。",
     "questions": [
@@ -195,26 +149,8 @@
         "available": false
       }
     ],
-    "mailing": {
-      "eyebrow": "LOW-FREQUENCY SIGNAL / 低頻更新",
-      "title": "偶爾寄一封值得打開的信。",
-      "description": "新案例、活動紀錄與工作室動態。不追演算法，也不塞滿你的收件匣。",
-      "placeholder": "you@example.com",
-      "buttonLabel": "加入消息清單",
-      "note": "送出後會開啟你的郵件程式，由你確認訂閱信。"
-    },
-    "discord": {
-      "eyebrow": "DISCORD / 社群入口",
-      "title": "先進來坐坐。",
-      "description": "需要快速找到我們，或想看看工作室最近在忙什麼，Discord 會是最直接的入口。",
-      "embedUrl": "",
-      "inviteUrl": "",
-      "buttonLabel": "加入 RNIS Discord",
-      "placeholder": "設定 Discord Widget URL 後，這裡會顯示社群的即時狀態與加入入口。"
-    },
     "footer": {
-      "left": "平常網路資訊工作室",
-      "right": "台灣"
+      "left": "平常網路資訊工作室"
     }
   }
 }
