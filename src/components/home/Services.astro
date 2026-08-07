@@ -50,17 +50,11 @@ const active = items[defaultIndex];
                                 data-service-item
                                 data-index={index}
                                 aria-pressed={index === defaultIndex ? "true" : "false"}
-                                class:list={[
-                                    "service-item w-full h-fit py-4 px-2 flex gap-8 items-center text-left cursor-pointer transition-colors",
-                                    index === defaultIndex && "is-active",
-                                ]}
+                                class:list={[ "service-item w-full h-fit py-4 px-2 flex gap-8 items-center text-left cursor-pointer transition-colors", index === defaultIndex && "is-active", ]}
                             >
                                 <div
                                     data-service-icon
-                                    class:list={[
-                                        "w-14 h-14 shrink-0 shadow-[6px_6px_0_0_#8A6A2C] flex items-center justify-center text-2xl text-ink-black font-line-seed transition-colors",
-                                        index === defaultIndex ? "bg-cool-sky" : "bg-icy-blue",
-                                    ]}
+                                    class:list={[ "w-14 h-14 shrink-0 shadow-[6px_6px_0_0_#8A6A2C] flex items-center justify-center text-2xl text-ink-black font-line-seed transition-colors", index === defaultIndex ? "bg-cool-sky" : "bg-icy-blue", ]}
                                 >
                                     {index + 1}
                                 </div>
@@ -69,10 +63,7 @@ const active = items[defaultIndex];
                                         <h2 class="text-3xl text-icy-blue">{item.title}</h2>
                                         <span
                                             data-service-badge
-                                            class:list={[
-                                                "px-2 py-0.5 text-xs font-medium tracking-wide bg-cool-sky text-ink-black transition-opacity",
-                                                index === defaultIndex ? "opacity-100" : "opacity-0",
-                                            ]}
+                                            class:list={[ "px-2 py-0.5 text-xs font-medium tracking-wide bg-cool-sky text-ink-black transition-opacity", index === defaultIndex ? "opacity-100" : "opacity-0", ]}
                                         >
                                             詳細介紹 →
                                         </span>
@@ -87,7 +78,10 @@ const active = items[defaultIndex];
         </div>
 
         <div class="w-1/2 mt-56 p-12 text-alice-blue flex flex-col gap-10">
-            <div id="service-detail-panel" class="service-detail-panel flex flex-col gap-10">
+            <div
+                id="service-detail-panel"
+                class="service-detail-panel flex flex-col gap-10"
+            >
                 <div class="flex flex-col gap-3">
                     <span
                         id="service-detail-tag"
@@ -161,12 +155,7 @@ const active = items[defaultIndex];
                     href="#contact"
                     color="var(--color-icy-blue)"
                     class="w-fit text-icy-blue font-medium"
-                    corners={{
-                        // topRight: true,
-                        // topLeft: false,
-                        // bottomRight: false,
-                        // bottomLeft: false,
-                    }}
+                    corners={{ topLeft: false, bottomRight: false, bottomLeft: false, topRight: true }}
                 >
                     <MessageSquare class="w-4 h-4" />
                     聊聊你的需求

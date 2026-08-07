@@ -12,202 +12,36 @@
   --color-cool-sky: #ffb238;
   --color-light-coral: #f89494;
   --color-jasmine: #ffd972;
-  --color-tea-green: #9CED95;
+  --color-tea-green: #9ced95;
 
   --font-sans:
     "Satoshi", "GenYo Gothic TW", "PingFang TC", "Microsoft JhengHei",
     ui-sans-serif, system-ui, sans-serif;
   --font-display: "New Title", "Satoshi", ui-sans-serif, system-ui, sans-serif;
-  --font-mono:
-    "Source Code Pro", ui-monospace, "Cascadia Code", Consolas, monospace;
   --font-line-seed:
     "LINE Seed TW", "PingFang TC", "Microsoft JhengHei", ui-sans-serif,
     system-ui, sans-serif;
-
-  --background-image-ocean-top: linear-gradient(
-    0deg,
-    #1a2429,
-    #151c2a,
-    #314865,
-    #406287,
-    #66849f,
-    #baddfe,
-    #e3f1ff
-  );
-  --background-image-ocean-right: linear-gradient(
-    90deg,
-    #1a2429,
-    #151c2a,
-    #314865,
-    #406287,
-    #66849f,
-    #baddfe,
-    #e3f1ff
-  );
-  --background-image-ocean-bottom: linear-gradient(
-    180deg,
-    #1a2429,
-    #151c2a,
-    #314865,
-    #406287,
-    #66849f,
-    #baddfe,
-    #e3f1ff
-  );
-  --background-image-ocean-left: linear-gradient(
-    270deg,
-    #1a2429,
-    #151c2a,
-    #314865,
-    #406287,
-    #66849f,
-    #baddfe,
-    #e3f1ff
-  );
-  --background-image-ocean-top-right: linear-gradient(
-    45deg,
-    #1a2429,
-    #151c2a,
-    #314865,
-    #406287,
-    #66849f,
-    #baddfe,
-    #e3f1ff
-  );
-  --background-image-ocean-bottom-right: linear-gradient(
-    135deg,
-    #1a2429,
-    #151c2a,
-    #314865,
-    #406287,
-    #66849f,
-    #baddfe,
-    #e3f1ff
-  );
-  --background-image-ocean-top-left: linear-gradient(
-    225deg,
-    #1a2429,
-    #151c2a,
-    #314865,
-    #406287,
-    #66849f,
-    #baddfe,
-    #e3f1ff
-  );
-  --background-image-ocean-bottom-left: linear-gradient(
-    315deg,
-    #1a2429,
-    #151c2a,
-    #314865,
-    #406287,
-    #66849f,
-    #baddfe,
-    #e3f1ff
-  );
-  --background-image-ocean-radial: radial-gradient(
-    #1a2429,
-    #151c2a,
-    #314865,
-    #406287,
-    #66849f,
-    #baddfe,
-    #e3f1ff
-  );
-
-  --background-image-accent-top: linear-gradient(
-    0deg,
-    #90adc9,
-    #76baff,
-    #f89494,
-    #ffd972,
-    #bef8b8
-  );
-  --background-image-accent-right: linear-gradient(
-    90deg,
-    #90adc9,
-    #76baff,
-    #f89494,
-    #ffd972,
-    #bef8b8
-  );
-  --background-image-accent-bottom: linear-gradient(
-    180deg,
-    #90adc9,
-    #76baff,
-    #f89494,
-    #ffd972,
-    #bef8b8
-  );
-  --background-image-accent-left: linear-gradient(
-    270deg,
-    #90adc9,
-    #76baff,
-    #f89494,
-    #ffd972,
-    #bef8b8
-  );
-  --background-image-accent-top-right: linear-gradient(
-    45deg,
-    #90adc9,
-    #76baff,
-    #f89494,
-    #ffd972,
-    #bef8b8
-  );
-  --background-image-accent-bottom-right: linear-gradient(
-    135deg,
-    #90adc9,
-    #76baff,
-    #f89494,
-    #ffd972,
-    #bef8b8
-  );
-  --background-image-accent-top-left: linear-gradient(
-    225deg,
-    #90adc9,
-    #76baff,
-    #f89494,
-    #ffd972,
-    #bef8b8
-  );
-  --background-image-accent-bottom-left: linear-gradient(
-    315deg,
-    #90adc9,
-    #76baff,
-    #f89494,
-    #ffd972,
-    #bef8b8
-  );
-  --background-image-accent-radial: radial-gradient(
-    #90adc9,
-    #76baff,
-    #f89494,
-    #ffd972,
-    #bef8b8
-  );
 }
 
 @layer base {
   :root {
-    --page-background: #151c2a;
+    --page-background: var(--color-ink-black);
     --surface-raised: rgba(26, 36, 41, 0.84);
-    --text-primary: #ffffff;
-    --text-muted: #ffdd8a;
+    --text-primary: var(--color-alice-blue);
     --border-subtle: rgba(255, 221, 138, 0.25);
-    --toggle-thumb: #8a6a2c;
-    --focus-ring: #ffb238;
+    --toggle-thumb: var(--color-air-force-blue);
+    --focus-ring: var(--color-cool-sky);
     --shadow-color: rgba(0, 0, 0, 0.28);
     color-scheme: dark;
   }
 
   html[data-theme="light"] {
-    --page-background: #ffffff;
+    --page-background: var(--color-alice-blue);
     --surface-raised: rgba(255, 255, 255, 0.82);
-    --text-primary: #151c2a;
-    --text-muted: #6b4f1a;
+    --text-primary: var(--color-ink-black);
     --border-subtle: rgba(74, 56, 18, 0.22);
-    --toggle-thumb: #ffd972;
-    --focus-ring: #6b4f1a;
+    --toggle-thumb: var(--color-jasmine);
+    --focus-ring: var(--color-baltic-blue);
     --shadow-color: rgba(74, 56, 18, 0.2);
     color-scheme: light;
   }
