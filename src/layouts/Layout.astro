@@ -10,6 +10,8 @@ import Footer from '../components/common/Footer.astro';
 import SmoothScroll from "@utils/SmoothScroll.astro";
 import home from '../content/home.json';
 
+import logoUrl from '../assets/logo.svg?url';
+
 const { left: mainName } = home.Contact.footer;
 ---
 
@@ -25,8 +27,7 @@ const { left: mainName } = home.Contact.footer;
 		    type="font/woff2"
 		    crossorigin
 		/>
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" type="image/svg+xml" href={logoUrl} />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="theme-color" content="#151c2a" />
 		<script is:inline>
