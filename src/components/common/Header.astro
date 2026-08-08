@@ -3,7 +3,10 @@ import logo from "../../assets/logo.svg";
 import NotchButton from "@utils/NotchButton.astro";
 ---
 
-<header class="w-full h-20 bg-surface-base/80 fixed z-50 backdrop-blur-sm border-b-amber-300 border-b">
+<header
+    class="w-full h-20 fixed z-50 header-line duration-500"
+    id="header-block"
+>
 	<div class="container h-full flex items-center justify-between mx-auto px-16 py-3">
 		<div class="w-fit h-full flex items-center justify-start gap-4">
 			<img
@@ -66,4 +69,46 @@ import NotchButton from "@utils/NotchButton.astro";
 	.header-pages:hover::before {
 		width: 100%;
 	}
+
+	.header-line::before {
+		content: "";
+		position: absolute;
+		bottom: -1px;
+		left: 50%;
+		width: 0;
+		height: 1px;
+		background-color: var(--color-amber-100);
+		transition: width 0.5s ease, left 0.5s ease;
+		z-index: -1;
+	}
+
+	.header-line.header-border::before {
+		left: 0;
+		width: 100%;
+	}
 </style>
+
+<script>
+
+	const headerBlock = document.getElementById("header-block");
+	const windowHeight = window.innerHeight;
+	const triggerPoint = windowHeight * 0.3;
+	const borderTriggerPoint = windowHeight;
+	
+	window.addEventListener("scroll", () => {
+
+		if(!headerBlock) return;
+		if (window.scrollY > triggerPoint) {
+			headerBlock.classList.add("bg-surface-base/80", "backdrop-blur-sm");
+		} else {
+			headerBlock.classList.remove("bg-surface-base/80", "backdrop-blur-sm");
+		}
+
+		if (window.scrollY > borderTriggerPoint) {
+			headerBlock.classList.add("header-border");
+		} else {
+			headerBlock.classList.remove("header-border");
+		}
+	});
+
+</script>
