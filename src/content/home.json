@@ -158,11 +158,11 @@
         "id": "telegram",
         "shortLabel": "TG",
         "title": "從 Telegram 開始。",
-        "description": "Telegram 聯絡入口目前保留中；正式帳號確認後，可以在這裡直接開始對話。",
-        "address": "Telegram",
-        "actionLabel": "帳號準備中",
-        "href": "",
-        "available": false
+        "description": "適合快速交流與即時聯繫。點擊下方連結加入我們的 Telegram。",
+        "address": "@rnis_tw",
+        "actionLabel": "加入 Telegram",
+        "href": "https://t.me/rnis_tw",
+        "available": true
       },
       {
         "id": "threads",
