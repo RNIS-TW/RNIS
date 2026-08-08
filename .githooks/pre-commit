@@ -1,0 +1,6 @@
+#!/bin/sh
+
+set -e
+
+echo "Running formatter before commit..."
+node scripts/format.mjs

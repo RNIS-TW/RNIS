@@ -36,7 +36,7 @@ const projects: ProjectItem[] = [
 
 <section class="w-full bg-surface-base">
     <div class="container px-16 mx-auto py-32 w-full h-fit">
-        <div class="w-full h-fit mb-8 flex items-end justify-between gap-4">
+        <div class="w-full h-fit mb-16 flex items-end justify-between gap-4">
             <div class="flex flex-col gap-4">
                 <h1 class="text-5xl text-amber-100 font-line-seed">成功案例</h1>
                 <p class="text-lg text-secondary">
@@ -100,7 +100,7 @@ const projects: ProjectItem[] = [
                                 class="absolute inset-0"
                             />
 
-                            {project.images.length > 1 && (
+                            {/* {project.images.length > 1 && (
                                 <>
                                     <button
                                         type="button"
@@ -130,7 +130,7 @@ const projects: ProjectItem[] = [
                                         ))}
                                     </div>
                                 </>
-                            )}
+                            )} */}
                         </div>
 
                         <div class="relative w-full h-full p-4">
@@ -154,8 +154,8 @@ const projects: ProjectItem[] = [
                                     合作
                                 </p>
                             </div>
-                            <div class="w-full h-1/2 flex flex-col gap-2">
-                                <div class="flex-1">
+                            <div class="w-full h-1/2 flex flex-col items-start justify-end gap-8">
+                                <div class="max-w-md">
                                     <p class="text-sm text-primary">
                                         {project.description}
                                     </p>
@@ -199,7 +199,7 @@ const projects: ProjectItem[] = [
     }
 
     .project-card:hover {
-        transform: scale(1.02);
+        transform: translateY(-0.3rem);
         border-color: var(--color-amber-100);
     }
 

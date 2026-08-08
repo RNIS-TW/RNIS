@@ -2,8 +2,5 @@
 
 set -e
 
-echo "Running formatter before push..."
-node scripts/format.mjs
-
 echo "Running build before push..."
 pnpm run build
