@@ -14,11 +14,11 @@ const skills = About.skills.map((skill) => {
 });
 ---
 
-<section class="w-full h-[120vh] bg-surface-base py-24">
-    <div class="container mx-auto px-16">
-        <div class="w-full h-fit mb-16">
-            <div class="w-6/10 h-auto flex flex-col items-start justify-center gap-4">
-                <h1 class="text-5xl text-amber-100 font-line-seed leading-tight mb-4">
+<section class="w-full h-fit lg:h-[120vh] bg-surface-base py-16 lg:py-24">
+    <div class="container mx-auto px-6 sm:px-10 lg:px-16">
+        <div class="w-full h-fit mb-10 lg:mb-16">
+            <div class="w-full lg:w-6/10 h-auto flex flex-col items-start justify-center gap-4">
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl text-amber-100 font-line-seed leading-tight mb-4">
                     {
                         titleLines.map((line, index) => (
                             <>
@@ -30,16 +30,16 @@ const skills = About.skills.map((skill) => {
                 </h1>
                 {
                     paragraphs.map((paragraph) => (
-                        <p class="text-lg text-secondary leading-relaxed">
+                        <p class="text-base sm:text-lg text-secondary leading-relaxed">
                             {paragraph}
                         </p>
                     ))
                 }
             </div>
         </div>
-        <div class="w-full h-[50vh] flex items-center justify-between gap-10">
-            <div class="flex-2 h-full flex flex-col items-center justify-between gap-10">
-                <div class="w-full grid grid-cols-2 gap-4">
+        <div class="w-full h-fit lg:h-[50vh] flex flex-col lg:flex-row items-center justify-between gap-10">
+            <div class="w-full lg:flex-2 h-full flex flex-col items-center justify-between gap-10">
+                <div class="w-full grid grid-cols-1 sm:grid-cols-2 gap-4">
                     {
                         skills.map((skill, index) => {
                             const Icon = skillIcons[index] ?? Server;
@@ -60,7 +60,7 @@ const skills = About.skills.map((skill) => {
                     }
                 </div>
 
-                <div class="w-full h-fit flex items-end justify-start gap-4">
+                <div class="w-full h-fit flex flex-wrap items-end justify-start gap-4">
                     <NotchButton
                         as="a"
                         href="/about"
@@ -79,11 +79,11 @@ const skills = About.skills.map((skill) => {
                     </NotchButton>
                 </div>
             </div>
-            <div class="flex-1 h-full">
+            <div class="w-full lg:flex-1 h-64 sm:h-80 lg:h-full">
                 <img
                     src={About.image.src}
                     alt={About.image.alt}
-                    class="w-auto h-full object-cover notch-border"
+                    class="w-full h-full lg:w-auto object-cover notch-border"
                 />
             </div>
         </div>

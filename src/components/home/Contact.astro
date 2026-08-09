@@ -14,16 +14,16 @@ const channelIcons: Record<string , typeof Mail> = {
 
 <section
     id="contact"
-    class="w-full h-fit bg-surface-base py-32"
+    class="w-full h-fit bg-surface-base py-16 lg:py-32"
 >
-    <div class="container mx-auto px-16 flex flex-col gap-16">
+    <div class="container mx-auto px-6 sm:px-10 lg:px-16 flex flex-col gap-10 lg:gap-16">
         <div class="w-full max-w-2xl">
-            <h1 class="text-5xl font-line-seed font-medium tracking-tight text-amber-100 mt-2">{Contact.title}</h1>
-            <p class="text-lg font-sans font-light text-secondary mt-4 leading-relaxed">{Contact.description}</p>
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl font-line-seed font-medium tracking-tight text-amber-100 mt-2">{Contact.title}</h1>
+            <p class="text-base sm:text-lg font-sans font-light text-secondary mt-4 leading-relaxed">{Contact.description}</p>
         </div>
 
-        <div class="w-full h-[40vh] flex gap-16 items-start">
-            <div class="w-1/2 h-full grid grid-cols-2 gap-4">
+        <div class="w-full h-fit lg:h-[40vh] flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
+            <div class="w-full lg:w-1/2 h-fit lg:h-full grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {
                     Contact.channels.map((channel) => {
                         const Icon = channelIcons[channel.id];
@@ -53,7 +53,7 @@ const channelIcons: Record<string , typeof Mail> = {
 
             <form
                 id="contact-form"
-                class="w-1/2 h-full flex flex-col gap-6 p-8 border border-amber-100/30"
+                class="w-full lg:w-1/2 h-fit lg:h-full flex flex-col gap-6 p-5 sm:p-8 border border-amber-100/30"
             >
                 <div class="flex flex-col gap-2">
                     <label
@@ -69,7 +69,7 @@ const channelIcons: Record<string , typeof Mail> = {
                     ></textarea>
                 </div>
 
-                <div class="flex just items-end gap-4">
+                <div class="flex flex-col sm:flex-row items-stretch sm:items-end gap-4">
                     <div class="flex flex-col gap-2 flex-1">
                         <label
                             for="contact-name"

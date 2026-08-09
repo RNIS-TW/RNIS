@@ -2,24 +2,24 @@
 import logo from "../../assets/logo.svg";
 import NotchButton from "@utils/NotchButton.astro";
 import header from "@content/header.json";
-import { ChevronDown } from "@lucide/astro/icons";
+import { ChevronDown, Menu, X } from "@lucide/astro/icons";
 ---
 
 <header
-    class="w-full h-20 fixed z-50 header-line duration-500"
+    class="w-full h-16 sm:h-20 fixed z-50 header-line duration-500"
     id="header-block"
 >
-	<div class="container h-full flex items-center justify-between mx-auto px-16 py-3">
-		<div class="w-fit h-full flex items-center justify-start gap-4">
+	<div class="container h-full flex items-center justify-between mx-auto px-6 sm:px-10 lg:px-16 py-3">
+		<div class="w-fit h-full flex items-center justify-start gap-3 sm:gap-4">
 			<img
 			    src={logo.src}
 			    alt="Logo"
-			    class="h-12 w-auto aspect-square object-contain"
+			    class="h-9 sm:h-10 lg:h-12 w-auto aspect-square object-contain"
 			/>
-			<h1 class="w-fit h-auto text-4xl">{header.title}</h1>
+			<h1 class="w-fit h-auto text-2xl sm:text-3xl lg:text-4xl">{header.title}</h1>
 		</div>
 
-		<nav class="w-fit h-full flex gap-6 items-center justify-end">
+		<nav class="hidden lg:flex w-fit h-full gap-6 items-center justify-end">
 			{
 				header.nav.map((item, index) => {
 					const isLast = index === header.nav.length - 1;
@@ -67,6 +67,54 @@ import { ChevronDown } from "@lucide/astro/icons";
 			    color="var(--color-amber-100)"
 			    notch="8px"
 			    class="w-fit text-amber-100 font-medium"
+			>
+				{header.cta.label}
+			</NotchButton>
+		</nav>
+
+		<button
+			type="button"
+			id="mobile-menu-toggle"
+			class="lg:hidden flex items-center justify-center w-10 h-10 text-primary"
+			aria-expanded="false"
+			aria-controls="mobile-menu"
+			aria-label="Toggle menu"
+		>
+			<Menu id="mobile-menu-icon-open" class="w-6 h-6" />
+			<X id="mobile-menu-icon-close" class="w-6 h-6 hidden" />
+		</button>
+	</div>
+
+	<div id="mobile-menu" class="mobile-menu lg:hidden">
+		<nav class="w-full h-fit flex flex-col gap-1 px-6 py-4 bg-surface-base border-t border-amber-100/20">
+			{
+				header.nav.map((item) => (
+					<a
+						class="w-full block py-3 text-base text-primary border-b border-amber-100/10"
+						href={item.url}
+					>
+						{item.name}
+					</a>
+				))
+			}
+			{
+				header.otherLinks.map((link) => (
+					<a
+						class="w-full block py-3 text-base text-primary border-b border-amber-100/10"
+						href={`https://${link.url}`}
+						target="_blank"
+						rel="noopener noreferrer"
+					>
+						{link.name}
+					</a>
+				))
+			}
+			<NotchButton
+			    as="a"
+			    href={header.cta.url}
+			    color="var(--color-amber-100)"
+			    notch="8px"
+			    class="w-fit text-amber-100 font-medium mt-4"
 			>
 				{header.cta.label}
 			</NotchButton>
@@ -142,6 +190,27 @@ import { ChevronDown } from "@lucide/astro/icons";
 		transform: translateY(0);
 		pointer-events: auto;
 	}
+
+	.mobile-menu {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		width: 100%;
+		max-height: calc(100dvh - 100%);
+		overflow-y: auto;
+		opacity: 0;
+		transform: translateY(-0.5rem);
+		pointer-events: none;
+		transition:
+			opacity 200ms ease,
+			transform 200ms ease;
+	}
+
+	.mobile-menu.is-open {
+		opacity: 1;
+		transform: translateY(0);
+		pointer-events: auto;
+	}
 </style>
 
 <script>
@@ -150,7 +219,34 @@ import { ChevronDown } from "@lucide/astro/icons";
 	const windowHeight = window.innerHeight;
 	const triggerPoint = windowHeight * 0.3;
 	const borderTriggerPoint = windowHeight;
-	
+
+	const menuToggle = document.getElementById("mobile-menu-toggle");
+	const mobileMenu = document.getElementById("mobile-menu");
+	const iconOpen = document.getElementById("mobile-menu-icon-open");
+	const iconClose = document.getElementById("mobile-menu-icon-close");
+
+	const closeMobileMenu = () => {
+		mobileMenu?.classList.remove("is-open");
+		menuToggle?.setAttribute("aria-expanded", "false");
+		iconOpen?.classList.remove("hidden");
+		iconClose?.classList.add("hidden");
+	};
+
+	menuToggle?.addEventListener("click", () => {
+		const isOpen = mobileMenu?.classList.toggle("is-open");
+		menuToggle.setAttribute("aria-expanded", String(!!isOpen));
+		iconOpen?.classList.toggle("hidden", !!isOpen);
+		iconClose?.classList.toggle("hidden", !isOpen);
+	});
+
+	mobileMenu?.querySelectorAll("a").forEach((link) => {
+		link.addEventListener("click", closeMobileMenu);
+	});
+
+	window.addEventListener("resize", () => {
+		if (window.innerWidth >= 1024) closeMobileMenu();
+	});
+
 	window.addEventListener("scroll", () => {
 
 		if(!headerBlock) return;

@@ -6,10 +6,10 @@ const { QA } = config;
 ---
 
 <section class="w-full h-fit bg-surface-base">
-    <div class="container mx-auto px-16 py-32">
-        <div class="w-full h-fit mb-16">
-            <h1 class="text-5xl text-amber-100 font-line-seed mb-4">{QA.title}</h1>
-            <p class="text-lg text-primary">{QA.description}</p>
+    <div class="container mx-auto px-6 sm:px-10 lg:px-16 py-16 lg:py-32">
+        <div class="w-full h-fit mb-10 lg:mb-16">
+            <h1 class="text-3xl sm:text-4xl lg:text-5xl text-amber-100 font-line-seed mb-4">{QA.title}</h1>
+            <p class="text-base sm:text-lg text-primary">{QA.description}</p>
         </div>
 
         <div class="w-full h-fit flex flex-col" data-faq-list>
@@ -21,19 +21,19 @@ const { QA } = config;
                     >
                         <button
                             type="button"
-                            class="faq-trigger w-full h-fit flex gap-4 items-center justify-start py-6 px-8 text-left cursor-pointer transition-colors"
+                            class="faq-trigger w-full h-fit flex gap-3 sm:gap-4 items-center justify-start py-4 sm:py-6 px-4 sm:px-8 text-left cursor-pointer transition-colors"
                             aria-expanded="false"
                             aria-controls={`faq-panel-${index}`}
                             id={`faq-trigger-${index}`}
                         >
-                            <span class="w-8 text-3xl text-amber-100 font-bold shrink-0 text-center">
+                            <span class="w-6 sm:w-8 text-xl sm:text-3xl text-amber-100 font-bold shrink-0 text-center">
                                 Q
                             </span>
-                            <span class="text-2xl text-white flex-1">
+                            <span class="text-base sm:text-xl lg:text-2xl text-white flex-1">
                                 {faq.question}
                             </span>
                             <span
-                                class="faq-icon text-4xl text-gray-500 ml-auto shrink-0 leading-none"
+                                class="faq-icon text-2xl sm:text-4xl text-gray-500 ml-auto shrink-0 leading-none"
                                 aria-hidden="true"
                             >
                                 +
@@ -47,11 +47,11 @@ const { QA } = config;
                             aria-labelledby={`faq-trigger-${index}`}
                         >
                             <div class="faq-panel-inner">
-                                <div class="flex gap-4 items-start px-8 pb-6 pt-1">
-                                    <span class="w-8 text-3xl text-amber-200 font-bold shrink-0 text-center">
+                                <div class="flex gap-3 sm:gap-4 items-start px-4 sm:px-8 pb-6 pt-1">
+                                    <span class="w-6 sm:w-8 text-xl sm:text-3xl text-amber-200 font-bold shrink-0 text-center">
                                         A
                                     </span>
-                                    <p class="text-xl text-gray-400 leading-relaxed pt-1">
+                                    <p class="text-sm sm:text-lg lg:text-xl text-gray-400 leading-relaxed pt-1">
                                         {faq.answer}
                                     </p>
                                 </div>
@@ -60,8 +60,8 @@ const { QA } = config;
                     </div>
                 ))
             }
-            <div class="w-full h-fit flex gap-12 items-center justify-center py-4 px-8 mt-8 text-left">
-                <p class="text-xl text-primary">
+            <div class="w-full h-fit flex flex-col sm:flex-row gap-4 sm:gap-12 items-center justify-center py-4 px-4 sm:px-8 mt-8 text-center sm:text-left">
+                <p class="text-base sm:text-xl text-primary">
                     {QA.otherQuestion}
                 </p>
                 <NotchButton

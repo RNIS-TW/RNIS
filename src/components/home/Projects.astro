@@ -22,16 +22,16 @@ const projects = projectsData as ProjectItem[];
 ---
 
 <section id="projects" class="w-full bg-surface-base">
-    <div class="container px-16 mx-auto py-32 w-full h-fit">
-        <div class="w-full h-fit mb-16 flex items-end justify-between gap-4">
+    <div class="container mx-auto px-6 sm:px-10 lg:px-16 py-16 lg:py-32 w-full h-fit">
+        <div class="w-full h-fit mb-10 lg:mb-16 flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6">
             <div class="flex flex-col gap-4">
-                <h1 class="text-5xl text-amber-100 font-line-seed">{Projects.title}</h1>
-                <p class="text-lg text-secondary">
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl text-amber-100 font-line-seed">{Projects.title}</h1>
+                <p class="text-base sm:text-lg text-secondary">
                     {Projects.description}
                 </p>
             </div>
 
-            <div class="flex items-center gap-4">
+            <div class="flex flex-wrap items-center gap-4">
                 <NotchButton
                     as="a"
                     href="#contact"
@@ -54,9 +54,9 @@ const projects = projectsData as ProjectItem[];
         <div class="w-full h-fit mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
             {
                 projects.map((project) => (
-                    <div class="project-card h-[50vh] border-2 border-amber-300 relative p-4">
+                    <div class="project-card h-fit lg:h-[50vh] border-2 border-amber-300 relative p-4">
                         <div
-                            class="carousel w-full h-auto aspect-video absolute top-0 left-0 overflow-hidden"
+                            class="carousel w-full h-auto aspect-video relative lg:absolute lg:top-0 lg:left-0 overflow-hidden"
                             data-carousel
                         >
                             <div
@@ -88,15 +88,15 @@ const projects = projectsData as ProjectItem[];
                             />
                         </div>
 
-                        <div class="relative w-full h-full p-4">
-                            <div class="w-full h-1/2 flex flex-col gap-2">
+                        <div class="relative w-full h-fit lg:h-full p-4">
+                            <div class="w-full h-fit lg:h-1/2 flex flex-col gap-2 mt-3 lg:mt-0">
                                 <div class="flex gap-4">
                                     <div class="w-2 h-10 bg-amber-200" />
-                                    <h2 class="text-4xl text-amber-100">
+                                    <h2 class="text-2xl sm:text-3xl lg:text-4xl text-amber-100">
                                         {project.title}
                                     </h2>
                                 </div>
-                                <p class="text-lg text-primary">
+                                <p class="text-base sm:text-lg text-primary">
                                     與台灣知名實況主{" "}
                                     <a
                                         href={project.collaboratorUrl}
@@ -109,14 +109,14 @@ const projects = projectsData as ProjectItem[];
                                     合作
                                 </p>
                             </div>
-                            <div class="w-full h-1/2 flex flex-col items-start justify-end gap-8">
+                            <div class="w-full h-fit lg:h-1/2 flex flex-col items-start justify-end gap-4 lg:gap-8 mt-4">
                                 <div class="max-w-md">
                                     <p class="text-sm text-primary">
                                         {project.description}
                                     </p>
                                 </div>
-                                <div class="w-full h-fit flex items-end justify-between">
-                                    <div class="flex w-fit h-fit items-end justify-start gap-2">
+                                <div class="w-full h-fit flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3">
+                                    <div class="flex w-fit h-fit flex-wrap items-end justify-start gap-2">
                                         {project.links.map((link, index) => (
                                             <NotchButton
                                                 as="a"

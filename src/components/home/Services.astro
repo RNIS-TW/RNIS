@@ -15,14 +15,14 @@ const icons = [Lightbulb, Server, Wrench];
     id="services"
     class="w-full h-fit bg-surface-base relative trans-hero"
 >
-    <div class="container px-16 mx-auto p-16 h-fit flex gap-8 items-start">
+    <div class="container mx-auto px-6 sm:px-10 lg:px-16 py-10 lg:p-16 h-fit flex flex-col lg:flex-row gap-8 lg:items-start">
         <div
-            class="w-1/2 py-8 sticky self-start services-sticky"
+            class="w-full lg:w-1/2 py-8 lg:sticky lg:self-start services-sticky"
             id="services-panel"
         >
             <div class="w-fit h-fit mb-12">
-                <h1 class="text-5xl text-amber-100 font-line-seed">{Services.servicesTitle}</h1>
-                <p class="text-lg mt-4 text-secondary">{Services.servicesContent}</p>
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl text-amber-100 font-line-seed">{Services.servicesTitle}</h1>
+                <p class="text-base sm:text-lg mt-4 text-secondary">{Services.servicesContent}</p>
             </div>
 
             <div
@@ -40,17 +40,17 @@ const icons = [Lightbulb, Server, Wrench];
                                     data-service-item
                                     data-index={index}
                                     aria-pressed={index === defaultIndex ? "true" : "false"}
-                                    class:list={[ "service-item w-full h-fit py-4 px-2 flex gap-8 items-center text-left cursor-pointer transition-colors", index === defaultIndex && "is-active", ]}
+                                    class:list={[ "service-item w-full h-fit py-4 px-2 flex gap-4 sm:gap-8 items-center text-left cursor-pointer transition-colors", index === defaultIndex && "is-active", ]}
                                 >
                                     <div
                                         data-service-icon
-                                        class:list={[ "w-14 h-14 shrink-0 shadow-[6px_6px_0_0_var(--color-amber-300)] flex items-center justify-center text-surface-base transition-colors", index === defaultIndex ? "bg-amber-200" : "bg-amber-100", ]}
+                                        class:list={[ "w-11 h-11 sm:w-14 sm:h-14 shrink-0 shadow-[6px_6px_0_0_var(--color-amber-300)] flex items-center justify-center text-surface-base transition-colors", index === defaultIndex ? "bg-amber-200" : "bg-amber-100", ]}
                                     >
-                                        <Icon class="w-6 h-6" />
+                                        <Icon class="w-5 h-5 sm:w-6 sm:h-6" />
                                     </div>
                                     <div class="w-fit h-fit flex flex-col gap-2">
-                                        <div class="flex items-center gap-2">
-                                            <h2 class="text-3xl text-amber-100">{item.title}</h2>
+                                        <div class="flex flex-wrap items-center gap-2">
+                                            <h2 class="text-xl sm:text-2xl lg:text-3xl text-amber-100">{item.title}</h2>
                                             <span
                                                 data-service-badge
                                                 class:list={[ "px-2 py-0.5 text-xs font-medium tracking-wide bg-amber-200 text-surface-base transition-opacity", index === defaultIndex ? "opacity-100" : "opacity-0", ]}
@@ -69,7 +69,7 @@ const icons = [Lightbulb, Server, Wrench];
         </div>
 
         <div
-            class="w-1/2 mt-46 p-12 text-primary flex flex-col gap-40"
+            class="w-full lg:w-1/2 mt-0 lg:mt-46 p-0 sm:p-6 lg:p-12 text-primary flex flex-col gap-16 lg:gap-40"
             id="service-sections"
         >
             {
@@ -83,7 +83,7 @@ const icons = [Lightbulb, Server, Wrench];
                             <span class="w-fit px-3 py-1 text-sm font-medium tracking-wide bg-amber-100 text-surface-base">
                                 {String(index + 1).padStart(2, "0")} · {item.tag}
                             </span>
-                            <h3 class="text-4xl font-display leading-tight text-amber-100">
+                            <h3 class="text-2xl sm:text-3xl lg:text-4xl font-display leading-tight text-amber-100">
                                 {item.title}
                             </h3>
                             <p class="text-base text-white/90 leading-relaxed">
