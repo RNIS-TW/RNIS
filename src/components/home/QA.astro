@@ -12,7 +12,7 @@ const { QA } = config;
             <p class="text-lg text-primary">{QA.description}</p>
         </div>
 
-        <div class="w-full h-fit grid grid-cols-1" data-faq-list>
+        <div class="w-full h-fit flex flex-col" data-faq-list>
             {
                 QA.questions.map((faq, index) => (
                     <div
@@ -21,7 +21,7 @@ const { QA } = config;
                     >
                         <button
                             type="button"
-                            class="faq-trigger w-full h-fit flex gap-4 items-center justify-start py-4 px-8 text-left cursor-pointer transition-colors"
+                            class="faq-trigger w-full h-fit flex gap-4 items-center justify-start py-6 px-8 text-left cursor-pointer transition-colors"
                             aria-expanded="false"
                             aria-controls={`faq-panel-${index}`}
                             id={`faq-trigger-${index}`}
@@ -33,7 +33,7 @@ const { QA } = config;
                                 {faq.question}
                             </span>
                             <span
-                                class="faq-icon text-4xl text-white ml-auto shrink-0 leading-none"
+                                class="faq-icon text-4xl text-gray-500 ml-auto shrink-0 leading-none"
                                 aria-hidden="true"
                             >
                                 +
@@ -51,7 +51,7 @@ const { QA } = config;
                                     <span class="w-8 text-3xl text-amber-200 font-bold shrink-0 text-center">
                                         A
                                     </span>
-                                    <p class="text-base text-gray-400 leading-relaxed pt-1">
+                                    <p class="text-xl text-gray-400 leading-relaxed pt-1">
                                         {faq.answer}
                                     </p>
                                 </div>
