@@ -8,17 +8,21 @@ const { class: className, ...rest } = Astro.props;
 <style>
     .trapezoid {
         transition: color 220ms ease;
-        border-bottom: 160px solid var(--color-surface-base);
+        border-bottom: 22vh solid var(--color-surface-base);
+        /* border-bottom: 160px solid var(--color-surface-base); */
         border-left: 0px solid transparent;
-        border-right: 80px solid transparent;
+        border-right: 5vw solid transparent;
+        /* border-right: 80px solid transparent; */
         height: 0;
         width: 60vw;
     }
 
     .trapezoid-shadow {
-        border-bottom: 164px solid var(--color-amber-100);
+        border-bottom: calc(22vh + 4px) solid var(--color-amber-100);
+        /* border-bottom: 164px solid var(--color-amber-100); */
         border-left: 0px solid transparent;
-        border-right: 80px solid transparent;
+        border-right: 5vw solid transparent;
+        /* border-right: 80px solid transparent; */
         height: 0;
         width: calc(60vw + 4px);
         z-index: -1;
