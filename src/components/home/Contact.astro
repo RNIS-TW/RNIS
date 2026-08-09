@@ -22,8 +22,8 @@ const channelIcons: Record<string , typeof Mail> = {
             <p class="text-lg font-sans font-light text-secondary mt-4 leading-relaxed">{Contact.description}</p>
         </div>
 
-        <div class="w-full flex gap-16 items-start">
-            <div class="w-1/2 grid grid-cols-2 gap-4">
+        <div class="w-full h-[40vh] flex gap-16 items-start">
+            <div class="w-1/2 h-full grid grid-cols-2 gap-4">
                 {
                     Contact.channels.map((channel) => {
                         const Icon = channelIcons[channel.id];
@@ -53,37 +53,8 @@ const channelIcons: Record<string , typeof Mail> = {
 
             <form
                 id="contact-form"
-                class="w-1/2 flex flex-col gap-6 p-8 border border-amber-100/30"
+                class="w-1/2 h-full flex flex-col gap-6 p-8 border border-amber-100/30"
             >
-                <div class="grid grid-cols-2 gap-4">
-                    <div class="flex flex-col gap-2">
-                        <label
-                            for="contact-name"
-                            class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-amber-100"
-                        >姓名</label>
-                        <input
-                            id="contact-name"
-                            name="name"
-                            type="text"
-                            required
-                            class="input-field"
-                        />
-                    </div>
-                    <div class="flex flex-col gap-2">
-                        <label
-                            for="contact-email"
-                            class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-amber-100"
-                        >電子郵件</label>
-                        <input
-                            id="contact-email"
-                            name="email"
-                            type="email"
-                            required
-                            class="input-field"
-                        />
-                    </div>
-                </div>
-
                 <div class="flex flex-col gap-2">
                     <label
                         for="contact-message"
@@ -98,13 +69,42 @@ const channelIcons: Record<string , typeof Mail> = {
                     ></textarea>
                 </div>
 
-                <button
-                    type="submit"
-                    class="w-fit inline-flex items-center gap-2 px-5 py-3 bg-amber-100 text-surface-base font-medium shadow-[4px_4px_0_0_var(--color-amber-300)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_var(--color-amber-300)] transition-all"
-                >
-                    送出
-                    <span aria-hidden="true">→</span>
-                </button>
+                <div class="flex just items-end gap-4">
+                    <div class="flex flex-col gap-2 flex-1">
+                        <label
+                            for="contact-name"
+                            class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-amber-100"
+                        >姓名</label>
+                        <input
+                            id="contact-name"
+                            name="name"
+                            type="text"
+                            required
+                            class="input-field"
+                        />
+                    </div>
+                    <div class="flex flex-col gap-2 flex-1">
+                        <label
+                            for="contact-email"
+                            class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-amber-100"
+                        >電子郵件</label>
+                        <input
+                            id="contact-email"
+                            name="email"
+                            type="email"
+                            required
+                            class="input-field"
+                        />
+                    </div>
+                    <button
+                        type="submit"
+                        class="w-fit inline-flex items-center gap-2 px-5 py-3 bg-amber-100 text-surface-base font-medium shadow-[4px_4px_0_0_var(--color-amber-300)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_var(--color-amber-300)] transition-all"
+                    >
+                        送出
+                        <span aria-hidden="true">→</span>
+                    </button>
+                </div>
+
             </form>
         </div>
     </div>
