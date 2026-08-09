@@ -1,6 +1,6 @@
 ---
 import config from "@content/home.json";
-import NotchButton from "@components/common/NotchButton.astro";
+import NotchButton from "@utils/NotchButton.astro";
 
 const { QA } = config;
 ---
@@ -12,10 +12,7 @@ const { QA } = config;
             <p class="text-lg text-primary">{QA.description}</p>
         </div>
 
-        <div
-            class="w-full h-fit grid grid-cols-1"
-            data-faq-list
-        >
+        <div class="w-full h-fit flex flex-col" data-faq-list>
             {
                 QA.questions.map((faq, index) => (
                     <div
@@ -24,19 +21,19 @@ const { QA } = config;
                     >
                         <button
                             type="button"
-                            class="faq-trigger w-full h-fit flex gap-4 items-center justify-start py-4 px-8 text-left cursor-pointer transition-colors"
+                            class="faq-trigger w-full h-fit flex gap-4 items-center justify-start py-6 px-8 text-left cursor-pointer transition-colors"
                             aria-expanded="false"
                             aria-controls={`faq-panel-${index}`}
                             id={`faq-trigger-${index}`}
                         >
-                            <span class="text-3xl text-coral font-bold shrink-0">
+                            <span class="w-8 text-3xl text-amber-100 font-bold shrink-0 text-center">
                                 Q
                             </span>
-                            <span class="text-2xl text-amber-100 flex-1">
+                            <span class="text-2xl text-white flex-1">
                                 {faq.question}
                             </span>
                             <span
-                                class="faq-icon text-4xl text-amber-100 ml-auto shrink-0 leading-none"
+                                class="faq-icon text-4xl text-gray-500 ml-auto shrink-0 leading-none"
                                 aria-hidden="true"
                             >
                                 +
@@ -50,11 +47,11 @@ const { QA } = config;
                             aria-labelledby={`faq-trigger-${index}`}
                         >
                             <div class="faq-panel-inner">
-                                <div class="flex gap-12 items-start px-8 pb-6 pt-1">
-                                    <span class="text-3xl text-tea-green font-bold shrink-0">
+                                <div class="flex gap-4 items-start px-8 pb-6 pt-1">
+                                    <span class="w-8 text-3xl text-amber-200 font-bold shrink-0 text-center">
                                         A
                                     </span>
-                                    <p class="text-base text-white/90 leading-relaxed pt-1">
+                                    <p class="text-xl text-gray-400 leading-relaxed pt-1">
                                         {faq.answer}
                                     </p>
                                 </div>
@@ -148,6 +145,10 @@ const { QA } = config;
 
             trigger.addEventListener("click", () => {
                 const isOpen = item.classList.contains("is-open");
+
+                for (const other of items) {
+                    if (other !== item) closeItem(other);
+                }
 
                 if (isOpen) closeItem(item);
                 else openItem(item);

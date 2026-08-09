@@ -1,7 +1,7 @@
 {
   "hero": {
     "title": "平常網路資訊|工作室",
-    "description": "我們是一個專注於 Minecraft 伺服器架構、遊戲活動技術與客製化開發的團隊。"
+    "description": "我們是一個專注於多人連線伺服器架構、大型線上互動技術與客製化軟體開發的團隊。"
   },
   "Services": {
     "servicesTitle": "遊戲活動顧問服務",
@@ -17,7 +17,12 @@
           "執行期程與里程碑安排",
           "上線後的持續支援"
         ],
-        "scenarios": ["直播企劃", "VTuber 活動", "社群大型活動", "跨團隊聯動企劃"]
+        "scenarios": [
+          "直播企劃",
+          "VTuber 活動",
+          "社群大型活動",
+          "跨團隊聯動企劃"
+        ]
       },
       {
         "tag": "伺服器優化",
@@ -41,7 +46,12 @@
           "整合測試與除錯",
           "文件化交付與後續維護"
         ],
-        "scenarios": ["自訂遊戲玩法", "特殊活動機制", "材質包與資源整合", "跨插件系統整合"]
+        "scenarios": [
+          "自訂遊戲玩法",
+          "特殊活動機制",
+          "材質包與資源整合",
+          "跨插件系統整合"
+        ]
       }
     ],
     "whyUs": {
@@ -50,17 +60,23 @@
         "我們不是只會寫程式的工程師，而是懂遊戲、懂企劃，也理解創作者需求的技術專家。",
         "我們知道創作者最在意的是活動體驗、內容呈現與執行穩定度，因此致力於降低技術門檻、處理繁瑣的基礎架構，並把遊戲體驗優化到最好。把技術的麻煩事交給平常網路資訊，你只需要專注於創作。"
       ]
-    }
+    },
+    "whatWeDoLabel": "我們會幫你做什麼",
+    "useCasesLabel": "適用場景"
   },
   "About": {
     "title": "專注技術細節，成就你的下一次大企劃",
-    "description": "我們是一個專注於多人連線伺服器架構、大型線上互動技術與客製化軟體開發的團隊。\n\n我們服務實況主、VTuber 團隊與大型社群，從企劃發想、技術規劃、雲端環境架設到正式上線，提供完整且可靠的技術支援。\n\n你可以把複雜的技術工作交給我們，專心投入內容創作與活動執行。",
+    "description": "我們是一個專注於多人連線伺服器架構、大型線上互動技術與客製化軟體開發的團隊。\n\n我們服務實況主、VTuber 團隊與大型社群，從企劃發想、技術規劃、雲端環境架設到正式上線，提供完整且可靠的技術支援。你可以把複雜的技術工作交給我們，專心投入內容創作與活動執行。",
     "skills": [
       "基礎架構：雲端伺服器維護、網路架構設計、Linux 系統管理與效能調校。",
       "後端與軟體開發：JavaScript、TypeScript、Python（涵蓋 API 串接、自動化應用與資料處理）。",
       "遊戲與互動程式開發：Java 應用程式、伺服器端架構設計、自訂模組（Plugin/Mod）與進階互動內容開發。",
       "大型虛擬活動支援：百人級距線上連線、虛擬展演及各類大型多人互動活動的伺服器規劃與壓力測試。"
     ],
+    "image": {
+      "src": "https://images.pexels.com/photos/13258030/pexels-photo-13258030.jpeg",
+      "alt": "testing"
+    },
     "buttons": {
       "learnMore": "深入認識我們",
       "services": "查看服務"
@@ -119,6 +135,12 @@
     "otherQuestion": "沒有找到你的問題？",
     "contactLabel": "直接告訴我們"
   },
+  "Projects": {
+    "title": "成功案例",
+    "description": "探索我們如何協助實況主與社群打造完美的遊戲體驗",
+    "viewMoreLabel": "查看更多",
+    "contactLabel": "聯絡我們"
+  },
   "Contact": {
     "title": "聯絡我們",
     "description": "有系統需要整理、有活動正在倒數，或只是想先確認一個技術方向？選一個你習慣的管道，把現在的情況告訴我們。",
@@ -148,11 +170,11 @@
         "id": "telegram",
         "shortLabel": "TG",
         "title": "從 Telegram 開始。",
-        "description": "Telegram 聯絡入口目前保留中；正式帳號確認後，可以在這裡直接開始對話。",
-        "address": "Telegram",
-        "actionLabel": "帳號準備中",
-        "href": "",
-        "available": false
+        "description": "適合快速交流與即時聯繫。點擊下方連結加入我們的 Telegram。",
+        "address": "@rnis_tw",
+        "actionLabel": "加入 Telegram",
+        "href": "https://t.me/rnis_tw",
+        "available": true
       },
       {
         "id": "threads",
@@ -165,8 +187,11 @@
         "available": false
       }
     ],
-    "footer": {
-      "left": "平常網路資訊工作室"
+    "form": {
+      "messageLabel": "訊息內容",
+      "nameLabel": "姓名",
+      "emailLabel": "電子郵件",
+      "submitLabel": "送出"
     }
   }
 }

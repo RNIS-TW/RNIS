@@ -10,10 +10,18 @@
       "url": "/about"
     },
     {
-      "name": "聯絡我們",
+      "name": "服務項目",
+      "url": "/services"
+    },
+    {
+      "name": "聯絡資訊",
       "url": "/contact"
     }
   ],
+  "cta": {
+    "label": "立即諮詢",
+    "url": "#contact"
+  },
   "otherLinks": [
     {
       "name": "系統狀態",

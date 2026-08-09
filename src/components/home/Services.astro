@@ -1,27 +1,15 @@
 ---
 import config from "@content/home.json";
-import NotchButton from "@components/common/NotchButton.astro";
+import NotchButton from "@utils/NotchButton.astro";
 
-import { MessageSquare } from "@lucide/astro/icons";
+import { MessageSquare, Lightbulb, Server, Wrench } from "@lucide/astro/icons";
 
 const { Services } = config;
 const { items, whyUs } = Services;
 const defaultIndex = 0;
-const active = items[defaultIndex];
+
+const icons = [Lightbulb, Server, Wrench];
 ---
-
-<script>
-    const services = document.getElementById("services-panel");
-
-    if (services) {
-        const servicesHeight = services.offsetHeight;
-        const viewHeight = window.innerHeight;
-
-        const sitckyTopOffset = (viewHeight - servicesHeight) / 2;
-
-        services.style.top = `${sitckyTopOffset}px`;
-    }
-</script>
 
 <section
     id="services"
@@ -29,7 +17,7 @@ const active = items[defaultIndex];
 >
     <div class="container px-16 mx-auto p-16 h-fit flex gap-8 items-start">
         <div
-            class="w-1/2 py-8 mt-8 sticky self-start"
+            class="w-1/2 py-8 sticky self-start services-sticky"
             id="services-panel"
         >
             <div class="w-fit h-fit mb-12">
@@ -42,110 +30,100 @@ const active = items[defaultIndex];
                 id="services-list"
             >
                 {
-                    items.map((item, index) => (
-                        <>
-                            <div class="w-7/8 h-0.5 bg-amber-100/20" />
-                            <button
-                                type="button"
-                                data-service-item
-                                data-index={index}
-                                aria-pressed={index === defaultIndex ? "true" : "false"}
-                                class:list={[
-                                    "service-item w-full h-fit py-4 px-2 flex gap-8 items-center text-left cursor-pointer transition-colors",
-                                    index === defaultIndex && "is-active",
-                                ]}
-                            >
-                                <div
-                                    data-service-icon
-                                    class:list={[
-                                        "w-14 h-14 shrink-0 shadow-[6px_6px_0_0_var(--color-amber-300)] flex items-center justify-center text-2xl text-surface-base font-line-seed transition-colors",
-                                        index === defaultIndex ? "bg-amber-200" : "bg-amber-100",
-                                    ]}
+                    items.map((item, index) => {
+                        const Icon = icons[index] ?? Lightbulb;
+                        return (
+                            <>
+                                <div class="w-7/8 h-0.5 bg-amber-100/20" />
+                                <button
+                                    type="button"
+                                    data-service-item
+                                    data-index={index}
+                                    aria-pressed={index === defaultIndex ? "true" : "false"}
+                                    class:list={[ "service-item w-full h-fit py-4 px-2 flex gap-8 items-center text-left cursor-pointer transition-colors", index === defaultIndex && "is-active", ]}
                                 >
-                                    {index + 1}
-                                </div>
-                                <div class="w-fit h-fit flex flex-col gap-2">
-                                    <div class="flex items-center gap-2">
-                                        <h2 class="text-3xl text-amber-100">{item.title}</h2>
-                                        <span
-                                            data-service-badge
-                                            class:list={[
-                                                "px-2 py-0.5 text-xs font-medium tracking-wide bg-amber-200 text-surface-base transition-opacity",
-                                                index === defaultIndex ? "opacity-100" : "opacity-0",
-                                            ]}
-                                        >
-                                            詳細介紹 →
-                                        </span>
+                                    <div
+                                        data-service-icon
+                                        class:list={[ "w-14 h-14 shrink-0 shadow-[6px_6px_0_0_var(--color-amber-300)] flex items-center justify-center text-surface-base transition-colors", index === defaultIndex ? "bg-amber-200" : "bg-amber-100", ]}
+                                    >
+                                        <Icon class="w-6 h-6" />
                                     </div>
-                                    <p class="text-sm text-secondary">{item.description}</p>
-                                </div>
-                            </button>
-                        </>
-                    ))
+                                    <div class="w-fit h-fit flex flex-col gap-2">
+                                        <div class="flex items-center gap-2">
+                                            <h2 class="text-3xl text-amber-100">{item.title}</h2>
+                                            <span
+                                                data-service-badge
+                                                class:list={[ "px-2 py-0.5 text-xs font-medium tracking-wide bg-amber-200 text-surface-base transition-opacity", index === defaultIndex ? "opacity-100" : "opacity-0", ]}
+                                            >
+                                                詳細介紹 →
+                                            </span>
+                                        </div>
+                                        <p class="text-sm text-secondary">{item.description}</p>
+                                    </div>
+                                </button>
+                            </>
+                        );
+                    })
                 }
             </div>
         </div>
 
-        <div class="w-1/2 mt-56 p-12 text-primary flex flex-col gap-10">
-            <div id="service-detail-panel" class="service-detail-panel flex flex-col gap-10">
-                <div class="flex flex-col gap-3">
-                    <span
-                        id="service-detail-tag"
-                        class="w-fit px-3 py-1 text-sm font-medium tracking-wide bg-amber-100 text-surface-base"
-                    >
-                        {String(defaultIndex + 1).padStart(2, "0")} · {active.tag}
-                    </span>
-                    <h3
-                        id="service-detail-title"
-                        class="text-4xl font-display leading-tight text-amber-100"
-                    >
-                        {active.title}
-                    </h3>
-                    <p
-                        id="service-detail-description"
-                        class="text-base text-white/90 leading-relaxed"
-                    >
-                        {active.description}
-                    </p>
-                </div>
-
-                <div class="w-full h-0.5 bg-amber-100/30"></div>
-
-                <div class="flex flex-col gap-4">
-                    <h4 class="text-xl font-medium text-amber-100">我們會幫你做什麼</h4>
-                    <ul
-                        id="service-detail-bullets"
-                        class="flex flex-col gap-3 text-sm text-secondary"
-                    >
-                        {
-                            active.bullets.map((bullet) => (
-                                <li class="flex gap-3 items-start">
-                                    <span class="mt-2 w-2 h-2 shrink-0 bg-amber-100 shadow-[2px_2px_0_0_var(--color-amber-300)]" />
-                                    <span>{bullet}</span>
-                                </li>
-                            ))
-                        }
-                    </ul>
-                </div>
-
-                <div class="flex flex-col gap-4">
-                    <h4 class="text-xl font-medium text-amber-100">適用場景</h4>
+        <div
+            class="w-1/2 mt-46 p-12 text-primary flex flex-col gap-40"
+            id="service-sections"
+        >
+            {
+                items.map((item, index) => (
                     <div
-                        id="service-detail-scenarios"
-                        class="flex flex-wrap gap-2"
+                        data-service-section
+                        data-index={index}
+                        class:list={["service-section flex flex-col gap-10", index === defaultIndex && "is-active"]}
                     >
-                        {
-                            active.scenarios.map((scenario) => (
-                                <span class="px-3 py-1.5 text-sm text-surface-base bg-white border border-surface-base/20">
-                                    {scenario}
-                                </span>
-                            ))
-                        }
-                    </div>
-                </div>
-            </div>
+                        <div class="flex flex-col gap-3">
+                            <span class="w-fit px-3 py-1 text-sm font-medium tracking-wide bg-amber-100 text-surface-base">
+                                {String(index + 1).padStart(2, "0")} · {item.tag}
+                            </span>
+                            <h3 class="text-4xl font-display leading-tight text-amber-100">
+                                {item.title}
+                            </h3>
+                            <p class="text-base text-white/90 leading-relaxed">
+                                {item.description}
+                            </p>
+                        </div>
 
-            <div class="mt-auto pt-4 flex flex-col gap-4">
+                        <div class="w-full h-0.5 bg-amber-100/30" />
+
+                        <div class="flex flex-col gap-4">
+                            <h4 class="text-xl font-medium text-amber-100">{Services.whatWeDoLabel}</h4>
+                            <ul class="flex flex-col gap-3 text-sm text-secondary">
+                                {
+                                    item.bullets.map((bullet) => (
+                                        <li class="flex gap-3 items-start">
+                                            <span class="mt-2 w-2 h-2 shrink-0 bg-amber-100 shadow-[2px_2px_0_0_var(--color-amber-300)]" />
+                                            <span>{bullet}</span>
+                                        </li>
+                                    ))
+                                }
+                            </ul>
+                        </div>
+
+                        <div class="flex flex-col gap-4">
+                            <h4 class="text-xl font-medium text-amber-100">{Services.useCasesLabel}</h4>
+                            <div class="flex flex-wrap gap-2">
+                                {
+                                    item.scenarios.map((scenario) => (
+                                        <span class="px-3 py-1.5 text-sm text-surface-base bg-white border border-surface-base/20">
+                                            {scenario}
+                                        </span>
+                                    ))
+                                }
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+
+            <div class="pt-4 flex flex-col gap-4">
                 <div class="p-5 bg-surface-raised border border-amber-100/20 text-primary flex flex-col gap-3">
                     <p class="text-sm text-amber-100">{whyUs.title}</p>
                     {
@@ -161,12 +139,6 @@ const active = items[defaultIndex];
                     href="#contact"
                     color="var(--color-amber-100)"
                     class="w-fit text-amber-100 font-medium"
-                    corners={{
-                        // topRight: true,
-                        // topLeft: false,
-                        // bottomRight: false,
-                        // bottomLeft: false,
-                    }}
                 >
                     <MessageSquare class="w-4 h-4" />
                     聊聊你的需求
@@ -188,6 +160,10 @@ const active = items[defaultIndex];
         z-index: -1;
     }
 
+    .services-sticky {
+        top: calc(50dvh - var(--services-sticky-height, 0px) / 2);
+    }
+
     .service-item:hover:not(.is-active) {
         background-color: rgba(255, 221, 138, 0.05);
     }
@@ -196,71 +172,47 @@ const active = items[defaultIndex];
         background-color: rgba(255, 221, 138, 0.05);
     }
 
-    .service-detail-panel {
+    .service-section {
+        opacity: 0.35;
+        transform: translateY(6px);
         transition:
-            opacity 200ms ease,
-            transform 200ms cubic-bezier(0.4, 0, 0.2, 1);
+            opacity 300ms ease,
+            transform 300ms cubic-bezier(0.4, 0, 0.2, 1);
     }
 
-    .service-detail-panel.is-switching {
-        opacity: 0;
-        transform: translateY(8px);
+    .service-section.is-active {
+        opacity: 1;
+        transform: translateY(0);
     }
 </style>
 
-<script define:vars={{ items: config.Services.items, defaultIndex }}>
-    const list = document.getElementById("services-list");
+<script>
+    const panel = document.getElementById("services-panel");
     const buttons = Array.from(
-        document.querySelectorAll("[data-service-item]"),
+        document.querySelectorAll<HTMLButtonElement>("[data-service-item]"),
+    );
+    const sections = Array.from(
+        document.querySelectorAll<HTMLElement>("[data-service-section]"),
     );
 
-    const panelEl = document.getElementById("service-detail-panel");
-    const tagEl = document.getElementById("service-detail-tag");
-    const titleEl = document.getElementById("service-detail-title");
-    const descriptionEl = document.getElementById("service-detail-description");
-    const bulletsEl = document.getElementById("service-detail-bullets");
-    const scenariosEl = document.getElementById("service-detail-scenarios");
+    if (panel) {
+        const setStickyHeight = () => {
+            panel.style.setProperty(
+                "--services-sticky-height",
+                `${panel.getBoundingClientRect().height - 50}px`,
+            );
+        };
 
-    let activeIndex = defaultIndex;
-    let isSwitching = false;
+        const resizeObserver = new ResizeObserver(setStickyHeight);
+        resizeObserver.observe(panel);
+        setStickyHeight();
+    }
 
-    const renderBullets = (bullets) => {
-        bulletsEl.innerHTML = "";
-        for (const bullet of bullets) {
-            const li = document.createElement("li");
-            li.className = "flex gap-3 items-start";
+    let activeIndex = -1;
 
-            const dot = document.createElement("span");
-            dot.className =
-                "mt-2 w-2 h-2 shrink-0 bg-amber-100 shadow-[2px_2px_0_0_var(--color-amber-300)]";
-
-            const text = document.createElement("span");
-            text.textContent = bullet;
-
-            li.append(dot, text);
-            bulletsEl.append(li);
-        }
-    };
-
-    const renderScenarios = (scenarios) => {
-        scenariosEl.innerHTML = "";
-        for (const scenario of scenarios) {
-            const span = document.createElement("span");
-            span.className =
-                "px-3 py-1.5 text-sm text-surface-base bg-white border border-surface-base/20";
-            span.textContent = scenario;
-            scenariosEl.append(span);
-        }
-    };
-
-    const applyContent = (index) => {
-        const item = items[index];
-
-        tagEl.textContent = `${String(index + 1).padStart(2, "0")} · ${item.tag}`;
-        titleEl.textContent = item.title;
-        descriptionEl.textContent = item.description;
-        renderBullets(item.bullets);
-        renderScenarios(item.scenarios);
+    const applyActive = (index: number) => {
+        if (index === activeIndex) return;
+        activeIndex = index;
 
         for (const button of buttons) {
             const buttonIndex = Number(button.dataset.index);
@@ -277,25 +229,53 @@ const active = items[defaultIndex];
             badge?.classList.toggle("opacity-100", isActive);
             badge?.classList.toggle("opacity-0", !isActive);
         }
+
+        for (const section of sections) {
+            const sectionIndex = Number(section.dataset.index);
+            section.classList.toggle("is-active", sectionIndex === index);
+        }
     };
 
-    const setActive = (index) => {
-        if (index === activeIndex || isSwitching) return;
-        activeIndex = index;
-        isSwitching = true;
+    let ticking = false;
 
-        panelEl.classList.add("is-switching");
+    const updateActiveFromScroll = () => {
+        ticking = false;
+        if (sections.length === 0) return;
 
-        window.setTimeout(() => {
-            applyContent(index);
-            panelEl.classList.remove("is-switching");
-            isSwitching = false;
-        }, 200);
+        const activeLine = window.innerHeight * 0.5;
+        let closestIndex = 0;
+        let closestDistance = Number.POSITIVE_INFINITY;
+
+        sections.forEach((section, index) => {
+            const rect = section.getBoundingClientRect();
+            const distance = Math.abs(rect.top + rect.height / 2 - activeLine);
+
+            if (distance < closestDistance) {
+                closestDistance = distance;
+                closestIndex = index;
+            }
+        });
+
+        applyActive(closestIndex);
     };
+
+    const requestUpdate = () => {
+        if (ticking) return;
+        ticking = true;
+        window.requestAnimationFrame(updateActiveFromScroll);
+    };
+
+    updateActiveFromScroll();
+    window.addEventListener("scroll", requestUpdate, { passive: true });
+    window.addEventListener("resize", requestUpdate);
 
     for (const button of buttons) {
         button.addEventListener("click", () => {
-            setActive(Number(button.dataset.index));
+            const index = Number(button.dataset.index);
+            const target = sections[index];
+            if (!target) return;
+
+            target.scrollIntoView({ behavior: "smooth", block: "center" });
         });
     }
 </script>

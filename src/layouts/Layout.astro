@@ -4,13 +4,15 @@ import '../styles/font/genyo-gothic.css';
 import '../styles/global.css';
 import 'lenis/dist/lenis.css';
 import satoshiUrl from '../assets/font/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variable.woff2?url';
-import Background from '../components/common/Background.astro';
+import Background from "@utils/Background.astro";
 import Header from '../components/common/Header.astro';
 import Footer from '../components/common/Footer.astro';
-import SmoothScroll from '../components/common/SmoothScroll.astro';
-import home from '../content/home.json';
+import SmoothScroll from "@utils/SmoothScroll.astro";
+import footer from '../content/footer.json';
 
-const { left: mainName } = home.Contact.footer;
+import logoUrl from '../assets/logo.svg?url';
+
+const { left: mainName } = footer;
 ---
 
 <!doctype html>
@@ -25,8 +27,7 @@ const { left: mainName } = home.Contact.footer;
 		    type="font/woff2"
 		    crossorigin
 		/>
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
+		<link rel="icon" type="image/svg+xml" href={logoUrl} />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="theme-color" content="#151c2a" />
 		<script is:inline>

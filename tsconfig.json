@@ -7,8 +7,9 @@
       "@svg/*": ["./src/components/svg/*"],
       "@components/*": ["./src/components/*"],
       "@styles/*": ["./src/styles/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@content/*": ["./src/content/*"]
+      "@utils/*": ["./src/components/utils/*"],
+      "@content/*": ["./src/content/*"],
+      "@config/*": ["./src/config/*"]
     }
   }
 }
