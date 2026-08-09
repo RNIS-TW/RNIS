@@ -2,6 +2,7 @@
 import logo from "../../assets/logo.svg";
 import NotchButton from "@utils/NotchButton.astro";
 import header from "@content/header.json";
+import { ChevronDown } from "@lucide/astro/icons";
 ---
 
 <header
@@ -20,16 +21,45 @@ import header from "@content/header.json";
 
 		<nav class="w-fit h-full flex gap-6 items-center justify-end">
 			{
-				header.nav.map((item, index) => (
-					<a
-					    class:list={["w-fit", index === header.nav.length - 1 && "mr-4"]}
-					    href={item.url}
-					>
-						<p class="text-base text-primary underline-offset-8 decoration-amber-50 relative header-pages">
-							{item.name}
-						</p>
-					</a>
-				))
+				header.nav.map((item, index) => {
+					const isLast = index === header.nav.length - 1;
+
+					if (!isLast) {
+						return (
+							<a class="w-fit" href={item.url}>
+								<p class="text-base text-primary underline-offset-8 decoration-amber-50 relative header-pages">
+									{item.name}
+								</p>
+							</a>
+						);
+					}
+
+					return (
+						<div class="nav-dropdown w-fit mr-4 relative">
+							<a class="w-fit flex items-center gap-1" href={item.url}>
+								<p class="text-base text-primary underline-offset-8 decoration-amber-50 relative header-pages">
+									{item.name}
+								</p>
+								<ChevronDown class="nav-dropdown__chevron w-4 h-4 text-primary" />
+							</a>
+
+							<div class="nav-dropdown__menu">
+								<div class="nav-dropdown__panel w-fit flex flex-col gap-1 p-2 bg-surface-raised border border-amber-100">
+									{header.otherLinks.map((link) => (
+										<a
+										    class="nav-dropdown__link block px-2.5 py-1.5 text-sm text-primary whitespace-nowrap transition-colors hover:text-amber-100 hover:bg-amber-100/10"
+										    href={`https://${link.url}`}
+										    target="_blank"
+										    rel="noopener noreferrer"
+										>
+											{link.name}
+										</a>
+									))}
+								</div>
+							</div>
+						</div>
+					);
+				})
 			}
 			<NotchButton
 			    as="a"
@@ -78,6 +108,39 @@ import header from "@content/header.json";
 	.header-line.header-border::before {
 		left: 0;
 		width: 100%;
+	}
+
+	.nav-dropdown__chevron {
+		transition: transform 200ms ease;
+	}
+
+	.nav-dropdown:hover .nav-dropdown__chevron,
+	.nav-dropdown:focus-within .nav-dropdown__chevron {
+		transform: rotate(180deg);
+	}
+
+	.nav-dropdown__menu {
+		position: absolute;
+		top: 100%;
+		left: 0;
+		/* padding (not margin) keeps the gap inside the hoverable box, so the
+		   pointer never leaves .nav-dropdown while crossing from the trigger
+		   down to the panel. */
+		padding-top: 0.75rem;
+		opacity: 0;
+		transform: translateY(-0.25rem);
+		pointer-events: none;
+		transition:
+			opacity 200ms ease,
+			transform 200ms ease;
+		z-index: 10;
+	}
+
+	.nav-dropdown:hover .nav-dropdown__menu,
+	.nav-dropdown:focus-within .nav-dropdown__menu {
+		opacity: 1;
+		transform: translateY(0);
+		pointer-events: auto;
 	}
 </style>
 

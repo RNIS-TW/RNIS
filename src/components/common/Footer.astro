@@ -2,17 +2,10 @@
 import header from "@content/header.json";
 import home from "@content/home.json";
 import footer from "@content/footer.json";
+import link from "@config/link.json";
 
 const linkGroups = [
-    {
-        title: "連結",
-        links: [
-            { name: "首頁", href: "/" },
-            { name: "服務", href: "/#services" },
-            { name: "案例", href: "/#projects" },
-            { name: "關於我們", href: "/about" },
-        ],
-    },
+    link.Footer.navGroup,
     {
         title: "服務",
         links: home.Services.items.map((item) => ({
@@ -20,13 +13,7 @@ const linkGroups = [
             href: "/#services",
         })),
     },
-    {
-        title: "條款",
-        links: [
-            { name: "服務條款", href: "/terms" },
-            { name: "隱私權政策", href: "/privacy" },
-        ],
-    },
+    link.Footer.termsGroup,
     {
         title: "其他",
         links: [{ name: "系統狀態", href: `https://${header.otherLinks[0].url}` }],
