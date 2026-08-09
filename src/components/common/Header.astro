@@ -1,6 +1,7 @@
 ---
 import logo from "../../assets/logo.svg";
 import NotchButton from "@utils/NotchButton.astro";
+import header from "@content/header.json";
 ---
 
 <header
@@ -14,38 +15,30 @@ import NotchButton from "@utils/NotchButton.astro";
 			    alt="Logo"
 			    class="h-12 w-auto aspect-square object-contain"
 			/>
-			<h1 class="w-fit h-auto text-4xl">RNIS</h1>
+			<h1 class="w-fit h-auto text-4xl">{header.title}</h1>
 		</div>
 
 		<nav class="w-fit h-full flex gap-6 items-center justify-end">
-			<a class="w-fit" href="/">
-				<p class="text-base text-primary underline-offset-8 decoration-amber-50 relative header-pages">
-					首頁
-				</p>
-			</a>
-			<a class="w-fit" href="/about">
-				<p class="text-base text-primary underline-offset-8 decoration-amber-50 relative header-pages">
-					關於我們
-				</p>
-			</a>
-			<a class="w-fit" href="/services">
-				<p class="text-base text-primary underline-offset-8 decoration-amber-50 relative header-pages">
-					服務項目
-				</p>
-			</a>
-			<a class="w-fit mr-4" href="/contact">
-				<p class="text-base text-primary underline-offset-8 decoration-amber-50 relative header-pages">
-					聯絡資訊
-				</p>
-			</a>
+			{
+				header.nav.map((item, index) => (
+					<a
+						class:list={["w-fit", index === header.nav.length - 1 && "mr-4"]}
+						href={item.url}
+					>
+						<p class="text-base text-primary underline-offset-8 decoration-amber-50 relative header-pages">
+							{item.name}
+						</p>
+					</a>
+				))
+			}
 			<NotchButton
 			    as="a"
-			    href="#contact"
+			    href={header.cta.url}
 			    color="var(--color-amber-100)"
 			    notch="8px"
 			    class="w-fit text-amber-100 font-medium"
 			>
-				立即諮詢
+				{header.cta.label}
 			</NotchButton>
 		</nav>
 	</div>

@@ -60,7 +60,9 @@
         "我們不是只會寫程式的工程師，而是懂遊戲、懂企劃，也理解創作者需求的技術專家。",
         "我們知道創作者最在意的是活動體驗、內容呈現與執行穩定度，因此致力於降低技術門檻、處理繁瑣的基礎架構，並把遊戲體驗優化到最好。把技術的麻煩事交給平常網路資訊，你只需要專注於創作。"
       ]
-    }
+    },
+    "whatWeDoLabel": "我們會幫你做什麼",
+    "useCasesLabel": "適用場景"
   },
   "About": {
     "title": "專注技術細節，成就你的下一次大企劃",
@@ -71,6 +73,10 @@
       "遊戲與互動程式開發：Java 應用程式、伺服器端架構設計、自訂模組（Plugin/Mod）與進階互動內容開發。",
       "大型虛擬活動支援：百人級距線上連線、虛擬展演及各類大型多人互動活動的伺服器規劃與壓力測試。"
     ],
+    "image": {
+      "src": "https://images.pexels.com/photos/13258030/pexels-photo-13258030.jpeg",
+      "alt": "testing"
+    },
     "buttons": {
       "learnMore": "深入認識我們",
       "services": "查看服務"
@@ -129,6 +135,12 @@
     "otherQuestion": "沒有找到你的問題？",
     "contactLabel": "直接告訴我們"
   },
+  "Projects": {
+    "title": "成功案例",
+    "description": "探索我們如何協助實況主與社群打造完美的遊戲體驗",
+    "viewMoreLabel": "查看更多",
+    "contactLabel": "聯絡我們"
+  },
   "Contact": {
     "title": "聯絡我們",
     "description": "有系統需要整理、有活動正在倒數，或只是想先確認一個技術方向？選一個你習慣的管道，把現在的情況告訴我們。",
@@ -175,9 +187,11 @@
         "available": false
       }
     ],
-    "footer": {
-      "left": "平常網路資訊工作室",
-      "englishName": "Routine Network Information Studio"
+    "form": {
+      "messageLabel": "訊息內容",
+      "nameLabel": "姓名",
+      "emailLabel": "電子郵件",
+      "submitLabel": "送出"
     }
   }
 }

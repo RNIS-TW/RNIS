@@ -59,7 +59,7 @@ const channelIcons: Record<string , typeof Mail> = {
                     <label
                         for="contact-message"
                         class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-amber-100"
-                    >訊息內容</label>
+                    >{Contact.form.messageLabel}</label>
                     <textarea
                         id="contact-message"
                         name="message"
@@ -74,7 +74,7 @@ const channelIcons: Record<string , typeof Mail> = {
                         <label
                             for="contact-name"
                             class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-amber-100"
-                        >姓名</label>
+                        >{Contact.form.nameLabel}</label>
                         <input
                             id="contact-name"
                             name="name"
@@ -87,7 +87,7 @@ const channelIcons: Record<string , typeof Mail> = {
                         <label
                             for="contact-email"
                             class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-amber-100"
-                        >電子郵件</label>
+                        >{Contact.form.emailLabel}</label>
                         <input
                             id="contact-email"
                             name="email"
@@ -100,7 +100,7 @@ const channelIcons: Record<string , typeof Mail> = {
                         type="submit"
                         class="w-fit inline-flex items-center gap-2 px-5 py-3 bg-amber-100 text-surface-base font-medium shadow-[4px_4px_0_0_var(--color-amber-300)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_var(--color-amber-300)] transition-all"
                     >
-                        送出
+                        {Contact.form.submitLabel}
                         <span aria-hidden="true">→</span>
                     </button>
                 </div>

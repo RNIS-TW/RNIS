@@ -94,7 +94,7 @@ const icons = [Lightbulb, Server, Wrench];
                         <div class="w-full h-0.5 bg-amber-100/30" />
 
                         <div class="flex flex-col gap-4">
-                            <h4 class="text-xl font-medium text-amber-100">我們會幫你做什麼</h4>
+                            <h4 class="text-xl font-medium text-amber-100">{Services.whatWeDoLabel}</h4>
                             <ul class="flex flex-col gap-3 text-sm text-secondary">
                                 {
                                     item.bullets.map((bullet) => (
@@ -108,7 +108,7 @@ const icons = [Lightbulb, Server, Wrench];
                         </div>
 
                         <div class="flex flex-col gap-4">
-                            <h4 class="text-xl font-medium text-amber-100">適用場景</h4>
+                            <h4 class="text-xl font-medium text-amber-100">{Services.useCasesLabel}</h4>
                             <div class="flex flex-wrap gap-2">
                                 {
                                     item.scenarios.map((scenario) => (
