@@ -22,8 +22,8 @@ import header from "@content/header.json";
 			{
 				header.nav.map((item, index) => (
 					<a
-						class:list={["w-fit", index === header.nav.length - 1 && "mr-4"]}
-						href={item.url}
+					    class:list={["w-fit", index === header.nav.length - 1 && "mr-4"]}
+					    href={item.url}
 					>
 						<p class="text-base text-primary underline-offset-8 decoration-amber-50 relative header-pages">
 							{item.name}
