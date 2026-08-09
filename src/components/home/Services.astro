@@ -199,7 +199,7 @@ const icons = [Lightbulb, Server, Wrench];
         const setStickyHeight = () => {
             panel.style.setProperty(
                 "--services-sticky-height",
-                `${panel.getBoundingClientRect().height}px`,
+                `${panel.getBoundingClientRect().height - 50}px`,
             );
         };
 
