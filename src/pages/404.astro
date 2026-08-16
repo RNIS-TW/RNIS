@@ -1,0 +1,24 @@
+---
+import Layout from '../layouts/Layout.astro';
+import NotchButton from '@utils/NotchButton.astro';
+---
+
+<Layout>
+	<section class="container mx-auto px-6 sm:px-10 lg:px-16 min-h-[80vh] flex flex-col items-center justify-center text-center gap-6">
+		<p class="font-line-seed text-6xl sm:text-8xl lg:text-9xl text-amber-100">404</p>
+		<h1 class="text-2xl sm:text-3xl lg:text-4xl font-display font-medium tracking-tight text-amber-100">
+			找不到這個頁面
+		</h1>
+		<p class="text-sm sm:text-base font-sans text-paragraph max-w-md">
+			你要找的頁面不存在，或已經被移動了。
+		</p>
+		<NotchButton
+			as="a"
+			href="/"
+			color="var(--color-amber-100)"
+			class="w-fit text-amber-100 font-medium mt-4"
+		>
+			回到首頁
+		</NotchButton>
+	</section>
+</Layout>

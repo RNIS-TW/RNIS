@@ -184,7 +184,12 @@ const { theme = 'dark' } = Astro.props;
 		restartAnimation();
 	};
 
-	document.querySelectorAll<HTMLElement>('[data-background-theme]').forEach(setupBackground);
+	const init = () => {
+		document.querySelectorAll<HTMLElement>('[data-background-theme]').forEach(setupBackground);
+	};
+
+	init();
+	document.addEventListener('astro:page-load', init);
 </script>
 
 <style>

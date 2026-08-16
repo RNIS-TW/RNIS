@@ -3,7 +3,9 @@ import '../styles/font/font.css';
 import '../styles/font/genyo-gothic.css';
 import '../styles/global.css';
 import 'lenis/dist/lenis.css';
+import { ClientRouter } from 'astro:transitions';
 import satoshiUrl from '../assets/font/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Variable.woff2?url';
+import archivoBlackUrl from '../assets/font/ArchivoBlack/ArchivoBlack-Regular.woff2?url';
 import Background from "@utils/Background.astro";
 import Header from '../components/common/Header.astro';
 import Footer from '../components/common/Footer.astro';
@@ -27,9 +29,17 @@ const { left: mainName } = footer;
 		    type="font/woff2"
 		    crossorigin
 		/>
+		<link
+		    rel="preload"
+		    href={archivoBlackUrl}
+		    as="font"
+		    type="font/woff2"
+		    crossorigin
+		/>
 		<link rel="icon" type="image/svg+xml" href={logoUrl} />
 		<meta name="generator" content={Astro.generator} />
 		<meta name="theme-color" content="#151c2a" />
+		<ClientRouter />
 		<script is:inline>
 			(() => {
 				const storageKey = 'rnis-theme';
@@ -50,12 +60,12 @@ const { left: mainName } = footer;
 		<title>{mainName}</title>
 	</head>
 	<body>
-		<SmoothScroll />
-		<Background />
-		<Header />
-		<main class="site-content">
+		<SmoothScroll transition:persist />
+		<Background transition:persist />
+		<Header transition:persist />
+		<main class="site-content" transition:animate="fade">
 			<slot />
 		</main>
-		<Footer />
+		<Footer transition:persist />
 	</body>
 </html>

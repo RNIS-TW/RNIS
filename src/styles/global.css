@@ -18,10 +18,17 @@
   --color-jasmine: #ffd972;
   --color-sage: #9ced95;
 
+  /* Logo mark colors, for elements that should pick up the logo's blue
+     instead of the site's amber accent. */
+  --color-logo-light: #76baff;
+  --color-logo-dark: #406287;
+
   --font-sans:
     "Satoshi", "GenYo Gothic TW", "PingFang TC", "Microsoft JhengHei",
     ui-sans-serif, system-ui, sans-serif;
   --font-display: "New Title", "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --font-wordmark: "Archivo Black", "New Title", "Satoshi", ui-sans-serif,
+    system-ui, sans-serif;
   --font-mono:
     "Source Code Pro", ui-monospace, "Cascadia Code", Consolas, monospace;
   --font-line-seed:
@@ -152,6 +159,8 @@
   }
 
   body {
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
     margin: 0;
     background: var(--page-background);
@@ -169,6 +178,10 @@
 .site-content {
   position: relative;
   z-index: 1;
+}
+
+main.site-content {
+  flex: 1 0 auto;
 }
 
 .sr-only {

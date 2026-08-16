@@ -1,8 +1,17 @@
 <script>
 	import Lenis from "lenis";
 
-	new Lenis({
-		autoRaf: true,
-		anchors: true,
-	});
+	let lenis: Lenis | undefined;
+
+	const init = () => {
+		lenis?.destroy();
+		lenis = new Lenis({
+			autoRaf: true,
+			anchors: true,
+		});
+		(window as typeof window & { __lenis?: Lenis }).__lenis = lenis;
+	};
+
+	init();
+	document.addEventListener('astro:page-load', init);
 </script>

@@ -2,10 +2,11 @@
 import HeroCut from "@svg/heroCut.astro";
 import config from "@content/home.json"
 
+// -(-22) + 94 = 118 - 10
 ---
 
-<section class="relative h-[108vh] mb-[-22vh]">
-    <div class="sticky top-0 w-full h-[94vh]">
+<section id="hero" class="relative h-[108vh] mb-[-16vh]">
+    <div class="sticky top-0 w-full h-[90vh]">
         <div class="container mx-auto px-6 sm:px-10 lg:px-16 flex flex-col items-center justify-start w-full h-full">
             <div class="h-16 sm:h-20 lg:h-24"></div>
             <div class="flex-1 flex flex-col gap-4 sm:gap-6 lg:gap-8 items-start justify-center w-full">
@@ -16,6 +17,6 @@ import config from "@content/home.json"
             </div>
             <div class="h-20 sm:h-28 lg:h-40"></div>
         </div>
-        <HeroCut class="absolute bottom-0 left-0 z-20" />
+        <HeroCut class="absolute -bottom-28 left-0 z-20 hidden lg:block" />
     </div>
 </section>

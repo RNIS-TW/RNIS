@@ -55,7 +55,7 @@ const channelIcons: Record<string , typeof Mail> = {
                 id="contact-form"
                 class="w-full lg:w-1/2 h-fit lg:h-full flex flex-col gap-6 p-5 sm:p-8 border border-amber-100/30"
             >
-                <div class="flex flex-col gap-2">
+                <div class="flex flex-col gap-2 flex-1 min-h-0">
                     <label
                         for="contact-message"
                         class="text-xs font-sans font-medium uppercase tracking-[0.15em] text-amber-100"
@@ -65,7 +65,7 @@ const channelIcons: Record<string , typeof Mail> = {
                         name="message"
                         rows="6"
                         required
-                        class="input-field resize-none"
+                        class="input-field resize-none flex-1 min-h-0"
                     ></textarea>
                 </div>
 
@@ -98,7 +98,7 @@ const channelIcons: Record<string , typeof Mail> = {
                     </div>
                     <button
                         type="submit"
-                        class="w-fit inline-flex items-center gap-2 px-5 py-3 bg-amber-100 text-surface-base font-medium shadow-[4px_4px_0_0_var(--color-amber-300)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_var(--color-amber-300)] transition-all"
+                        class="w-fit inline-flex items-center gap-2 px-5 py-[0.65rem] border border-transparent bg-amber-100 text-surface-base font-medium shadow-[4px_4px_0_0_var(--color-amber-300)] hover:translate-x-0.5 hover:translate-y-0.5 hover:shadow-[2px_2px_0_0_var(--color-amber-300)] transition-all"
                     >
                         {Contact.form.submitLabel}
                         <span aria-hidden="true">→</span>
@@ -142,19 +142,28 @@ const channelIcons: Record<string , typeof Mail> = {
 </style>
 
 <script define:vars={{ contactEmail: Contact.email }}>
-    const form = document.getElementById("contact-form");
+    const init = () => {
+        const form = document.getElementById("contact-form");
 
-    form?.addEventListener("submit", (event) => {
-        event.preventDefault();
+        form?.addEventListener("submit", (event) => {
+            event.preventDefault();
 
-        const data = new FormData(form);
-        const name = String(data.get("name") ?? "").trim();
-        const email = String(data.get("email") ?? "").trim();
-        const message = String(data.get("message") ?? "").trim();
+            const data = new FormData(form);
+            const name = String(data.get("name") ?? "").trim();
+            const email = String(data.get("email") ?? "").trim();
+            const message = String(data.get("message") ?? "").trim();
 
-        const subject = encodeURIComponent(`來自 ${name} 的聯絡訊息`);
-        const body = encodeURIComponent(`${message}\n\n回覆信箱：${email}`);
+            const subject = encodeURIComponent(`來自 ${name} 的聯絡訊息`);
+            const body = encodeURIComponent(`${message}\n\n回覆信箱：${email}`);
 
-        window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
-    });
+            window.location.href = `mailto:${contactEmail}?subject=${subject}&body=${body}`;
+        });
+    };
+
+    // This script is a processed module, and browsers only ever evaluate a
+    // given module URL once — re-inserting it on later navigations is a
+    // no-op. astro:page-load fires once for the initial load and again
+    // after every subsequent navigation, so binding init() to it (and only
+    // it) re-queries the form against the fresh DOM every time.
+    document.addEventListener("astro:page-load", init);
 </script>

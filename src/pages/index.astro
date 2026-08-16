@@ -17,3 +17,65 @@ import Contact from '@components/home/Contact.astro'
 	<QA />
 	<Contact />
 </Layout>
+
+<script>
+	const init = () => {
+		const sections = Array.from(
+			document.querySelectorAll<HTMLElement>("main section[id]"),
+		);
+		if (sections.length === 0) return;
+
+		const controller = new AbortController();
+		const { signal } = controller;
+
+		let ticking = false;
+		let currentId = "";
+
+		const updateHash = () => {
+			ticking = false;
+
+			const triggerLine = window.innerHeight * 0.3;
+			let activeId = sections[0].id;
+
+			for (const section of sections) {
+				if (section.getBoundingClientRect().top <= triggerLine) {
+					activeId = section.id;
+				} else {
+					break;
+				}
+			}
+
+			if (activeId === currentId) return;
+			currentId = activeId;
+
+			const url =
+				activeId === "hero"
+					? location.pathname + location.search
+					: `#${activeId}`;
+			history.replaceState(history.state, "", url);
+		};
+
+		const requestUpdate = () => {
+			if (ticking) return;
+			ticking = true;
+			window.requestAnimationFrame(updateHash);
+		};
+
+		updateHash();
+		window.addEventListener("scroll", requestUpdate, { passive: true, signal });
+		window.addEventListener("resize", requestUpdate, { signal });
+
+		document.addEventListener(
+			"astro:before-swap",
+			() => controller.abort(),
+			{ once: true },
+		);
+	};
+
+	// This script is a processed module, and browsers only ever evaluate a
+	// given module URL once — re-inserting it on later navigations is a
+	// no-op. astro:page-load fires once for the initial load and again
+	// after every subsequent navigation, so binding init() to it (and only
+	// it) re-queries the sections against the fresh DOM every time.
+	document.addEventListener("astro:page-load", init);
+</script>

@@ -5,7 +5,7 @@ import NotchButton from "@utils/NotchButton.astro";
 const { QA } = config;
 ---
 
-<section class="w-full h-fit bg-surface-base">
+<section id="faq" class="w-full h-fit bg-surface-base">
     <div class="container mx-auto px-6 sm:px-10 lg:px-16 py-16 lg:py-32">
         <div class="w-full h-fit mb-10 lg:mb-16">
             <h1 class="text-3xl sm:text-4xl lg:text-5xl text-amber-100 font-line-seed mb-4">{QA.title}</h1>
@@ -118,8 +118,10 @@ const { QA } = config;
 </style>
 
 <script>
-    const list = document.querySelector("[data-faq-list]");
-    if (list) {
+    const init = () => {
+        const list = document.querySelector("[data-faq-list]");
+        if (!list) return;
+
         const items = [
             ...list.querySelectorAll<HTMLElement>("[data-faq-item]"),
         ];
@@ -154,5 +156,12 @@ const { QA } = config;
                 else openItem(item);
             });
         }
-    }
+    };
+
+    // This script is a processed module, and browsers only ever evaluate a
+    // given module URL once — re-inserting it on later navigations is a
+    // no-op. astro:page-load fires once for the initial load and again
+    // after every subsequent navigation, so binding init() to it (and only
+    // it) re-queries the FAQ items against the fresh DOM every time.
+    document.addEventListener("astro:page-load", init);
 </script>

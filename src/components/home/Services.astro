@@ -149,14 +149,14 @@ const icons = [Lightbulb, Server, Wrench];
 </section>
 
 <style>
-    .trans-hero::after {
+    .trans-hero::before {
         content: "";
         position: absolute;
         top: -4px;
         right: 0;
         height: 4px;
         width: 100%;
-        background-color: var(--color-amber-100);
+        background: var(--color-logo-dark);
         z-index: -1;
     }
 
@@ -187,95 +187,137 @@ const icons = [Lightbulb, Server, Wrench];
 </style>
 
 <script>
-    const panel = document.getElementById("services-panel");
-    const buttons = Array.from(
-        document.querySelectorAll<HTMLButtonElement>("[data-service-item]"),
-    );
-    const sections = Array.from(
-        document.querySelectorAll<HTMLElement>("[data-service-section]"),
-    );
+    const init = () => {
+        const panel = document.getElementById("services-panel");
+        const buttons = Array.from(
+            document.querySelectorAll<HTMLButtonElement>("[data-service-item]"),
+        );
+        const sections = Array.from(
+            document.querySelectorAll<HTMLElement>("[data-service-section]"),
+        );
 
-    if (panel) {
-        const setStickyHeight = () => {
-            panel.style.setProperty(
-                "--services-sticky-height",
-                `${panel.getBoundingClientRect().height - 50}px`,
-            );
+        if (buttons.length === 0 && sections.length === 0) return;
+
+        const controller = new AbortController();
+        const { signal } = controller;
+        let resizeObserver: ResizeObserver | undefined;
+
+        let setStickyHeight: (() => void) | undefined;
+
+        if (panel) {
+            setStickyHeight = () => {
+                panel.style.setProperty(
+                    "--services-sticky-height",
+                    `${panel.getBoundingClientRect().height - 50}px`,
+                );
+            };
+
+            resizeObserver = new ResizeObserver(setStickyHeight);
+            resizeObserver.observe(panel);
+            setStickyHeight();
+        }
+
+        let activeIndex = -1;
+
+        const applyActive = (index: number) => {
+            if (index === activeIndex) return;
+            activeIndex = index;
+
+            for (const button of buttons) {
+                const buttonIndex = Number(button.dataset.index);
+                const isActive = buttonIndex === index;
+
+                button.classList.toggle("is-active", isActive);
+                button.setAttribute("aria-pressed", String(isActive));
+
+                const icon = button.querySelector("[data-service-icon]");
+                icon?.classList.toggle("bg-amber-200", isActive);
+                icon?.classList.toggle("bg-amber-100", !isActive);
+
+                const badge = button.querySelector("[data-service-badge]");
+                badge?.classList.toggle("opacity-100", isActive);
+                badge?.classList.toggle("opacity-0", !isActive);
+            }
+
+            for (const section of sections) {
+                const sectionIndex = Number(section.dataset.index);
+                section.classList.toggle("is-active", sectionIndex === index);
+            }
         };
 
-        const resizeObserver = new ResizeObserver(setStickyHeight);
-        resizeObserver.observe(panel);
-        setStickyHeight();
-    }
+        let ticking = false;
 
-    let activeIndex = -1;
+        const updateActiveFromScroll = () => {
+            ticking = false;
+            if (sections.length === 0) return;
 
-    const applyActive = (index: number) => {
-        if (index === activeIndex) return;
-        activeIndex = index;
+            const activeLine = window.innerHeight * 0.5;
+            let closestIndex = 0;
+            let closestDistance = Number.POSITIVE_INFINITY;
+
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                const distance = Math.abs(rect.top + rect.height / 2 - activeLine);
+
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestIndex = index;
+                }
+            });
+
+            applyActive(closestIndex);
+        };
+
+        const requestUpdate = () => {
+            if (ticking) return;
+            ticking = true;
+            window.requestAnimationFrame(updateActiveFromScroll);
+        };
+
+        window.addEventListener("scroll", requestUpdate, { passive: true, signal });
+        window.addEventListener("resize", requestUpdate, { signal });
+
+        // Right after a page-transition swap, the browser hasn't necessarily
+        // finished a real layout+paint pass yet, so an immediate measurement
+        // can read stale geometry. Deferring past two animation frames
+        // guarantees layout has settled before we measure.
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                setStickyHeight?.();
+                updateActiveFromScroll();
+            });
+        });
 
         for (const button of buttons) {
-            const buttonIndex = Number(button.dataset.index);
-            const isActive = buttonIndex === index;
+            button.addEventListener(
+                "click",
+                () => {
+                    const index = Number(button.dataset.index);
+                    const target = sections[index];
+                    if (!target) return;
 
-            button.classList.toggle("is-active", isActive);
-            button.setAttribute("aria-pressed", String(isActive));
-
-            const icon = button.querySelector("[data-service-icon]");
-            icon?.classList.toggle("bg-amber-200", isActive);
-            icon?.classList.toggle("bg-amber-100", !isActive);
-
-            const badge = button.querySelector("[data-service-badge]");
-            badge?.classList.toggle("opacity-100", isActive);
-            badge?.classList.toggle("opacity-0", !isActive);
+                    target.scrollIntoView({ behavior: "smooth", block: "center" });
+                },
+                { signal },
+            );
         }
 
-        for (const section of sections) {
-            const sectionIndex = Number(section.dataset.index);
-            section.classList.toggle("is-active", sectionIndex === index);
-        }
+        document.addEventListener(
+            "astro:before-swap",
+            () => {
+                controller.abort();
+                resizeObserver?.disconnect();
+            },
+            { once: true },
+        );
     };
 
-    let ticking = false;
-
-    const updateActiveFromScroll = () => {
-        ticking = false;
-        if (sections.length === 0) return;
-
-        const activeLine = window.innerHeight * 0.5;
-        let closestIndex = 0;
-        let closestDistance = Number.POSITIVE_INFINITY;
-
-        sections.forEach((section, index) => {
-            const rect = section.getBoundingClientRect();
-            const distance = Math.abs(rect.top + rect.height / 2 - activeLine);
-
-            if (distance < closestDistance) {
-                closestDistance = distance;
-                closestIndex = index;
-            }
-        });
-
-        applyActive(closestIndex);
-    };
-
-    const requestUpdate = () => {
-        if (ticking) return;
-        ticking = true;
-        window.requestAnimationFrame(updateActiveFromScroll);
-    };
-
-    updateActiveFromScroll();
-    window.addEventListener("scroll", requestUpdate, { passive: true });
-    window.addEventListener("resize", requestUpdate);
-
-    for (const button of buttons) {
-        button.addEventListener("click", () => {
-            const index = Number(button.dataset.index);
-            const target = sections[index];
-            if (!target) return;
-
-            target.scrollIntoView({ behavior: "smooth", block: "center" });
-        });
-    }
+    // This script is a processed module, and browsers only ever evaluate a
+    // given module URL once — re-inserting it on later navigations is a
+    // no-op, so calling init() directly here would only ever work for the
+    // very first page it happens to load on. astro:page-load fires once
+    // for the initial load and again after every subsequent navigation, so
+    // binding init() to it (and only it) re-queries buttons/sections
+    // against the fresh DOM every time, without double-running on load.
+    document.addEventListener("astro:page-load", init);
 </script>

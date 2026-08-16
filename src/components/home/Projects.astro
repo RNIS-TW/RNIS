@@ -51,12 +51,12 @@ const projects = projectsData as ProjectItem[];
             </div>
         </div>
 
-        <div class="w-full h-fit mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div class="w-full h-fit mt-8 grid grid-cols-1 lg:grid-cols-2 gap-8">
             {
                 projects.map((project) => (
-                    <div class="project-card h-fit lg:h-[50vh] border-2 border-amber-300 relative p-4">
+                    <div class="project-card group flex flex-col h-full bg-surface-raised border border-amber-100/20">
                         <div
-                            class="carousel w-full h-auto aspect-video relative lg:absolute lg:top-0 lg:left-0 overflow-hidden"
+                            class="carousel w-full aspect-video relative overflow-hidden"
                             data-carousel
                         >
                             <div
@@ -78,65 +78,95 @@ const projects = projectsData as ProjectItem[];
 
                             <EasingGradient
                                 width="100%"
-                                height="100%"
+                                height="40%"
                                 deg={0}
-                                color="var(--color-surface-base)"
+                                color="var(--color-surface-raised)"
                                 to="transparent"
                                 ease="in-out"
                                 stops={4}
-                                class="absolute inset-0"
+                                class="absolute inset-x-0 bottom-0 pointer-events-none"
                             />
+
+                            {project.images.length > 1 && (
+                                <>
+                                    <button
+                                        type="button"
+                                        class="carousel__arrow carousel__arrow--prev"
+                                        data-carousel-prev
+                                        aria-label="上一張圖片"
+                                    >
+                                        <ChevronLeft class="w-4 h-4" />
+                                    </button>
+                                    <button
+                                        type="button"
+                                        class="carousel__arrow carousel__arrow--next"
+                                        data-carousel-next
+                                        aria-label="下一張圖片"
+                                    >
+                                        <ChevronRight class="w-4 h-4" />
+                                    </button>
+                                    <div class="carousel__dots">
+                                        {project.images.map((_, index) => (
+                                            <button
+                                                type="button"
+                                                class:list={["carousel__dot", index === 0 && "is-active"]}
+                                                data-carousel-dot
+                                                aria-label={`前往第 ${index + 1} 張圖片`}
+                                            />
+                                        ))}
+                                    </div>
+                                </>
+                            )}
                         </div>
 
-                        <div class="relative w-full h-fit lg:h-full p-4">
-                            <div class="w-full h-fit lg:h-1/2 flex flex-col gap-2 mt-3 lg:mt-0">
-                                <div class="flex gap-4">
-                                    <div class="w-2 h-10 bg-amber-200" />
-                                    <h2 class="text-2xl sm:text-3xl lg:text-4xl text-amber-100">
+                        <div class="relative flex flex-col flex-1 gap-4 p-5 sm:p-6">
+                            <div class="flex flex-col gap-3">
+                                <div class="flex items-start gap-3">
+                                    <div class="w-1.5 h-7 sm:h-8 mt-1 shrink-0 bg-amber-200" />
+                                    <h2 class="text-xl sm:text-2xl lg:text-3xl text-amber-100 leading-tight">
                                         {project.title}
                                     </h2>
                                 </div>
-                                <p class="text-base sm:text-lg text-primary">
+                                <p class="text-sm sm:text-base text-secondary pl-4.5">
                                     與台灣知名實況主{" "}
                                     <a
                                         href={project.collaboratorUrl}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        class="text-primary underline underline-offset-2 duration-300 hover:text-amber-200"
+                                        class="text-amber-200 underline underline-offset-2 decoration-amber-200/50 duration-300 hover:text-amber-100"
                                     >
                                         {project.collaboratorName}
                                     </a>{" "}
                                     合作
                                 </p>
+                                <p class="text-sm text-secondary leading-relaxed pl-4.5">
+                                    {project.description}
+                                </p>
                             </div>
-                            <div class="w-full h-fit lg:h-1/2 flex flex-col items-start justify-end gap-4 lg:gap-8 mt-4">
-                                <div class="max-w-md">
-                                    <p class="text-sm text-primary">
-                                        {project.description}
-                                    </p>
+
+                            <div class="w-full h-px bg-amber-100/15 mt-auto" />
+
+                            <div class="w-full h-fit flex flex-col sm:flex-row items-start sm:items-end justify-between gap-4">
+                                <div class="flex w-fit h-fit flex-wrap items-end justify-start gap-2">
+                                    {project.links.map((link, index) => (
+                                        <NotchButton
+                                            as="a"
+                                            href={link.href}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            color="var(--color-amber-100)"
+                                            notch="6px"
+                                            corners={ index % 2 === 0 ? { topLeft: true, bottomRight: true, topRight: false, bottomLeft: false, } : { topLeft: false, bottomRight: false, topRight: true, bottomLeft: true, } }
+                                            class="projects-cta text-primary text-sm"
+                                        >
+                                            {link.label}
+                                            <ExternalLink class="w-4 h-4" />
+                                        </NotchButton>
+                                    ))}
                                 </div>
-                                <div class="w-full h-fit flex flex-col sm:flex-row items-start sm:items-end justify-between gap-3">
-                                    <div class="flex w-fit h-fit flex-wrap items-end justify-start gap-2">
-                                        {project.links.map((link, index) => (
-                                            <NotchButton
-                                                as="a"
-                                                href={link.href}
-                                                target="_blank"
-                                                rel="noopener noreferrer"
-                                                color="var(--color-amber-100)"
-                                                notch="6px"
-                                                corners={ index % 2 === 0 ? { topLeft: true, bottomRight: true, topRight: false, bottomLeft: false, } : { topLeft: false, bottomRight: false, topRight: true, bottomLeft: true, } }
-                                                class="projects-cta text-primary text-sm"
-                                            >
-                                                {link.label}
-                                                <ExternalLink class="w-4 h-4" />
-                                            </NotchButton>
-                                        ))}
-                                    </div>
-                                    <span class="text-xs text-amber-300">
-                                        {project.dateRange}
-                                    </span>
-                                </div>
+                                <span class="text-xs tracking-wide text-amber-300 shrink-0">
+                                    {project.dateRange}
+                                </span>
                             </div>
                         </div>
                     </div>
@@ -148,13 +178,17 @@ const projects = projectsData as ProjectItem[];
 
 <style>
     .project-card {
+        overflow: hidden;
+        box-shadow: 0 0 0 0 transparent;
         transition:
-            transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
-            border-color 300ms ease;
+            transform 250ms cubic-bezier(0.4, 0, 0.2, 1),
+            box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1),
+            border-color 250ms ease;
     }
 
     .project-card:hover {
-        transform: translateY(-0.3rem);
+        transform: translate(-4px, -4px);
+        box-shadow: 8px 8px 0 0 var(--color-amber-300);
         border-color: var(--color-amber-100);
     }
 
@@ -247,59 +281,88 @@ const projects = projectsData as ProjectItem[];
 </style>
 
 <script>
-    const carousels = document.querySelectorAll<HTMLElement>("[data-carousel]");
+    const init = () => {
+        const carousels = document.querySelectorAll<HTMLElement>("[data-carousel]");
+        if (carousels.length === 0) return;
 
-    for (const carousel of carousels) {
-        const track = carousel.querySelector<HTMLElement>(
-            "[data-carousel-track]",
-        );
-        const slides = Array.from(
-            carousel.querySelectorAll<HTMLElement>("[data-carousel-slide]"),
-        );
-        const dots = Array.from(
-            carousel.querySelectorAll<HTMLElement>("[data-carousel-dot]"),
-        );
-        const prevButton = carousel.querySelector<HTMLButtonElement>(
-            "[data-carousel-prev]",
-        );
-        const nextButton = carousel.querySelector<HTMLButtonElement>(
-            "[data-carousel-next]",
-        );
+        const controller = new AbortController();
+        const { signal } = controller;
+        const timers: ReturnType<typeof setInterval>[] = [];
 
-        if (!track || slides.length <= 1) continue;
+        for (const carousel of carousels) {
+            const track = carousel.querySelector<HTMLElement>(
+                "[data-carousel-track]",
+            );
+            const slides = Array.from(
+                carousel.querySelectorAll<HTMLElement>("[data-carousel-slide]"),
+            );
+            const dots = Array.from(
+                carousel.querySelectorAll<HTMLElement>("[data-carousel-dot]"),
+            );
+            const prevButton = carousel.querySelector<HTMLButtonElement>(
+                "[data-carousel-prev]",
+            );
+            const nextButton = carousel.querySelector<HTMLButtonElement>(
+                "[data-carousel-next]",
+            );
 
-        let activeIndex = 0;
-        let timer: ReturnType<typeof setInterval> | undefined;
+            if (!track || slides.length <= 1) continue;
 
-        const goTo = (index: number) => {
-            activeIndex = (index + slides.length) % slides.length;
+            let activeIndex = 0;
+            let timer: ReturnType<typeof setInterval> | undefined;
 
-            track.style.transform = `translateX(-${activeIndex * 100}%)`;
+            const goTo = (index: number) => {
+                activeIndex = (index + slides.length) % slides.length;
+
+                track.style.transform = `translateX(-${activeIndex * 100}%)`;
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle("is-active", i === activeIndex);
+                });
+            };
+
+            const startAutoplay = () => {
+                timer = setInterval(() => goTo(activeIndex + 1), 4000);
+                timers.push(timer);
+            };
+            const stopAutoplay = () => {
+                clearInterval(timer);
+            };
+
+            prevButton?.addEventListener(
+                "click",
+                () => goTo(activeIndex - 1),
+                { signal },
+            );
+            nextButton?.addEventListener(
+                "click",
+                () => goTo(activeIndex + 1),
+                { signal },
+            );
             dots.forEach((dot, i) => {
-                dot.classList.toggle("is-active", i === activeIndex);
+                dot.addEventListener("click", () => goTo(i), { signal });
             });
-        };
 
-        const startAutoplay = () => {
-            timer = setInterval(() => goTo(activeIndex + 1), 4000);
-        };
-        const stopAutoplay = () => {
-            clearInterval(timer);
-        };
+            carousel.addEventListener("mouseenter", stopAutoplay, { signal });
+            carousel.addEventListener("mouseleave", startAutoplay, { signal });
 
-        prevButton?.addEventListener("click", () => {
-            goTo(activeIndex - 1);
-        });
-        nextButton?.addEventListener("click", () => {
-            goTo(activeIndex + 1);
-        });
-        dots.forEach((dot, i) => {
-            dot.addEventListener("click", () => goTo(i));
-        });
+            startAutoplay();
+        }
 
-        carousel.addEventListener("mouseenter", stopAutoplay);
-        carousel.addEventListener("mouseleave", startAutoplay);
+        document.addEventListener(
+            "astro:before-swap",
+            () => {
+                controller.abort();
+                timers.forEach(clearInterval);
+            },
+            { once: true },
+        );
+    };
 
-        startAutoplay();
-    }
+    // This script is a processed module, and browsers only ever evaluate a
+    // given module URL once — re-inserting it on later navigations is a
+    // no-op. astro:page-load fires once for the initial load and again
+    // after every subsequent navigation, so binding init() to it (and only
+    // it) re-queries the carousels against the fresh DOM every time,
+    // without double-running on load.
+    document.addEventListener("astro:page-load", init);
 </script>
