@@ -1,0 +1,31 @@
+---
+const { class: className, ...rest } = Astro.props;
+---
+
+<svg
+    class:list={['wave-divider', className]}
+    viewBox="0 0 1200 40"
+    preserveAspectRatio="none"
+    aria-hidden="true"
+    {...rest}
+>
+    <path
+        d="M0 20 C 60 0, 120 40, 180 20 C 240 0, 300 40, 360 20 C 420 0, 480 40, 540 20 C 600 0, 660 40, 720 20 C 780 0, 840 40, 900 20 C 960 0, 1020 40, 1080 20 C 1110 10, 1140 30, 1200 20"
+        fill="none"
+        stroke-width="3"
+        stroke-linecap="round"
+    />
+</svg>
+
+<style>
+    .wave-divider {
+        display: block;
+        width: 100%;
+        height: 2rem;
+    }
+
+    .wave-divider path {
+        stroke: var(--color-amber-100);
+        opacity: 0.5;
+    }
+</style>

@@ -1,0 +1,97 @@
+{
+  "hero": {
+    "tag": "了解平常網路資訊",
+    "title": "關於我們",
+    "description": "我們是一群熱愛遊戲與技術的工程師，致力於把複雜的多人連線架構變得穩定、簡單、值得信賴。",
+    "image": {
+      "src": "/image.webp",
+      "alt": "團隊工作情境"
+    }
+  },
+  "experience": {
+    "title": "發展歷程",
+    "description": "從草創到現在，我們累積了多場大型連線活動與客製化開發的實戰經驗。",
+    "items": [
+      {
+        "year": "2021",
+        "title": "工作室成立",
+        "description": "以個人接案起步，專注協助創作者處理伺服器架設與維運需求。",
+        "image": "https://images.pexels.com/photos/1181316/pexels-photo-1181316.jpeg?auto=compress&cs=tinysrgb&w=640&dpr=2"
+      },
+      {
+        "year": "2022",
+        "title": "首次百人戰營",
+        "description": "承接首場百人規模連線戰營，建立高承載伺服器架構的實戰經驗。",
+        "image": "https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=640&dpr=2"
+      },
+      {
+        "year": "2023",
+        "title": "跨團隊聯動企劃",
+        "description": "與多組創作者合作大型聯動活動，累積企劃到執行的完整流程。",
+        "image": "https://images.pexels.com/photos/1181263/pexels-photo-1181263.jpeg?auto=compress&cs=tinysrgb&w=640&dpr=2"
+      },
+      {
+        "year": "2024",
+        "title": "客製化開發服務上線",
+        "description": "推出插件與遊戲機制客製化開發服務，將構想化為可玩的體驗。",
+        "image": "https://images.pexels.com/photos/1181354/pexels-photo-1181354.jpeg?auto=compress&cs=tinysrgb&w=640&dpr=2"
+      }
+    ]
+  },
+  "team": {
+    "title": "團隊成員",
+    "members": [
+      {
+        "name": "Bu",
+        "role": "技術總監 · 伺服器架構",
+        "avatar": "https://bu.mwtw.net/avatar.jpg",
+        "links": [
+          { "type": "mail", "href": "mailto:hello@rnis.tw" },
+          { "type": "discord", "href": "#" },
+          { "type": "github", "href": "#" }
+        ]
+      },
+      {
+        "name": "河馬 Hippo",
+        "role": "軟體工程師 · 客製化開發",
+        "avatar": "https://danielchen.me/_next/static/media/hippodev.18c7xkx2txc-4.png",
+        "links": [
+          { "type": "mail", "href": "mailto:hello@rnis.tw" },
+          { "type": "discord", "href": "#" },
+          { "type": "github", "href": "#" }
+        ]
+      },
+      {
+        "name": "白龍 Whitedragon",
+        "role": "企劃顧問 · 活動執行",
+        "avatar": "https://nightfury.tw/dragon-home/assets/avatar.jpg",
+        "links": [
+          { "type": "mail", "href": "mailto:hello@rnis.tw" },
+          { "type": "telegram", "href": "#" },
+          { "type": "threads", "href": "#" }
+        ]
+      }
+    ]
+  },
+  "goal": {
+    "title": "我們的目標",
+    "description": "我們相信好的技術，應該讓創作者更專注於內容本身。",
+    "items": [
+      {
+        "icon": "shield",
+        "title": "穩定可靠",
+        "description": "以扎實的架構規劃，降低活動期間發生問題的風險。"
+      },
+      {
+        "icon": "message",
+        "title": "透明溝通",
+        "description": "從企劃到上線，每個階段都清楚同步進度與細節。"
+      },
+      {
+        "icon": "trending",
+        "title": "持續進化",
+        "description": "隨著活動規模成長，技術架構也持續優化與升級。"
+      }
+    ]
+  }
+}

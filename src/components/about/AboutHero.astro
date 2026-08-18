@@ -1,0 +1,46 @@
+---
+import config from "@content/about.json";
+import WaveDivider from "@svg/waveDivider.astro";
+
+const { hero } = config;
+---
+
+<section id="about-hero" class="w-full h-fit bg-surface-base">
+    <div class="h-16 sm:h-20 lg:h-24"></div>
+    <div class="container mx-auto px-6 sm:px-10 lg:px-16 pt-10 lg:pt-16 flex flex-col items-center text-center gap-5 lg:gap-6">
+        <span class="w-fit px-3 py-1 text-xs sm:text-sm font-medium tracking-wide bg-amber-100/10 text-amber-100 border border-amber-100/30">
+            {hero.tag}
+        </span>
+        <h1 class="text-5xl sm:text-6xl lg:text-7xl font-line-seed text-amber-100">
+            {hero.title}
+        </h1>
+        <p class="max-w-2xl text-base sm:text-lg text-secondary leading-relaxed">
+            {hero.description}
+        </p>
+
+        <div class="w-full max-w-4xl h-56 sm:h-72 lg:h-[26rem] mt-4 lg:mt-6 notch-border overflow-hidden">
+            <img
+                src={hero.image.src}
+                alt={hero.image.alt}
+                class="w-full h-full object-cover"
+                loading="eager"
+            />
+        </div>
+    </div>
+
+    <div class="container mx-auto px-6 sm:px-10 lg:px-16 mt-12 lg:mt-20">
+        <WaveDivider />
+    </div>
+</section>
+
+<style>
+    .notch-border {
+        border: 2px solid var(--color-amber-200);
+        border-radius: 24px;
+        box-shadow: 6px 6px 0 0 var(--color-amber-400);
+        corner-top-left-shape: notch;
+        corner-top-right-shape: square;
+        corner-bottom-left-shape: square;
+        corner-bottom-right-shape: notch;
+    }
+</style>

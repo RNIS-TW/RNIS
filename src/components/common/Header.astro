@@ -272,24 +272,43 @@ import { ChevronDown, Menu, X } from "@lucide/astro/icons";
 		link.addEventListener("click", scrollToTopIfHome);
 	});
 
+	const scrollToHashIfSamePage = (event) => {
+		const link = event.currentTarget;
+		const url = new URL(link.href, window.location.href);
+		if (url.pathname !== window.location.pathname || !url.hash) return;
+
+		const target = document.querySelector(url.hash);
+		if (!target) return;
+		event.preventDefault();
+
+		const lenis = window.__lenis;
+		if (lenis) lenis.scrollTo(target);
+		else target.scrollIntoView({ behavior: "smooth" });
+	};
+
+	document.querySelectorAll('a[href*="#"]').forEach((link) => {
+		link.addEventListener("click", scrollToHashIfSamePage);
+	});
+
 	window.addEventListener("resize", () => {
 		if (window.innerWidth >= 1024) closeMobileMenu();
 	});
 
-	window.addEventListener("scroll", () => {
-		console.log("scrollY:", window.scrollY, "triggerPoint:", triggerPoint, "borderTriggerPoint:", borderTriggerPoint);
-		if(!headerBlock) return;
-		if (window.scrollY > triggerPoint) {
-			headerBlock.classList.add("bg-surface-base/80", "backdrop-blur-sm");
-		} else {
-			headerBlock.classList.remove("bg-surface-base/80", "backdrop-blur-sm");
-		}
+	let scrollTicking = false;
 
-		if (window.scrollY > borderTriggerPoint) {
-			headerBlock.classList.add("header-border");
-		} else {
-			headerBlock.classList.remove("header-border");
-		}
-	});
+	const updateHeaderOnScroll = () => {
+		scrollTicking = false;
+		if (!headerBlock) return;
+
+		headerBlock.classList.toggle("bg-surface-base/80", window.scrollY > triggerPoint);
+		headerBlock.classList.toggle("backdrop-blur-sm", window.scrollY > triggerPoint);
+		headerBlock.classList.toggle("header-border", window.scrollY > borderTriggerPoint);
+	};
+
+	window.addEventListener("scroll", () => {
+		if (scrollTicking) return;
+		scrollTicking = true;
+		window.requestAnimationFrame(updateHeaderOnScroll);
+	}, { passive: true });
 
 </script>

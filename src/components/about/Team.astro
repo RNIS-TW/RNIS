@@ -1,0 +1,56 @@
+---
+import config from "@content/about.json";
+import { Mail, MessageCircle, Send, AtSign, Code } from "@lucide/astro/icons";
+
+const { team } = config;
+
+const linkIcons: Record<string, typeof Mail> = {
+    mail: Mail,
+    discord: MessageCircle,
+    telegram: Send,
+    threads: AtSign,
+    github: Code,
+};
+---
+
+<section id="team" class="w-full h-fit bg-surface-base py-16 lg:py-24">
+    <div class="container mx-auto px-6 sm:px-10 lg:px-16">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl text-amber-100 font-line-seed mb-10 lg:mb-16">{team.title}</h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+            {
+                team.members.map((member) => (
+                    <div class="team-card flex gap-4 items-start p-5 bg-surface-raised border border-amber-100/20 duration-300 hover:-translate-y-1 hover:border-amber-100">
+                        <div class="w-20 h-20 sm:w-24 sm:h-24 shrink-0 overflow-hidden shadow-[4px_4px_0_0_var(--color-amber-300)]">
+                            <img
+                                src={member.avatar}
+                                alt={member.name}
+                                class="w-full h-full object-cover"
+                                loading="lazy"
+                                decoding="async"
+                            />
+                        </div>
+                        <div class="flex flex-col gap-2 min-w-0">
+                            <h3 class="text-lg text-amber-100 font-medium truncate">{member.name}</h3>
+                            <p class="text-sm text-secondary leading-relaxed">{member.role}</p>
+                            <div class="flex flex-wrap gap-2 mt-1">
+                                {member.links.map((link) => {
+                                    const Icon = linkIcons[link.type] ?? Mail;
+                                    return (
+                                        <a
+                                            href={link.href}
+                                            class="w-7 h-7 flex items-center justify-center text-amber-100 border border-amber-100/30 duration-200 hover:bg-amber-100 hover:text-surface-base"
+                                            aria-label={link.type}
+                                        >
+                                            <Icon class="w-3.5 h-3.5" />
+                                        </a>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

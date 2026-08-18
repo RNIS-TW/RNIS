@@ -1,0 +1,38 @@
+---
+import config from "@content/about.json";
+import { ShieldCheck, MessagesSquare, TrendingUp } from "@lucide/astro/icons";
+
+const { goal } = config;
+
+const icons: Record<string, typeof ShieldCheck> = {
+    shield: ShieldCheck,
+    message: MessagesSquare,
+    trending: TrendingUp,
+};
+---
+
+<section id="goal" class="w-full h-fit bg-surface-base py-16 lg:py-24">
+    <div class="container mx-auto px-6 sm:px-10 lg:px-16">
+        <div class="flex flex-col gap-4 mb-10 lg:mb-16 max-w-2xl">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl text-amber-100 font-line-seed">{goal.title}</h2>
+            <p class="text-base sm:text-lg text-secondary">{goal.description}</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {
+                goal.items.map((item) => {
+                    const Icon = icons[item.icon] ?? ShieldCheck;
+                    return (
+                        <div class="goal-card aspect-square flex flex-col items-center justify-center gap-4 p-6 text-center bg-surface-raised border border-amber-100/20 duration-300 hover:-translate-y-1 hover:border-amber-100">
+                            <div class="w-12 h-12 shrink-0 shadow-[4px_4px_0_0_var(--color-amber-300)] bg-amber-100 flex items-center justify-center text-surface-base">
+                                <Icon class="w-6 h-6" />
+                            </div>
+                            <h3 class="text-lg text-amber-100 font-medium">{item.title}</h3>
+                            <p class="text-sm text-secondary leading-relaxed">{item.description}</p>
+                        </div>
+                    );
+                })
+            }
+        </div>
+    </div>
+</section>

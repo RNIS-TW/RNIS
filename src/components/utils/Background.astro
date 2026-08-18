@@ -113,7 +113,7 @@ const { theme = 'dark' } = Astro.props;
 		};
 
 		const resize = () => {
-			const pixelRatio = window.devicePixelRatio || 1;
+			const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
 			width = window.innerWidth;
 			height = window.innerHeight;
 			canvas.width = Math.round(width * pixelRatio);
@@ -122,6 +122,9 @@ const { theme = 'dark' } = Astro.props;
 			canvas.style.height = `${height}px`;
 			context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
 		};
+
+		let lastFrameTime = 0;
+		const FRAME_INTERVAL = 1000 / 30;
 
 		const draw = (time = 0) => {
 			const theme = getTheme();
@@ -141,29 +144,46 @@ const { theme = 'dark' } = Astro.props;
 			const columns = Math.ceil(width / CELL) + 1;
 			const rows = Math.ceil(height / CELL) + 2;
 
+			// Bucket cells by fill color first so fillStyle is only reassigned
+			// four times per frame instead of once per cell — reassigning
+			// fillStyle is a relatively expensive canvas state change, and at
+			// ~2000+ cells per frame that dominated frame time during scroll.
+			const buckets: Record<keyof typeof fills, Array<[number, number]>> = {
+				base: [],
+				light10: [],
+				light20: [],
+				pop: [],
+			};
+
 			for (let row = -1; row < rows; row++) {
 				for (let column = 0; column < columns; column++) {
 					const worldRow = row + worldRowBase;
 					const value = noise(column * 0.07, worldRow * 0.07 + time * 0.00002);
-					let fill = fills.base;
-					if (value > 0.78) fill = fills.pop;
-					else if (value > 0.6) fill = fills.light20;
-					else if (value > 0.38) fill = fills.light10;
+					let key: keyof typeof fills = 'base';
+					if (value > 0.78) key = 'pop';
+					else if (value > 0.6) key = 'light20';
+					else if (value > 0.38) key = 'light10';
 
-					context.fillStyle = fill;
-					context.fillRect(
+					buckets[key].push([
 						column * CELL + GAP / 2,
 						row * CELL + GAP / 2 - offset,
-						CELL - GAP,
-						CELL - GAP,
-					);
+					]);
+				}
+			}
+
+			for (const key of Object.keys(buckets) as Array<keyof typeof fills>) {
+				context.fillStyle = fills[key];
+				for (const [x, y] of buckets[key]) {
+					context.fillRect(x, y, CELL - GAP, CELL - GAP);
 				}
 			}
 		};
 
 		const animate = (time: number) => {
-			draw(time);
 			animationFrame = window.requestAnimationFrame(animate);
+			if (time - lastFrameTime < FRAME_INTERVAL) return;
+			lastFrameTime = time;
+			draw(time);
 		};
 		const restartAnimation = () => {
 			window.cancelAnimationFrame(animationFrame);
