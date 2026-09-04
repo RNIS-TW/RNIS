@@ -26,6 +26,10 @@
     {
       "name": "系統狀態",
       "url": "status.routine.tw"
+    },
+    {
+      "name": "檔案系統",
+      "url": "files.routine.tw"
     }
   ]
 }
